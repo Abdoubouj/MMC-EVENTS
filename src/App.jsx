@@ -1,3 +1,4 @@
+import { Login } from '@mui/icons-material'
 import './App.css'
 import Events from './components/Events/Events'
 import Header from './components/Header/Header'
@@ -11,6 +12,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Events/>} />
       <Route path="/speakers" element={<Speakers/>} />
+      <Route path="/login" element={<Login/>} />
     </Routes>
     </>
   )
