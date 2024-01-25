@@ -30,11 +30,13 @@ $dark:#252525;
         }
         .latest_events_items{
             padding: 50px 0;
-            display: flex;
-            justify-content: start;
-            align-items: start;
-            gap: 50px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            // display: flex;
+            // justify-content: start;
+            // align-items: center;
+            gap: 50px 0;
+            // flex-wrap: wrap;
            
         }
     }
