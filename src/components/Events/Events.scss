@@ -8,7 +8,9 @@ $dark:#252525;
 .events_section{
     min-height: 100vh;
     .events_container{
-        padding: 50px;
+        padding: 40px 0;
+        max-width: 1200px;
+        margin: 0 auto;
         h1{
             font-size: 30px;
             color: $blue;
@@ -25,6 +27,15 @@ $dark:#252525;
                 background: $blue;
                 border-radius: 2px;
             }
+        }
+        .latest_events_items{
+            padding: 50px 0;
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            gap: 50px;
+            flex-wrap: wrap;
+           
         }
     }
 }

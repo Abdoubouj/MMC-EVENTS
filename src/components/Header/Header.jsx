@@ -3,6 +3,7 @@ import "./Header.scss";
 import mmcLogo from "../../assets/mmcLogo.svg";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <header className="header">
@@ -14,24 +15,24 @@ const Header = () => {
           <div className="menu">
             <ul className="nav-menu">
               <li className="menu-item">
-                <a className="menu-link" href="#">
+                <NavLink className="menu-link" to="/">
                   Home
-                </a>
+                </NavLink>
               </li>
               <li className="menu-item">
-                <a className="menu-link" href="#">
+                <NavLink className="menu-link" to="/">
                   Events
-                </a>
+                </NavLink>
               </li>
               <li className="menu-item">
-                <a className="menu-link" href="#">
+                <NavLink className="menu-link" to="/speakers">
                   Speakers
-                </a>
+                </NavLink>
               </li>
               <li className="menu-item">
-                <a className="menu-link" href="#">
+                <NavLink className="menu-link" to="/">
                   About Us
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
