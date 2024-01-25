@@ -1,0 +1,30 @@
+$blue:#05A6F0;
+$yellow:#FEBA08;
+$green:#80BC06;
+$red:#F25325;
+$white:#fff;
+$light:#f7f7f7;
+$dark:#252525;
+.events_section{
+    min-height: 100vh;
+    .events_container{
+        padding: 50px;
+        h1{
+            font-size: 30px;
+            color: $blue;
+            position: relative;
+            padding: 5px 0;
+            display: inline-block;
+            &::before{
+                position: absolute;
+                content: "";
+                bottom: 0;
+                left: 0;
+                width: 50%;
+                height: 7px;
+                background: $blue;
+                border-radius: 2px;
+            }
+        }
+    }
+}
