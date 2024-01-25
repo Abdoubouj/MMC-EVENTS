@@ -1,5 +1,13 @@
 import React from "react";
 import "./Speakers.css";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import XIcon from '@mui/icons-material/X';
+import InstagramIcon from "@mui/icons-material/Instagram";
+import RssFeedIcon from "@mui/icons-material/RssFeed";
+
+
+
+
 const speakers = [
   {
     id: Date.now(),
@@ -116,19 +124,24 @@ const Speakers = () => {
             <div className="userSocialMedia">
               <ul>
                 <li>
-                  <i></i> A
+                  <a href="#">
+                    <FacebookIcon fontSize="large" />
+                  </a>
                 </li>
                 <li>
-                  <i></i> B
+                  <a href="#">
+                    <XIcon fontSize="large" />
+                  </a>
                 </li>
                 <li>
-                  <i></i> C
+                  <a href="#">
+                    <InstagramIcon fontSize="large" />
+                  </a>
                 </li>
                 <li>
-                  <i></i> D
-                </li>
-                <li>
-                  <i></i> F
+                  <a href="#">
+                    <RssFeedIcon fontSize="large" />
+                  </a>
                 </li>
               </ul>
             </div>
