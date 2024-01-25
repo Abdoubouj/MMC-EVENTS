@@ -129,7 +129,8 @@ header{
                 align-items: center;
                 gap: 20px;
                 .btn{
-                    padding: 10px 18px;
+                    padding: 10px 12px;
+                    text-decoration: none;
                     border: none;
                     border-radius: 8px;
                     color: $white;
@@ -139,9 +140,11 @@ header{
                 }
                 .login-btn{
                     background: $blue;
+                    border:1px solid $light;
                 }
                 .register-btn{
-                    background: $dark;
+                    border:1px solid $dark;
+                    color: $dark;
                 }
             }
         }
