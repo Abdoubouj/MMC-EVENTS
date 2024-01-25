@@ -98,17 +98,50 @@ header{
             }
         }
         .account-box{
+            position: relative;
             .account-icon{
                 border:1px solid $blue;
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
+                background: transparent;
                 display: flex;
                 align-items: center;
+                cursor: pointer;
                 justify-content: center;
                 color: $blue;
                 svg{
                     font-size: 30px;
+                }
+            }
+            .auth-box{
+                border: 1px solid $blue;
+                border-radius: 12px;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+                padding: 15px;
+                position: absolute;
+                width: 220px;
+                top: 50px;
+                left: -90px;
+                background: $white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                .btn{
+                    padding: 10px 18px;
+                    border: none;
+                    border-radius: 8px;
+                    color: $white;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    cursor: pointer;
+                }
+                .login-btn{
+                    background: $blue;
+                }
+                .register-btn{
+                    background: $dark;
                 }
             }
         }
