@@ -1,0 +1,94 @@
+
+.speakers-title {
+	padding-top: 20px;
+	text-align: center;
+	font-size: 24px;
+	color: #333;
+}
+
+.speakers-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+	padding: 10px 20px;
+}
+
+.image {
+	text-align: center;
+}
+.speakerInfo h2{
+	text-align: center;
+}
+.speaker {
+	width: 30%;
+	max-width: 300px;
+	background-color: #f7f7f7;
+	padding: 20px;
+	margin: 20px;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px rgba(20, 0, 0, 0.3);
+	transition: transform 0.3s ease-in-out;
+
+}
+
+.speaker:hover {
+	transform: scale(1.05);
+}
+
+.speaker .image img {
+	object-fit: cover;
+	height: 150px;
+	width: 150px;
+	border: 3px solid #ffffff;
+	border-radius: 50%;
+	margin-bottom: 15px;
+}
+
+.speakerInfo {
+	background-color: #e0e0e0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	border-radius: 15px 15px 0 0;
+	padding: 10px;
+}
+
+.userSocialMedia ul {
+	list-style: none;
+	padding: 10px;
+	margin: 0;
+	background-color: #0066cc;
+	justify-content: space-between;
+	border-radius: 0 0 15px 15px;
+}
+
+.userSocialMedia ul li {
+	display: inline-block;
+cursor: pointer;
+}
+
+.userSocialMedia ul li a {
+	text-decoration: none;
+	color: #fff;
+	padding: 8px;
+	border-radius: 5px;
+	background-color: rgb(0, 110, 255);
+	transition: background-color 0.3s ease-in-out;
+}
+
+.userSocialMedia ul li a:hover {
+	background-color: #05172a;
+	
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+	.speakers-container {
+		padding: 20px;
+	}
+
+	.speaker {
+		width: 100%;
+	}
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import "./Speakers.css";
 const speakers = [
   {
     id: Date.now(),
@@ -94,35 +95,45 @@ const speakers = [
 const Speakers = () => {
   return (
     <>
-      <h1>Our Speaker </h1>
-      <div className="container">
-        <div className="profile">
-          <div className="image">image here</div>
-          <div className="userInfo">
-            <h2> Name here </h2>
-            <h3>MCt</h3>
+      <div className="speakers-title">
+        <h1>Our Speakers </h1>
+      </div>
+      <div className="speakers-container">
+        {speakers.map((speaker) => (
+          <div className="speaker">
+            <div className="image">
+              <img
+                src={speaker.photo}
+                alt={speaker.nom + " " + speaker.prenom}
+              />
+            </div>
+            <div className="speakerInfo">
+              <h2> {speaker.nom + " " + speaker.prenom} </h2>
+              <p>{speaker.MVP + " " + speaker.MCT}</p>
+              <h5>About</h5>
+              <p> {speaker.Biography}</p>
+            </div>
+            <div className="userSocialMedia">
+              <ul>
+                <li>
+                  <i></i> A
+                </li>
+                <li>
+                  <i></i> B
+                </li>
+                <li>
+                  <i></i> C
+                </li>
+                <li>
+                  <i></i> D
+                </li>
+                <li>
+                  <i></i> F
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="userabout"> about here </div>
-          <div className="userSocialMedia">
-            <ul>
-              <li>
-                <i></i> insta
-              </li>
-              <li>
-                <i></i> insta
-              </li>
-              <li>
-                <i></i> insta
-              </li>
-              <li>
-                <i></i> insta
-              </li>
-              <li>
-                <i></i> insta
-              </li>
-            </ul>
-          </div>
-        </div>
+        ))}
       </div>
     </>
   );
