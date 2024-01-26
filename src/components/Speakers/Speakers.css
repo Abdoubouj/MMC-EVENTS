@@ -61,7 +61,7 @@
 
 .userSocialMedia ul {
 	list-style: none;
-	padding: 15px;
+	padding: 5px;
 	margin: 0;
 	background-color: #0099ff;
 	border-radius: 0 0 15px 15px;
@@ -98,7 +98,7 @@
 	border-radius: 50%;
 	height: 100%;
 	width: 100%;
-	text-align: center;
+	align-items: center;
 	display: flex;
 	justify-content: center;
 	transition: background-color 0.3s ease-in-out;

@@ -4,7 +4,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import XIcon from '@mui/icons-material/X';
 import InstagramIcon from "@mui/icons-material/Instagram";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
-
+import { Link, NavLink } from "react-router-dom";
 
 
 
@@ -146,6 +146,7 @@ const speakers = [
 ];
 
 const Speakers = () => {
+
   return (
     <>
       <div className="speakers-title">
@@ -160,13 +161,12 @@ const Speakers = () => {
                   src={speaker.photo}
                   alt={speaker.nom + " " + speaker.prenom}
                 />
-                
               </a>
             </div>
             <div className="speakerInfo">
-              <a href="#">
+              <Link href="/SpeakerDetails">
                 <h2> {speaker.nom + " " + speaker.prenom} </h2>
-              </a>
+              </Link>
               <p>{speaker.MVP + " " + speaker.MCT}</p>
               <h5>About</h5>
               <p> {speaker.Biography}</p>
