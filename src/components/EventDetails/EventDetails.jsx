@@ -35,7 +35,7 @@ const EventDetails = () => {
                 <div className="recommended-events-items">
                     {events.filter((e)=> e.id !== parseInt(id)).map((event)=>(
                         <div className="recommended-event-item" key={event.id}>
-                            <h1>{event.adresse},{event.city}</h1>
+                            <img src={`../../../../public/${event?.image}`} width={100} alt="" />
                         </div>
                     ))}
                 </div>

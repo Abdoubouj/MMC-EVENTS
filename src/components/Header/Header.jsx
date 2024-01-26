@@ -23,7 +23,7 @@ const Header = () => {
   }, []);
   return (
     <header className="header" ref={headerTopRef}>
-      <div className="container">
+      <div className="container-header">
         <div className="header-top">
           <div className="logo">
             <img src={mmcLogo} width={60} alt="app-logo" />

@@ -3,6 +3,7 @@ import EventDetails from './components/EventDetails/EventDetails'
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
 import LoginForm from './components/LoginForm/LoginForm'
+import RegisterForm from './components/RegisterForm/RegisterForm'
 import Speakers from './components/Speakers/Speakers'
 import SpeakerDetails from "./components/SpeakerDetails/SpeakerDetails"
 import {Routes,Route} from "react-router-dom"
@@ -17,6 +18,7 @@ function App() {
       <Route path="/login" element={<LoginForm/>} />
       <Route path="/events/:id" element={<EventDetails/>} />
       <Route path='/speakers/:id' element={<SpeakerDetails/>}/>
+      <Route path='/register' element={<RegisterForm/>}/>
     </Routes>
     </>
   )
