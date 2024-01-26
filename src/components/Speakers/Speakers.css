@@ -1,7 +1,7 @@
 .speakers-title {
-	padding-top: 20px;
+	padding-top: 10px;
 	text-align: center;
-	font-size: 24px;
+	font-size: 28px;
 	color: #333;
 }
 
@@ -10,22 +10,29 @@
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 	align-items: center;
-	padding: 10px 200px;
+	padding: 0px 200px;
+	background-color: #dfdfdf;
+	margin-top: 10px;
 }
 
-.image {
-	text-align: center;
-}
-
-.speaker .image img {
-	object-fit: cover;
-	height: 150px;
-	width: 150px;
+.speaker .image {
+	margin: 0 auto;
+	overflow: hidden;
+	height: 200px;
+	width: 200px;
 	border: 2px solid #0099ff;
 	border-radius: 50%;
 	margin-bottom: 15px;
 	background-color: #ffffff;
 	padding: 5px;
+}
+
+.speaker .image img {
+
+	border-radius: 50%;
+	height: 100%;
+	width: 100%;
+
 }
 
 .speakerInfo h2 {
@@ -65,8 +72,8 @@
 	margin: 0;
 	background-color: #0099ff;
 	border-radius: 0 0 15px 15px;
- 
-	display:flex;
+
+	display: flex;
 	gap: 10px;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -74,9 +81,9 @@
 }
 
 .userSocialMedia ul li {
-	 
-	
- 	
+
+
+
 	height: 50px;
 	width: 50px;
 	display: flex;
@@ -84,9 +91,9 @@
 	text-align: center;
 	align-items: center;
 	gap: 15px;
-	
 
-	 
+
+
 }
 
 
@@ -104,7 +111,7 @@
 	transition: background-color 0.3s ease-in-out;
 }
 
- 
+
 /* Responsive Styles */
 @media only screen and (max-width: 768px) {
 	.speakers-container {

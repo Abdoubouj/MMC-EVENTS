@@ -1,10 +1,10 @@
 export const speakers = [
   {
     id: 1,
-    nom: "Smith",
-    prenom: "John",
+    nom: "Said",
+    prenom: "Wahid",
     photo:
-      "https://www.pentalog.com/wp-content/uploads/2019/04/FredericLasnier_circle.png",
+      "https://www.moroccomicrosoftcommunity.com//img/speakers/img/said_wahid.jpg",
     MCT: "Gold",
     MVP: "Azure",
     Biography:
@@ -25,13 +25,13 @@ export const speakers = [
   },
   {
     id: 2,
-    nom: "Doe",
-    prenom: "Jane",
-    photo: "https://www.pentalog.com/wp-content/uploads/2019/04/eric-gouin.jpg",
+    nom: "Hassan",
+    prenom: "Fadili",
+    photo: "https://www.moroccomicrosoftcommunity.com//img/speakers/img/Hassan_Fadili.jpg",
     MCT: "Silver",
     MVP: "Office 365",
     Biography:
-      "Jane Doe is a seasoned professional in the field of productivity and collaboration tools, specializing in Office 365.",
+      "Hassan Fadili is a seasoned professional in the field of productivity and collaboration tools, specializing in Office 365.",
     facebook: "https://www.facebook.com/janedoe",
     twitter: "https://twitter.com/jane_doe",
     instagram: "https://www.instagram.com/jane.doe",
@@ -48,14 +48,14 @@ export const speakers = [
   },
    {
     id: 3,
-    nom: "Williams",
-    prenom: "Chris",
+    nom: "Anas",
+    prenom: "Belabbes",
     photo:
-      "https://www.pentalog.com/wp-content/uploads/2019/04/sophie-lelarge.jpg",
+      "https://www.moroccomicrosoftcommunity.com//img/speakers/img/Anas_Belabbes.jpg",
     MCT: "Bronze",
     MVP: "Windows Development",
     Biography:
-      "Chris Williams is a skilled developer with a focus on Windows development and user interface design.",
+      "Anas Belabbes is a skilled developer with a focus on Windows development and user interface design.",
     facebook: "https://www.facebook.com/chriswilliams",
     twitter: "https://twitter.com/chris_will",
     instagram: "https://www.instagram.com/chris.will",
@@ -72,14 +72,14 @@ export const speakers = [
   },
   {
     id: 4,
-    nom: "Brown",
-    prenom: "Emily",
+    nom: "Youssef",
+    prenom: "Chigane",
     photo:
-      "https://www.pentalog.com/wp-content/uploads/2019/04/Cornel_FATULESCU_circle1.png",
+      "https://www.moroccomicrosoftcommunity.com//img/speakers/img/Youssef_Chigane.jpg",
     MCT: "Gold",
     MVP: "Power BI",
     Biography:
-      "Emily Brown is a data visualization expert, specializing in Power BI and business intelligence solutions.",
+      "Youssef Chigane is a data visualization expert, specializing in Power BI and business intelligence solutions.",
     facebook: "https://www.facebook.com/emilybrown",
     twitter: "https://twitter.com/emily_brown",
     instagram: "https://www.instagram.com/emily.brown",
@@ -97,14 +97,14 @@ export const speakers = [
 
   {
     id: 5,
-    nom: "Johnson",
-    prenom: "Michael",
+    nom: "Mohssine",
+    prenom: "Masaaf",
     photo:
-      "https://www.pentalog.com/wp-content/uploads/2019/04/Cosmina-Trifan1.png",
+      "https://www.moroccomicrosoftcommunity.com//img/speakers/img/Mohssine_Masaaf.jpg",
     MCT: "Silver",
     MVP: "SharePoint",
     Biography:
-      "Michael Johnson is a SharePoint enthusiast with a passion for collaboration and document management.",
+      "Mohssine Masaaf is a SharePoint enthusiast with a passion for collaboration and document management.",
     facebook: "https://www.facebook.com/michaeljohnson",
     twitter: "https://twitter.com/michael_j",
     instagram: "https://www.instagram.com/michael.j",
@@ -121,14 +121,14 @@ export const speakers = [
   },
   {
     id: 6,
-    nom: "Miller",
-    prenom: "Sarah",
+    nom: "Outman",
+    prenom: "Bazzaz",
     photo:
-      "https://www.pentalog.com/wp-content/uploads/2019/04/Aleth-Delcenserie.jpg",
+      "https://www.moroccomicrosoftcommunity.com//img/speakers/img/Outman_Bazzaz.jpg",
     MCT: "Bronze",
     MVP: "Dynamics 365",
     Biography:
-      "Sarah Miller is a Dynamics 365 expert, helping organizations streamline their business processes and enhance customer experiences.",
+      "Outman Bazzaz is a Dynamics 365 expert, helping organizations streamline their business processes and enhance customer experiences.",
     facebook: "https://www.facebook.com/sarahmiller",
     twitter: "https://twitter.com/sarah_m",
     instagram: "https://www.instagram.com/sarah.m",
