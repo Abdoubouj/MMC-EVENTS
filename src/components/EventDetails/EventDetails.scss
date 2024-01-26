@@ -34,6 +34,54 @@ $dark:#252525;
             padding: 5px;
             border: 2px solid $light;
         }
+        .meta-info{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .event-adresse{
+                margin: 10px 0;
+                color: $red;
+                font-size: 18px;
+                font-weight: 800;
+            }
+            .event-date{
+                margin: 10px 0;
+                color: $green;
+                font-size: 18px;
+                font-weight: 800;
+                display: flex;
+                gap: 10px;
+            }
+        }
+        .event-description{
+            p{
+                margin-top: 15px;
+                font-size: 17px;
+                font-weight: 500;
+                color: $dark;
+            }
+        }
+        .enroll-btn{
+            margin: 30px auto;
+            display: block;
+            padding: 15px 55px;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            background: $blue;
+            color: $light;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            text-transform: capitalize;
+            cursor: pointer;
+            transition: 0.3s linear;
+            &:hover{
+                box-shadow:0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+        }
     }
     .event-details-right{
         flex: 0 0 300px;
