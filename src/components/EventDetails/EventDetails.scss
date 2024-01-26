@@ -17,7 +17,7 @@ $dark:#252525;
         padding: 15px;
         border: 1px solid $light;
         border-radius: 15px;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
         img{
             width: 100%;
             height: 800px;
@@ -89,19 +89,36 @@ $dark:#252525;
         border: 1px solid $light;
         height: 100%;
         border-radius: 15px;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
         .recommended-events-items{
             display: grid;
             gap: 30px;
             margin-top: 30px;
             .recommended-event-item{
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px; 
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px; 
                 border-radius: 15px;
                 border: 1px solid $light;
+                display: flex;
+                gap: 3px;
                 img{
                     border-radius: 15px 0 0 15px;
                     border: 1px solid $light;
                     height: 100%;
+                }
+                .recommended-event-info{
+                    text-align: center;
+                    margin-top: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    a{
+                        text-decoration: none;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: $blue;
+                        gap: 12px;
+                    }
                 }
             }
         }

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import {useParams} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import { events } from '../../data/events';
 import AdsClickRoundedIcon from '@mui/icons-material/AdsClickRounded';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import "./EventDetails.scss"
 const EventDetails = () => {
     const {id} = useParams();
@@ -36,6 +37,11 @@ const EventDetails = () => {
                     {events.filter((e)=> e.id !== parseInt(id)).map((event)=>(
                         <div className="recommended-event-item" key={event.id}>
                             <img src={`../../../../public/${event?.image}`} width={100} alt="" />
+                            <div className="recommended-event-info">
+                              <h5>{event?.title}</h5>
+                              <p>{event?.adresse},{event?.city}</p>
+                              <Link>Read more <KeyboardDoubleArrowRightIcon/></Link>
+                            </div>
                         </div>
                     ))}
                 </div>
