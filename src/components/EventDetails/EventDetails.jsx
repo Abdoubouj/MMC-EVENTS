@@ -11,7 +11,7 @@ const EventDetails = () => {
     },[])
   return (
     <div className="event-details">
-        <div className="event-details-left">
+        <main className="event-details-left">
             <h1 className='event-title'>{event?.title}</h1>
             <img src={`../../../../public/${event.image}`} alt="#" />
             <div className="meta-info">
@@ -28,10 +28,19 @@ const EventDetails = () => {
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias ipsa, nam nesciunt quod explicabo doloremque nostrum fugiat dolorem esse optio deserunt illo nisi maiores. Facilis ipsum harum asperiores dolorem fugit!</p>
             </div>
             <button className='enroll-btn'><AdsClickRoundedIcon/> Enroll Now</button>
-        </div>
-        <div className="event-details-right">
-
-        </div>
+        </main>
+        <aside className="event-details-right">
+            <div className="recommended-events">
+                <h3>Recommended Events</h3>
+                <div className="recommended-events-items">
+                    {events.filter((e)=> e.id !== parseInt(id)).map((event)=>(
+                        <div className="recommended-event-item" key={event.id}>
+                            <h1>{event.adresse},{event.city}</h1>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </aside>
     </div>
   )
 }
