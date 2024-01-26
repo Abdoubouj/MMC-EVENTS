@@ -1,0 +1,52 @@
+$blue: #05A6F0;
+$yellow: #FEBA08;
+$green: #80BC06;
+$red: #F25325;
+$white: #fff;
+$light: #f7f7f7;
+$dark: #252525;
+
+.speaker-details {
+  max-width: 1200px;
+  padding: 50px 0;
+  margin: 0 auto;
+  display: flex;
+  
+  flex-wrap: wrap;  
+
+  .speaker-details-left {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid $blue;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+
+    img {
+      width: 250px;
+      height: 250px;
+      display: block;
+      margin: 1rem auto;
+      border-radius: 15px;
+      border: 2px solid $light;
+    }
+
+    .speaker-info {
+      text-align: center;
+      font-weight: 900;
+      color: $dark;
+      border-radius: 15px;
+      padding: 5px;
+      border: 2px solid $light;
+    }
+  }
+
+  .speaker-details-right {
+    flex: 0 0 300px;
+    height: 100vh;
+    padding: 15px;
+    border: 1px solid $blue;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    overflow-y: scroll;
+  }
+}

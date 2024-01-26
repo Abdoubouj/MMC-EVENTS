@@ -5,6 +5,7 @@ import XIcon from '@mui/icons-material/X';
 import InstagramIcon from "@mui/icons-material/Instagram";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
 import { Link, NavLink } from "react-router-dom";
+import { speakers } from "../../data/speakers";
 
 
 
@@ -28,7 +29,7 @@ const Speakers = () => {
               </a>
             </div>
             <div className="speakerInfo">
-              <Link href="/SpeakerDetails">
+              <Link to={`/speakers/${speaker.id}`}>
                 <h2> {speaker.nom + " " + speaker.prenom} </h2>
               </Link>
               <p>{speaker.MVP + " " + speaker.MCT}</p>
