@@ -1,0 +1,170 @@
+.outerdiv {
+    display: flex;
+    justify-content: center;
+    width: 40rem;
+    height: 37rem;
+    background-color: rgba(246, 246, 246, 0.767);
+    padding: 4.px;
+    margin: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.75);    
+  }
+  
+  
+  
+  .container {
+    padding-bottom: 3rem;
+  }
+  
+  .form {
+    width: 30rem;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .signup {
+    color: rgb(77, 75, 75);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    font-weight: bold;
+    font-size: x-large;
+    margin-bottom: 0.5em;
+  }
+  
+  .form--input {
+    width: 100%;
+    margin-bottom: 1.25em;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 0.8em;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    background-color: rgb(245, 245, 245);
+  }
+  
+  .form--input:focus {
+    border: 1px solid rgb(74, 136, 217);
+    outline: none;
+  }
+  
+  .form--marketing {
+    display: flex;
+    margin-bottom: 1.25em;
+    align-items: center;
+  }
+  
+  .form--marketing>input {
+    margin-right: 0.625em;
+  }
+  
+  .form--marketing>label {
+    color: grey;
+  }
+  
+  .checkbox,
+  input[type="checkbox"] {
+    accent-color: rgb(39, 145, 193);
+  }
+  
+  .form--submit {
+    width: 50%;
+    padding: 0.625em;
+    font-weight: 800;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(65, 137, 209);
+    border: 1px solid #639;
+    cursor: pointer;
+  }
+  
+  .form--submit:hover {
+    color: rgb(65, 137, 209);
+    background-color: white;
+    border: 1px solid rgb(65, 137, 209);
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  
+  .buttons-div {
+    display: flex;
+    justify-content: center;
+    width: 20rem;
+  }
+  
+  .toggle-outer {
+    position: relative;
+    width: 18rem;
+    height: 2.5rem;
+    border-radius: 30px;
+    box-shadow: 0 0 20px 9px #24d3ff3c;
+  }
+  
+  .toggle-btn {
+    border: none;
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background: transparent;
+    font-weight: 800;
+    transition: .5s;
+  }
+  
+  #btn {
+    top: 0;
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(to right, #26deffb6, #b6edf5);
+    transition: .5s;
+    border-radius: 30px;
+  }
+  
+  .ContentBox {
+    display: flex;
+    width: 39rem;
+    height: 32rem;
+    overflow: hidden;
+  }
+  
+  .formContent {
+    position: relative;
+    width: 100%;
+  }
+  
+  /* Media Queries for mobile  */
+  @media (max-width: 450px) {
+    .form {
+      width: none;
+    }
+  
+    html {
+      font-size: 50%;
+    }
+  
+    .ContentBox{
+      height: 51rem !important;
+    }
+  
+    .form span{
+      font-size: 2rem;
+    }
+  
+    .form--submit{
+      width: 75% !important;
+    }
+  
+    .toggle-outer{
+      height: 3.5rem !important;
+    }
+  
+    .outerContainer {
+      height: 55rem !important;
+    }
+  }
