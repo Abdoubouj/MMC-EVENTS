@@ -98,6 +98,51 @@ const speakers = [
     instagram: "https://www.instagram.com/sarah.m",
     website: "https://www.sarahmillerconsulting.com",
   },
+  {
+    id: Date.now() + 5,
+    nom: "Miller",
+    prenom: "Sarah",
+    photo:
+      "https://www.pentalog.com/wp-content/uploads/2019/04/Aleth-Delcenserie.jpg",
+    MCT: "Bronze",
+    MVP: "Dynamics 365",
+    Biography:
+      "Sarah Miller is a Dynamics 365 expert, helping organizations streamline their business processes and enhance customer experiences.",
+    facebook: "https://www.facebook.com/sarahmiller",
+    twitter: "https://twitter.com/sarah_m",
+    instagram: "https://www.instagram.com/sarah.m",
+    website: "https://www.sarahmillerconsulting.com",
+  },
+  {
+    id: Date.now() + 5,
+    nom: "Miller",
+    prenom: "Sarah",
+    photo:
+      "https://www.pentalog.com/wp-content/uploads/2019/04/Aleth-Delcenserie.jpg",
+    MCT: "Bronze",
+    MVP: "Dynamics 365",
+    Biography:
+      "Sarah Miller is a Dynamics 365 expert, helping organizations streamline their business processes and enhance customer experiences.",
+    facebook: "https://www.facebook.com/sarahmiller",
+    twitter: "https://twitter.com/sarah_m",
+    instagram: "https://www.instagram.com/sarah.m",
+    website: "https://www.sarahmillerconsulting.com",
+  },
+  {
+    id: Date.now() + 5,
+    nom: "Miller",
+    prenom: "Sarah",
+    photo:
+      "https://www.pentalog.com/wp-content/uploads/2019/04/Aleth-Delcenserie.jpg",
+    MCT: "Bronze",
+    MVP: "Dynamics 365",
+    Biography:
+      "Sarah Miller is a Dynamics 365 expert, helping organizations streamline their business processes and enhance customer experiences.",
+    facebook: "https://www.facebook.com/sarahmiller",
+    twitter: "https://twitter.com/sarah_m",
+    instagram: "https://www.instagram.com/sarah.m",
+    website: "https://www.sarahmillerconsulting.com",
+  },
 ];
 
 const Speakers = () => {
@@ -110,13 +155,18 @@ const Speakers = () => {
         {speakers.map((speaker) => (
           <div className="speaker">
             <div className="image">
-              <img
-                src={speaker.photo}
-                alt={speaker.nom + " " + speaker.prenom}
-              />
+              <a href="#">
+                <img
+                  src={speaker.photo}
+                  alt={speaker.nom + " " + speaker.prenom}
+                />
+                
+              </a>
             </div>
             <div className="speakerInfo">
-              <h2> {speaker.nom + " " + speaker.prenom} </h2>
+              <a href="#">
+                <h2> {speaker.nom + " " + speaker.prenom} </h2>
+              </a>
               <p>{speaker.MVP + " " + speaker.MCT}</p>
               <h5>About</h5>
               <p> {speaker.Biography}</p>
