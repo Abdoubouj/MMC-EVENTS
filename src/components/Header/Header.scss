@@ -29,6 +29,12 @@ header{
             gap: 30px;
             li{
                 list-style: none;
+                a.active{
+                    color: $blue;
+                    &::after{
+                      width: 100%;
+                    }
+                }
                 a{
                     text-transform: capitalize;
                     text-decoration: none;
