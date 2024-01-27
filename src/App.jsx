@@ -7,6 +7,7 @@ import RegisterForm from './components/RegisterForm/RegisterForm'
 import Speakers from './components/Speakers/Speakers'
 import SpeakerDetails from "./components/SpeakerDetails/SpeakerDetails"
 import {Routes,Route} from "react-router-dom"
+import Events from './components/Events/Events'
 function App() {
 
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/" element={<Home/>} />
       <Route path="/speakers" element={<Speakers/>} />
       <Route path="/login" element={<LoginForm/>} />
+      <Route path="/events" element={<Events type="all"/>} />
       <Route path="/events/:id" element={<EventDetails/>} />
       <Route path='/speakers/:id' element={<SpeakerDetails/>}/>
       <Route path='/register' element={<RegisterForm/>}/>

@@ -11,7 +11,7 @@ $dark:#252525;
         padding: 40px 0;
         max-width: 1200px;
         margin: 0 auto;
-        .latest_events_heading{
+        .latest_events_heading , .all_events_heading{
             font-size: 30px;
             z-index: 1;
             color: $blue;
