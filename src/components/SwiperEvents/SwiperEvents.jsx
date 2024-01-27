@@ -29,7 +29,7 @@ const SwiperEvents = () => {
       className="mySwiper"
     >
      {events.map((event)=>(
-       <SwiperSlide style={{height:"70vh"}}>
+       <SwiperSlide style={{height:"70vh"}} key={event.id}>
         <img src={event?.image} style={{objectFit:"contain",height:"100%",width:"100%"}} alt="#" />
       </SwiperSlide>
         ))}

@@ -3,7 +3,7 @@ import "./Header.scss";
 import mmcLogo from "../../assets/mmcLogo.svg";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink ,useNavigate } from "react-router-dom";
 const Header = () => {
   const headerTopRef = useRef(null);
   const [showAccount, setShowAccount] = useState(false);
@@ -21,13 +21,18 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const navigate = useNavigate();
+  const handleRedirectToLogin = ()=>{
+    navigate("/login");
+    setShowAccount(false);
+  }
   return (
     <header className="header" ref={headerTopRef}>
       <div className="container-header">
         <div className="header-top">
-          <div className="logo">
+          <Link to="/" className="logo">
             <img src={mmcLogo} width={60} alt="app-logo" />
-          </div>
+          </Link>
           <div className="menu">
             <ul className="nav-menu">
               <li className="menu-item">
@@ -70,7 +75,7 @@ const Header = () => {
               </button>
               {showAccount && (
                 <div className="auth-box">
-                  <Link className="btn login-btn" to="/login">login</Link>
+                  <button className="btn login-btn" onClick={()=>{handleRedirectToLogin()}}>login</button>
                   <Link className="btn register-btn" to="/register">register</Link>
                 </div>
               )}

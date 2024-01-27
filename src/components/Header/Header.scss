@@ -121,14 +121,14 @@ header{
                 }
             }
             .auth-box{
-                border: 1px solid $blue;
+                border: 1px solid $light;
                 border-radius: 12px;
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
                 padding: 15px;
                 position: absolute;
                 width: 220px;
                 top: 50px;
-                left: -90px;
+                left: -180px;
                 background: $white;
                 display: flex;
                 justify-content: center;
