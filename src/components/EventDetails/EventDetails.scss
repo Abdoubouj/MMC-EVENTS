@@ -103,10 +103,15 @@ $dark:#252525;
                 img{
                     border-radius: 15px 0 0 15px;
                     border: 1px solid $light;
-                    height: 100%;
+                    display: block;
+                    width: 120px;
+                    background: #000;
+                    height: 120px;
+                    object-fit: cover;
                 }
                 .recommended-event-info{
                     text-align: center;
+                    width: 100%;
                     margin-top: 5px;
                     display: flex;
                     flex-direction: column;

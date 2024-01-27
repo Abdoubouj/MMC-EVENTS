@@ -14,7 +14,7 @@ const EventDetails = () => {
     <div className="event-details">
         <main className="event-details-left">
             <h1 className='event-title'>{event?.title}</h1>
-            <img src={`../../../../public/${event.image}`} alt="#" />
+            <img src={event.image} alt="#" />
             <div className="meta-info">
             <p className='event-adresse'>{event?.adresse},{event?.city}</p>
             <p className='event-date'>
@@ -36,7 +36,9 @@ const EventDetails = () => {
                 <div className="recommended-events-items">
                     {events.filter((e)=> e.id !== parseInt(id)).map((event)=>(
                         <div className="recommended-event-item" key={event.id}>
-                            <img src={`../../../../public/${event?.image}`} width={100} alt="" />
+                            <div className="recommended-event-img">
+                              <img src={event?.image} alt="#" />
+                            </div>
                             <div className="recommended-event-info">
                               <h5>{event?.title}</h5>
                               <p>{event?.adresse},{event?.city}</p>

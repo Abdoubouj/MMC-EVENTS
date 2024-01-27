@@ -10,12 +10,13 @@ import 'swiper/css/effect-fade';
 
 // import required modules
 import {EffectFade, Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { events } from '../../data/events';
 const SwiperEvents = () => {
   return (
     <>
     <Swiper
       // centeredSlides={true}
-      effect={'zoomIn'}
+      // effect={'fade'}
       autoplay={{
         delay: 2500,
         disableOnInteraction: false,
@@ -27,15 +28,11 @@ const SwiperEvents = () => {
       modules={[EffectFade ,Autoplay, Pagination, Navigation]}
       className="mySwiper"
     >
-      <SwiperSlide style={{height:"70vh"}}>
-        <img src="microsoft.jpg" alt="#" style={{objectFit:"cover",height:"100%",width:"100%"}} />
+     {events.map((event)=>(
+       <SwiperSlide style={{height:"70vh"}}>
+        <img src={event?.image} style={{objectFit:"contain",height:"100%",width:"100%"}} alt="#" />
       </SwiperSlide>
-      <SwiperSlide style={{height:"70vh"}}>
-        <img src="microsoft.jpg" alt="#" style={{objectFit:"cover",height:"100%",width:"100%"}} />
-      </SwiperSlide>
-      <SwiperSlide style={{height:"70vh"}}>
-        <img src="microsoft.jpg" style={{objectFit:"cover",height:"100%",width:"100%"}} alt="#" />
-      </SwiperSlide>
+        ))}
     </Swiper>
   </>
   )
