@@ -1,0 +1,48 @@
+$blue:#05A6F0;
+$yellow:#FEBA08;
+$green:#80BC06;
+$red:#F25325;
+$white:#fff;
+$light:#f7f7f7;
+$dark:#252525;
+.admin-dashboard{
+    min-height: 100vh;
+    background: $light;
+    aside.dashboard-sidebare{
+        width: 300px;
+        background: $white;
+        box-shadow: rgba(192, 192, 192, 0.05) 0px 0px 3px 0px, rgba(192, 192, 192, 0.05) 0px 0px 3px 0px;
+        height: 100vh;
+        padding: 20px 0;
+        .logo{
+            text-align: center;
+            .logo-title{
+                font-size: 14px;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: $blue;
+            }
+        }
+        .dashboard-menu{
+            width: 100%;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            li{
+                list-style: none;
+                a{
+                    text-decoration: none;
+                    color: $dark;
+                    font-weight: 500;
+                    display: block;
+                    padding: 16px 30px;
+                    transition: .3s;
+                    &:hover{
+                        border-left: 5px solid $blue;
+                        font-weight: 800;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -83,13 +83,14 @@ $dark:#252525;
             }
         }
         .event-partners{
+           text-align: center;
           .partners-heading{
             margin: 60px 0 20px 0;
             color:$blue;
-            font-weight: 500;
+            font-weight: 700;
             text-transform: capitalize;
             display: inline-block;
-            border-bottom: 2px dashed $blue;
+            font-size: 22px;
           }
         }
     }
