@@ -3,13 +3,15 @@ $yellow:#FEBA08;
 $green:#80BC06;
 $red:#F25325;
 $white:#fff;
-$light:#f7f7f7;
+$light:#FCFCFD;
 $dark:#252525;
 .admin-dashboard{
     min-height: 100vh;
-    background: $light;
-    aside.dashboard-sidebare{
-        width: 300px;
+    display: flex;
+    aside.dashboard-left-sidebare{
+        position: relative;
+        // width: 300px;
+        flex: 0 0 300px;
         background: $white;
         box-shadow: rgba(192, 192, 192, 0.05) 0px 0px 3px 0px, rgba(192, 192, 192, 0.05) 0px 0px 3px 0px;
         height: 100vh;
@@ -17,7 +19,7 @@ $dark:#252525;
         .logo{
             text-align: center;
             .logo-title{
-                font-size: 14px;
+                font-size: 12px;
                 font-weight: 800;
                 text-transform: uppercase;
                 color: $blue;
@@ -51,13 +53,57 @@ $dark:#252525;
                         left: 0;
                         border-radius: 0 30px 30px 0;
                     }
-                    &:focus{
+                    &:hover{
                         font-weight: 800;
                         color: $blue;
-                        &::before{
-                            opacity: 1;
-                        }
                     }
+                }
+                a.active{
+                    font-weight: 800;
+                    color: $blue;
+                    &::before{
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    .dashboard-right{
+        background: #fffdfd;
+        min-height: 100vh;
+        flex: 1;
+        .admin-header{
+            height: 90px;
+            background: transparent;
+            border-bottom:1px solid $blue;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            .admin-search-box{
+                position: relative;
+                .admin-search-input{
+                        width: 500px;
+                        padding: 15px 40px;
+                        border-radius: 8px;
+                        background: $white;
+                        border: 1px solid #e1e1e1;
+                        outline: none;
+                        font-weight: 600;
+                      &::placeholder{
+                        text-transform: capitalize;
+                        color: $blue;
+                      }
+                      &:focus{
+                        border: 1px solid $blue;
+                        outline: 4px solid #05a6f027;
+                      }
+                }
+                .admin-search-icon{
+                    position: absolute;
+                    color: $blue;
+                    top: 12px;
+                    left: 5px;
                 }
             }
         }

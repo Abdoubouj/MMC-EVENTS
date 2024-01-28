@@ -6,24 +6,41 @@ import ConfirmationNumberRoundedIcon from '@mui/icons-material/ConfirmationNumbe
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import RecordVoiceOverRoundedIcon from '@mui/icons-material/RecordVoiceOverRounded';
 import HandshakeRoundedIcon from '@mui/icons-material/HandshakeRounded';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { NavLink } from 'react-router-dom';
 const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
-        <aside className="dashboard-sidebare">
+        <aside className="dashboard-left-sidebare">
            <div className="logo">
-            <img className='logo-img' src={mmcLogo} width={90} alt="#" />
+            <img className='logo-img' src={mmcLogo} width={50} alt="#" />
             <h1 className='logo-title'>Morocco Microsoft Community</h1>
            </div>
            <ul className="dashboard-menu">
-                <li><a href="#"><GridViewRoundedIcon/> Dashboard</a></li>
-                <li><a href="#"><ConfirmationNumberRoundedIcon/> Events</a></li>
-                <li><a href="#"><PeopleRoundedIcon/> Users</a></li>
-                <li><a href="#"><RecordVoiceOverRoundedIcon/> Speakers</a></li>
-                <li><a href="#"><HandshakeRoundedIcon/> Partners</a></li>
-                <li><a href="#"><LogoutRoundedIcon/> Logout</a></li>
+                <li><NavLink to="/"><GridViewRoundedIcon/> Dashboard</NavLink></li>
+                <li><NavLink to="/admin/events"><ConfirmationNumberRoundedIcon/> Events</NavLink></li>
+                <li><NavLink to="/admin/users"><PeopleRoundedIcon/> Users</NavLink></li>
+                <li><NavLink to="/admin/speakers"><RecordVoiceOverRoundedIcon/> Speakers</NavLink></li>
+                <li><NavLink to="/admin/partners"><HandshakeRoundedIcon/> Partners</NavLink></li>
+                <li><NavLink to="/admin/logout"><LogoutRoundedIcon/> Logout</NavLink></li>
            </ul>
         </aside>
+        <div className="dashboard-right">
+            <header className='admin-header'>
+                <div className="admin-search-box">
+                    <input type="text" placeholder='search for any ...' className='admin-search-input' />
+                    <div className="admin-search-icon">
+                      <SearchRoundedIcon/>
+                    </div>
+                </div>
+                <Stack direction="row">
+                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                </Stack>
+            </header>
+        </div>
     </div>
   )
 }
