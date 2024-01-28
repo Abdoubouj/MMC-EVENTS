@@ -32,14 +32,31 @@ $dark:#252525;
                 list-style: none;
                 a{
                     text-decoration: none;
-                    color: $dark;
-                    font-weight: 500;
-                    display: block;
-                    padding: 16px 30px;
+                    color: #444;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 40px;
+                    padding: 16px 50px;
                     transition: .3s;
-                    &:hover{
-                        border-left: 5px solid $blue;
+                    position: relative;
+                    &::before{
+                        position: absolute;
+                        content: "";
+                        width: 8px;
+                        height: 100%;
+                        background: $blue;
+                        opacity: 0;
+                        top: 0;
+                        left: 0;
+                        border-radius: 0 30px 30px 0;
+                    }
+                    &:focus{
                         font-weight: 800;
+                        color: $blue;
+                        &::before{
+                            opacity: 1;
+                        }
                     }
                 }
             }
