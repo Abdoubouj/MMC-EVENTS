@@ -10,7 +10,7 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import { NavLink } from 'react-router-dom';
+import { NavLink , Routes,Route } from 'react-router-dom';
 const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
@@ -40,6 +40,15 @@ const AdminDashboard = () => {
                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
                 </Stack>
             </header>
+            <main>
+                <Routes>
+                    <Route path="/" element="dashboard"/>
+                    <Route path="/admin/events" element="events"/>
+                    <Route path="/admin/users" element="users"/>
+                    <Route path="/admin/speakers" element="speakers"/>
+                    <Route path="/admin/partners" element="partners"/>
+                </Routes>
+            </main>
         </div>
     </div>
   )

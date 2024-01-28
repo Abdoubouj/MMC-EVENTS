@@ -69,13 +69,12 @@ $dark:#252525;
         }
     }
     .dashboard-right{
-        background: #fffdfd;
+        background: $light;
         min-height: 100vh;
         flex: 1;
         .admin-header{
             height: 90px;
-            background: transparent;
-            border-bottom:1px solid $blue;
+            background: $white;
             display: flex;
             align-items: center;
             justify-content: space-between;
