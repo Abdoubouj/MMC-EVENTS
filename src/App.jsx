@@ -8,10 +8,15 @@ import Speakers from './components/Speakers/Speakers'
 import SpeakerDetails from "./components/SpeakerDetails/SpeakerDetails"
 import {Routes,Route} from "react-router-dom"
 import Events from './components/Events/Events'
+import AdminDashboard from './components/AdminDashboard/AdminDashboard'
 function App() {
-
+  const isAdmin = false;
   return (
     <>
+    {isAdmin ?
+    <AdminDashboard/>
+    :
+    <>  
     <Header/>
     <Routes>
       <Route path="/" element={<Home/>} />
@@ -22,6 +27,8 @@ function App() {
       <Route path='/speakers/:id' element={<SpeakerDetails/>}/>
       <Route path='/register' element={<RegisterForm/>}/>
     </Routes>
+    </>
+    }
     </>
   )
 }

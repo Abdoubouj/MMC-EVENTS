@@ -9,6 +9,15 @@ export const events = [
     adresse: "ENSA",
     city: "Beni Mellal",
     category: "Dev Ops",
+    partners:[
+      {id:1,name:"Université Internationale de Rabat",logo:"https://seeklogo.com/images/U/universite-internationale-de-rabat-maroc-logo-125EDBEE84-seeklogo.com.png"},
+      {id:2,name:"Microsoft",logo:"https://seeklogo.com/images/M/microsoft-logo-B5C9E49146-seeklogo.com.png"},
+      {id:3,name:"Credits du maroc",logo:"https://seeklogo.com/images/C/credit-du-maroc-logo-80D6D85982-seeklogo.com.png"},
+      {id:4,name:"Poste Maroc",logo:"https://seeklogo.com/images/P/poste-maroc-logo-4B313F21AE-seeklogo.com.png"},
+      {id:5,name:"Ocp",logo:"https://seeklogo.com/images/O/ocp-logo-4F7287992D-seeklogo.com.png"},
+      {id:6,name:"Maroc cluster Numeric",logo:"https://aujourdhui.ma/wp-content/uploads/2021/06/Maroc-Numeric-Cluster.jpg?x73831"},
+      {id:7,name:"ministere de la transition numerique ",logo:"https://www.mmsp.gov.ma/themes/custom/dra/assets/images/fr.svg"},
+    ]
   },
   {
     id: 2,
@@ -19,6 +28,13 @@ export const events = [
     adresse: "ENSA",
     city: "Agadir",
     category: "Dev Ops",
+    partners:[
+      {id:1,name:"Credits du maroc",logo:"https://seeklogo.com/images/C/credit-du-maroc-logo-80D6D85982-seeklogo.com.png"},
+      {id:2,name:"Poste Maroc",logo:"https://seeklogo.com/images/P/poste-maroc-logo-4B313F21AE-seeklogo.com.png"},
+      {id:3,name:"Ocp",logo:"https://seeklogo.com/images/O/ocp-logo-4F7287992D-seeklogo.com.png"},
+      {id:4,name:"Maroc cluster Numeric",logo:"https://aujourdhui.ma/wp-content/uploads/2021/06/Maroc-Numeric-Cluster.jpg?x73831"},
+      {id:5,name:"ministere de la transition numerique ",logo:"https://www.mmsp.gov.ma/themes/custom/dra/assets/images/fr.svg"},
+    ]
   },
   {
     id: 3,
@@ -29,6 +45,13 @@ export const events = [
     adresse: "ENSA",
     city: "Khouribga",
     category: "Dev Ops",
+    partners:[
+      {id:1,name:"Université Internationale de Rabat",logo:"https://seeklogo.com/images/U/universite-internationale-de-rabat-maroc-logo-125EDBEE84-seeklogo.com.png"},
+      {id:2,name:"Microsoft",logo:"https://seeklogo.com/images/M/microsoft-logo-B5C9E49146-seeklogo.com.png"},
+      {id:3,name:"Credits du maroc",logo:"https://seeklogo.com/images/C/credit-du-maroc-logo-80D6D85982-seeklogo.com.png"},
+      {id:4,name:"Maroc cluster Numeric",logo:"https://aujourdhui.ma/wp-content/uploads/2021/06/Maroc-Numeric-Cluster.jpg?x73831"},
+      {id:5,name:"ministere de la transition numerique ",logo:"https://www.mmsp.gov.ma/themes/custom/dra/assets/images/fr.svg"},
+    ]
   },
   {
     id: 4,
@@ -39,6 +62,14 @@ export const events = [
     adresse: "Ecole Pegier",
     city: "Ouarzazate",
     category: "Dev Ops",
+    partners:[
+      {id:1,name:"Université Internationale de Rabat",logo:"https://seeklogo.com/images/U/universite-internationale-de-rabat-maroc-logo-125EDBEE84-seeklogo.com.png"},
+      {id:2,name:"Credits du maroc",logo:"https://seeklogo.com/images/C/credit-du-maroc-logo-80D6D85982-seeklogo.com.png"},
+      {id:3,name:"Poste Maroc",logo:"https://seeklogo.com/images/P/poste-maroc-logo-4B313F21AE-seeklogo.com.png"},
+      {id:4,name:"Ocp",logo:"https://seeklogo.com/images/O/ocp-logo-4F7287992D-seeklogo.com.png"},
+      {id:5,name:"Microsoft",logo:"https://seeklogo.com/images/M/microsoft-logo-B5C9E49146-seeklogo.com.png"},
+      {id:6,name:"Maroc cluster Numeric",logo:"https://aujourdhui.ma/wp-content/uploads/2021/06/Maroc-Numeric-Cluster.jpg?x73831"},
+    ]
   },
   {
     id: 5,
@@ -49,6 +80,15 @@ export const events = [
     adresse: "EST",
     city: "Maknes",
     category: "Dev Ops",
+    partners:[
+      {id:1,name:"ministere de la transition numerique ",logo:"https://www.mmsp.gov.ma/themes/custom/dra/assets/images/fr.svg"},
+      {id:2,name:"Microsoft",logo:"https://seeklogo.com/images/M/microsoft-logo-B5C9E49146-seeklogo.com.png"},
+      {id:3,name:"Credits du maroc",logo:"https://seeklogo.com/images/C/credit-du-maroc-logo-80D6D85982-seeklogo.com.png"},
+      {id:4,name:"Poste Maroc",logo:"https://seeklogo.com/images/P/poste-maroc-logo-4B313F21AE-seeklogo.com.png"},
+      {id:5,name:"Université Internationale de Rabat",logo:"https://seeklogo.com/images/U/universite-internationale-de-rabat-maroc-logo-125EDBEE84-seeklogo.com.png"},
+      {id:6,name:"Maroc cluster Numeric",logo:"https://aujourdhui.ma/wp-content/uploads/2021/06/Maroc-Numeric-Cluster.jpg?x73831"},
+      {id:7,name:"Ocp",logo:"https://seeklogo.com/images/O/ocp-logo-4F7287992D-seeklogo.com.png"},
+    ]
   },
   {
     id: 6,
@@ -59,5 +99,13 @@ export const events = [
     adresse: "Techno Park",
     city: "Tangier",
     category: "Dev Ops",
+    partners:[
+      {id:1,name:"Microsoft",logo:"https://seeklogo.com/images/M/microsoft-logo-B5C9E49146-seeklogo.com.png"},
+      {id:2,name:"Credits du maroc",logo:"https://seeklogo.com/images/C/credit-du-maroc-logo-80D6D85982-seeklogo.com.png"},
+      {id:3,name:"Université Internationale de Rabat",logo:"https://seeklogo.com/images/U/universite-internationale-de-rabat-maroc-logo-125EDBEE84-seeklogo.com.png"},
+      {id:4,name:"Ocp",logo:"https://seeklogo.com/images/O/ocp-logo-4F7287992D-seeklogo.com.png"},
+      {id:5,name:"Maroc cluster Numeric",logo:"https://aujourdhui.ma/wp-content/uploads/2021/06/Maroc-Numeric-Cluster.jpg?x73831"},
+      {id:6,name:"ministere de la transition numerique ",logo:"https://www.mmsp.gov.ma/themes/custom/dra/assets/images/fr.svg"},
+    ]
   },
 ];

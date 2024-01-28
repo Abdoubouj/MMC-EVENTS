@@ -1,8 +1,14 @@
 import React from 'react'
-
-const EventPartners = () => {
+import "./EventPartners.scss"
+const EventPartners = ({partners}) => {
   return (
-    <div>EventPartners</div>
+    <div className='event-partners-items'>
+    {partners.map((partner)=>(
+        <div className="event-partner-item">
+        <img src={partner.logo} alt="" key={partner.id} />
+        </div>
+    ))}
+    </div>
   )
 }
 

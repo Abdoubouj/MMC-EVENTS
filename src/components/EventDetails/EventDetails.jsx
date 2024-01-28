@@ -4,6 +4,7 @@ import { events } from '../../data/events';
 import AdsClickRoundedIcon from '@mui/icons-material/AdsClickRounded';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import "./EventDetails.scss"
+import EventPartners from '../EventPartners/EventPartners';
 const EventDetails = () => {
     const {id} = useParams();
     const event  = events.find((e)=> e.id === parseInt(id));
@@ -14,7 +15,7 @@ const EventDetails = () => {
     <div className="event-details">
         <main className="event-details-left">
             <h1 className='event-title'>{event?.title}</h1>
-            <img src={event.image} alt="#" />
+            <img src={event.image} className='event-image' alt="#" />
             <div className="meta-info">
             <p className='event-adresse'>{event?.adresse},{event?.city}</p>
             <p className='event-date'>
@@ -29,6 +30,10 @@ const EventDetails = () => {
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias ipsa, nam nesciunt quod explicabo doloremque nostrum fugiat dolorem esse optio deserunt illo nisi maiores. Facilis ipsum harum asperiores dolorem fugit!</p>
             </div>
             <button className='enroll-btn'><AdsClickRoundedIcon/> Enroll Now</button>
+            <div className="event-partners">
+                <h1 className='partners-heading'>event Partners</h1>
+                <EventPartners partners={event.partners}/>
+            </div>
         </main>
         <aside className="event-details-right">
             <div className="recommended-events">
