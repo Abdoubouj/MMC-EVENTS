@@ -10,7 +10,7 @@ const EventDetails = () => {
     const event  = events.find((e)=> e.id === parseInt(id));
     useEffect(()=>{
         window.scroll(0,0);
-    },[])
+    },[event])
   return (
     <div className="event-details">
         <main className="event-details-left">
@@ -47,7 +47,7 @@ const EventDetails = () => {
                             <div className="recommended-event-info">
                               <h5>{event?.title}</h5>
                               <p>{event?.adresse},{event?.city}</p>
-                              <Link>Read more <KeyboardDoubleArrowRightIcon/></Link>
+                              <Link to={`/events/${event.id}`}>Read more <KeyboardDoubleArrowRightIcon/></Link>
                             </div>
                         </div>
                     ))}
