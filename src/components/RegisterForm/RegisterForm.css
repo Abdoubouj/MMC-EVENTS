@@ -1,0 +1,96 @@
+.register-section{
+    display: flex;
+    height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .register-section .left{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .left img{
+    width: 540px;
+  }
+  .register-section .right{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .right .form-container{
+    width: 550px;
+    /* height: 600px; */
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+  }
+  .form-container h1{
+    text-align: center;
+    font-size: 35px;
+    color: #05A6F0;
+    font-weight: 900;
+  }
+  .right form{
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  form .field{
+   display: flex;
+   flex-direction: column;
+   flex: 0 0 230px;
+  }
+  .field label{
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  .field input , .field select{
+    padding: 15px 10px;
+    border-radius: 8px;
+    /* border: 2px solid #05A6F0; */
+    /* transition: 0.3s; */
+    background: #fefefe;
+    border: 1px solid #cbcbcb;
+    outline: none;
+    font-weight: 600;
+  }
+  .field input:focus{
+    border: 1px solid #05A6F0;
+    outline: 4px solid #05a6f027;
+  }
+  .btn{
+    display: inline-block;
+    width: 100%;
+    padding: 15px 10px;
+    border-radius: 8px;
+    text-transform: capitalize;
+    border: 0;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .create-account-btn{
+    background: #05A6F0;
+    color: #fff;
+  }
+  .sign-in-btn{
+    background: #333;
+    color: #f1f1f1;
+  }
+  ::placeholder{
+    color: #111;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  
