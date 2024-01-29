@@ -10,7 +10,7 @@ import {Routes,Route} from "react-router-dom"
 import Events from './components/Events/Events'
 import AdminDashboard from './components/AdminDashboard/AdminDashboard'
 function App() {
-  const isAdmin = false;
+  const isAdmin = true;
   return (
     <>
     {isAdmin ?
