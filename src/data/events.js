@@ -8,7 +8,7 @@ export const events = [
     endDate: "10-02-2024",
     adresse: "ENSA",
     city: "Beni Mellal",
-    category: "Dev Ops",
+    category: "remote",
     partners:[
       {id:1,name:"Université Internationale de Rabat",logo:"https://seeklogo.com/images/U/universite-internationale-de-rabat-maroc-logo-125EDBEE84-seeklogo.com.png"},
       {id:2,name:"Microsoft",logo:"https://seeklogo.com/images/M/microsoft-logo-B5C9E49146-seeklogo.com.png"},
@@ -27,7 +27,7 @@ export const events = [
     endDate: "10-02-2024",
     adresse: "ENSA",
     city: "Agadir",
-    category: "Dev Ops",
+    category: "remote",
     partners:[
       {id:1,name:"Credits du maroc",logo:"https://seeklogo.com/images/C/credit-du-maroc-logo-80D6D85982-seeklogo.com.png"},
       {id:2,name:"Poste Maroc",logo:"https://seeklogo.com/images/P/poste-maroc-logo-4B313F21AE-seeklogo.com.png"},
@@ -44,7 +44,7 @@ export const events = [
     endDate: "10-02-2024",
     adresse: "ENSA",
     city: "Khouribga",
-    category: "Dev Ops",
+    category: "face to face",
     partners:[
       {id:1,name:"Université Internationale de Rabat",logo:"https://seeklogo.com/images/U/universite-internationale-de-rabat-maroc-logo-125EDBEE84-seeklogo.com.png"},
       {id:2,name:"Microsoft",logo:"https://seeklogo.com/images/M/microsoft-logo-B5C9E49146-seeklogo.com.png"},
@@ -61,7 +61,7 @@ export const events = [
     endDate: "10-02-2024",
     adresse: "Ecole Pegier",
     city: "Ouarzazate",
-    category: "Dev Ops",
+    category: "remote",
     partners:[
       {id:1,name:"Université Internationale de Rabat",logo:"https://seeklogo.com/images/U/universite-internationale-de-rabat-maroc-logo-125EDBEE84-seeklogo.com.png"},
       {id:2,name:"Credits du maroc",logo:"https://seeklogo.com/images/C/credit-du-maroc-logo-80D6D85982-seeklogo.com.png"},
@@ -79,7 +79,7 @@ export const events = [
     endDate: "10-02-2024",
     adresse: "EST",
     city: "Maknes",
-    category: "Dev Ops",
+    category: "face to face",
     partners:[
       {id:1,name:"ministere de la transition numerique ",logo:"https://www.mmsp.gov.ma/themes/custom/dra/assets/images/fr.svg"},
       {id:2,name:"Microsoft",logo:"https://seeklogo.com/images/M/microsoft-logo-B5C9E49146-seeklogo.com.png"},
@@ -98,7 +98,7 @@ export const events = [
     endDate: "10-02-2024",
     adresse: "Techno Park",
     city: "Tangier",
-    category: "Dev Ops",
+    category: "face to face",
     partners:[
       {id:1,name:"Microsoft",logo:"https://seeklogo.com/images/M/microsoft-logo-B5C9E49146-seeklogo.com.png"},
       {id:2,name:"Credits du maroc",logo:"https://seeklogo.com/images/C/credit-du-maroc-logo-80D6D85982-seeklogo.com.png"},
