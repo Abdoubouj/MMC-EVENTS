@@ -6,8 +6,8 @@ $white:#fff;
 $light:#FCFCFD;
 $dark:#252525;
 .dashboard{
-    z-index: 1000;
-
+    max-width: 1100px;
+    margin: 1rem auto;
     h1{
         color: $dark;
     }
