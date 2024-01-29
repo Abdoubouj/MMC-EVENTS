@@ -1,7 +1,7 @@
-$blue: #05A6F0;
-$yellow: #FEBA08;
-$green: #80BC06;
-$red: #F25325;
+$blue: #05a6f0;
+$yellow: #feba08;
+$green: #80bc06;
+$red: #f25325;
 $white: #fff;
 $light: #f7f7f7;
 $dark: #252525;
@@ -12,14 +12,17 @@ $dark: #252525;
   margin: 0 auto;
   display: flex;
   gap: 50px;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
 
   .speaker-details-left {
+    background-color: #d8d8d8;
+    margin: 10px;
     flex: 1;
     padding: 15px;
     border: 1px solid $blue;
     border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+      rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 
     img {
       width: 250px;
@@ -41,12 +44,78 @@ $dark: #252525;
   }
 
   .speaker-details-right {
-    flex: 0 0 300px;
+    margin: 10px;
+    flex: 0 0 400px;
     height: 100vh;
-    padding: 15px;
+    padding: 5px;
     border: 1px solid $blue;
     border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+      rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
     overflow-y: scroll;
+
+    .speaker-details-right-container {
+      display: flex;
+      gap: 30px;
+      flex-direction: column;
+      padding: 10px;
+
+      .speaker-details-list {
+        max-width: 400px;
+        margin: 0px auto;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(1, 1, 1, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 0px;
+
+
+        .speaker-details-list-cover {
+          img {
+            width: 100%;
+      height: 100px;
+      object-fit: fill;
+          }
+
+          .speaker-details-list-image {
+             
+            
+            img {
+              background-color: #f7f7f7;
+              padding: 5px;
+              border-radius: 50%;
+              margin-top: -100px;
+              height: 150px;
+              width: 150px;
+              object-fit: cover;
+             cursor: pointer;
+            transition: 0.3s linear;
+            &:hover{
+                box-shadow:0 0 10px 6px rgba(17, 120, 255, 0.5);
+            }
+              
+            }
+          }
+        }
+
+        .speaker-details-list-info{
+
+          padding: 10px;
+          display: block;
+          flex-wrap: wrap;
+          
+          h1{
+               cursor: pointer;
+               color: #05a6f0;
+          }
+          a{
+            color: #05a6f0;
+            font-weight: 700;
+          }
+
+           
+        }
+      }
+    }
   }
 }

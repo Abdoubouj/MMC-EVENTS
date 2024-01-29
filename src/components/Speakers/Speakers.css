@@ -6,14 +6,18 @@
 }
 
 .speakers-container {
-	display: flex;
+	max-width: 1200px;
+	margin: 0 auto;
+
+	 
+	 display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
-	align-items: center;
-	padding: 0px 50px;
-	background-color: #f6f6f6;
-	margin-top: 10px;
+	justify-content: center;
+ 
+ 
+	
 }
+
 
 .speaker .image {
 	margin: 0 auto;
@@ -35,12 +39,14 @@
 
 }
 
-.speakerInfo h2 {
+.speakerInfo a {
 	text-align: center;
+	text-decoration: none;
+	color: #0099ff;
 }
 
 .speaker {
-	width: 30%;
+	 
 	max-width: 300px;
 	background-color: #f7f7f7;
 	padding: 20px;
