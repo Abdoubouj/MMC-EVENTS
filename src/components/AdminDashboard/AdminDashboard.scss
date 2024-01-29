@@ -26,11 +26,12 @@ $dark:#252525;
             }
         }
         .dashboard-menu{
+            padding: 0;
             width: 100%;
             margin-top: 30px;
             display: flex;
             flex-direction: column;
-            li{
+            .admin-nav-link{
                 list-style: none;
                 a{
                     text-decoration: none;

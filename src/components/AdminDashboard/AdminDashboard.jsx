@@ -22,12 +22,12 @@ const AdminDashboard = () => {
             <h1 className='logo-title'>Morocco Microsoft Community</h1>
            </div>
            <ul className="dashboard-menu">
-                <li><NavLink to="/"><GridViewRoundedIcon/> Dashboard</NavLink></li>
-                <li><NavLink to="/admin/events"><ConfirmationNumberRoundedIcon/> Events</NavLink></li>
-                <li><NavLink to="/admin/users"><PeopleRoundedIcon/> Users</NavLink></li>
-                <li><NavLink to="/admin/speakers"><RecordVoiceOverRoundedIcon/> Speakers</NavLink></li>
-                <li><NavLink to="/admin/partners"><HandshakeRoundedIcon/> Partners</NavLink></li>
-                <li><NavLink to="/admin/logout"><LogoutRoundedIcon/> Logout</NavLink></li>
+                <li className='admin-nav-link'><NavLink to="/"><GridViewRoundedIcon/> Dashboard</NavLink></li>
+                <li className='admin-nav-link'><NavLink to="/admin/events"><ConfirmationNumberRoundedIcon/> Events</NavLink></li>
+                <li className='admin-nav-link'><NavLink to="/admin/users"><PeopleRoundedIcon/> Users</NavLink></li>
+                <li className='admin-nav-link'><NavLink to="/admin/speakers"><RecordVoiceOverRoundedIcon/> Speakers</NavLink></li>
+                <li className='admin-nav-link'><NavLink to="/admin/partners"><HandshakeRoundedIcon/> Partners</NavLink></li>
+                <li className='admin-nav-link'><NavLink to="/admin/logout"><LogoutRoundedIcon/> Logout</NavLink></li>
            </ul>
         </aside>
         <div className="dashboard-right">

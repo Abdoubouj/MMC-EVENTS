@@ -7,13 +7,46 @@ import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 const AdminEvents = () => {
   return (
     <div className="admin-events">
+   <div class="modal fade" id="addEvent" tabindex="-1" aria-labelledby="addEventLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="addEventLabel">add event</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form className="add-event-form">
+            <div className="field event-title">
+                <label htmlFor="event-title">event title</label>
+                <input type="text" placeholder="event title ..." />
+            </div>
+            <div className="field event-adresse">
+                <label htmlFor="event-adresse">event adresse</label>
+                <input type="text" placeholder="event adresse ..." />
+            </div>
+            <div className="field event-city">
+                <label htmlFor="event-city">event city</label>
+                <input type="text" placeholder="event city ..." />
+            </div>
+            <div className="field event-category">
+                <label htmlFor="event-category">event category</label>
+                <input type="text" placeholder="event category ..." />
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
       <div className="top">
         <h1>Events</h1>
-        <button className="add-event-btn">
+        <button className="add-event-btn" data-bs-toggle="modal" data-bs-target="#addEvent">
           <AddCircleOutlineRoundedIcon /> Add new event
         </button>
       </div>
-
       <div className="bottom">
         <table className="event-table">
           <thead>
