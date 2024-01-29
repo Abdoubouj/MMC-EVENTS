@@ -11,35 +11,57 @@ $dark: #252525;
   padding: 50px 0;
   margin: 0 auto;
   display: flex;
-  gap: 50px;
+  gap: 5px;
   flex-wrap: wrap;
 
   .speaker-details-left {
-    background-color: #d8d8d8;
+    background-color: #ffffff;
     margin: 10px;
     flex: 1;
-    padding: 15px;
-    border: 1px solid $blue;
+    border-radius: 15px;
+    height: 100%;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
       rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 
-    img {
+    .speaker-details-left-cover {
+      img {
+        border-radius: 15px;
+        width: 100%;
+        height: 200px;
+      }
+    }
+    .speaker-details-left-profile img {
       width: 250px;
       height: 250px;
-      display: block;
-      margin: 1rem auto;
-      border-radius: 15px;
+      object-fit: cover;
+      margin-top: -150px;
+
+      border-radius: 50%;
       border: 2px solid $light;
     }
 
-    .speaker-info {
-      text-align: center;
+    .speaker-info  {
+      
+      h1{
       font-weight: 900;
-      color: $dark;
+      width: 100%;
       border-radius: 15px;
-      padding: 5px;
+      padding: 15px;
       border: 2px solid $light;
+      background-color: #05a6f0;
+      color : #fcfcfc
+      }
+
+     
+      margin: 0 auto;
+
+      .speaker-details-long-description{
+
+        margin-top: 20px;
+        font-size: 20px;
+      }
+
     }
   }
 
@@ -47,8 +69,6 @@ $dark: #252525;
     margin: 10px;
     flex: 0 0 400px;
     height: 100vh;
-    padding: 5px;
-    border: 1px solid $blue;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
       rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
@@ -58,8 +78,6 @@ $dark: #252525;
       display: flex;
       gap: 30px;
       flex-direction: column;
-      padding: 10px;
-
       .speaker-details-list {
         max-width: 400px;
         margin: 0px auto;
@@ -69,17 +87,14 @@ $dark: #252525;
         overflow: hidden;
         padding: 0px;
 
-
         .speaker-details-list-cover {
           img {
             width: 100%;
-      height: 100px;
-      object-fit: fill;
+            height: 100px;
+            object-fit: cover;
           }
 
           .speaker-details-list-image {
-             
-            
             img {
               background-color: #f7f7f7;
               padding: 5px;
@@ -88,32 +103,28 @@ $dark: #252525;
               height: 150px;
               width: 150px;
               object-fit: cover;
-             cursor: pointer;
-            transition: 0.3s linear;
-            &:hover{
-                box-shadow:0 0 10px 6px rgba(17, 120, 255, 0.5);
-            }
-              
+              cursor: pointer;
+              transition: 0.3s linear;
+              &:hover {
+                box-shadow: 0 0 10px 6px rgba(17, 120, 255, 0.5);
+              }
             }
           }
         }
 
-        .speaker-details-list-info{
-
+        .speaker-details-list-info {
           padding: 10px;
           display: block;
           flex-wrap: wrap;
-          
-          h1{
-               cursor: pointer;
-               color: #05a6f0;
+
+          h1 {
+            cursor: pointer;
+            color: #05a6f0;
           }
-          a{
+          a {
             color: #05a6f0;
             font-weight: 700;
           }
-
-           
         }
       }
     }

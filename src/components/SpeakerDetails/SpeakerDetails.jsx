@@ -20,19 +20,38 @@ const SpeakerDetails = () => {
   const handleOnClickSpeaker = (s) => {
     
       setCurrentSpeakerId(s.id);
-      console.log('====================================');
-      console.log(s.id,"eee");
-      console.log('====================================');
+     
     
   }; // No dependencies needed for this useMemo
 
   return (
     <div className="speaker-details">
       <div className="speaker-details-left">
-        <img src={speaker?.photo} alt="#" />
-        <h1 className="speaker-info">{speaker?.nom}</h1>
-        <div className="speaker-details-long-description">
-          {speaker?.longdescription}
+        <div className="speaker-details-left-cover">
+          <img src="https://cdn.wallpapersafari.com/31/54/Hz7w8E.jpg" alt="#" />
+          <div className="speaker-details-left-profile">
+            <img src={speaker?.photo} alt="#" />
+          </div>
+        </div>
+
+        <div className="speaker-info">
+          <h1>
+            {speaker?.nom} {speaker?.prenom}
+          </h1>
+
+          <div className="speaker-details-long-description">
+            {speaker?.longdescription
+              .split(".").map((e)=>{
+                return (
+                  <>
+                    <p>{e}</p> 
+                    <br />
+                  </>
+                );
+              })}
+              
+             
+          </div>
         </div>
       </div>
       <div className="speaker-details-right">
@@ -42,7 +61,7 @@ const SpeakerDetails = () => {
             .map((s) => (
               <div className="speaker-details-list" key={s.id}>
                 <div className="speaker-details-list-cover">
-                  <img src="https://images.fpt.shop/unsafe/filters:quality(90)/fptshop.com.vn/uploads/images/tin-tuc/154186/Originals/dotnet-la-gi.jpg" />
+                  <img src="https://wallpapershome.com/images/pages/pic_h/24779.jpg" />
                   <div className="speaker-details-list-image">
                     <img
                       onClick={() => handleOnClickSpeaker(s)}
