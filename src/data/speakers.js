@@ -8,7 +8,7 @@ export const speakers = [
     MCT: "Gold",
     MVP: "Azure",
     Biography:
-      "John Smith is a passionate technology enthusiast with expertise in cloud computing and machine learning.",
+      "Said Wahid is a passionate technology enthusiast with expertise in cloud computing and machine learning.",
     facebook: "https://www.facebook.com/johnsmith",
     twitter: "https://twitter.com/john_smith",
     instagram: "https://www.instagram.com/john.smith",

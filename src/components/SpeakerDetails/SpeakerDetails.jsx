@@ -22,35 +22,30 @@ const SpeakerDetails = () => {
       setCurrentSpeakerId(s.id);
      
     
-  }; // No dependencies needed for this useMemo
+  };  
 
   return (
     <div className="speaker-details">
       <div className="speaker-details-left">
         <div className="speaker-details-left-cover">
-          <img src="https://cdn.wallpapersafari.com/31/54/Hz7w8E.jpg" alt="#" />
-          <div className="speaker-details-left-profile">
+          <div className="speaker-details-left-cover-img">
             <img src={speaker?.photo} alt="#" />
+            <h1>
+              {speaker?.nom} {speaker?.prenom}
+            </h1>
           </div>
+          <div className="speaker-details-left-profile"></div>
         </div>
 
         <div className="speaker-info">
-          <h1>
-            {speaker?.nom} {speaker?.prenom}
-          </h1>
-
           <div className="speaker-details-long-description">
-            {speaker?.longdescription
-              .split(".").map((e)=>{
-                return (
-                  <>
-                    <p>{e}</p> 
-                    <br />
-                  </>
-                );
-              })}
-              
-             
+            {speaker?.longdescription.split(".").map((e) => {
+              return (
+                <>
+                  <p>{e}.</p>
+                </>
+              );
+            })}
           </div>
         </div>
       </div>

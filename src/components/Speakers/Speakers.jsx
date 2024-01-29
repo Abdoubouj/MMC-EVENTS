@@ -21,19 +21,19 @@ const Speakers = () => {
         {speakers.map((speaker) => (
           <div className="speaker">
             <div className="image">
-              <a href="#">
+              <Link to={`/speakers/${speaker.id}`}>
                 <img
                   src={speaker.photo}
                   alt={speaker.nom + " " + speaker.prenom}
                 />
-              </a>
+              </Link>
             </div>
             <div className="speakerInfo">
               <Link to={`/speakers/${speaker.id}`}>
                 <h2> {speaker.nom + " " + speaker.prenom} </h2>
               </Link>
-              <p>{speaker.MVP + " " + speaker.MCT}</p>
-              <h5>About</h5>
+              <h4>{speaker.MVP + " " + speaker.MCT}</h4>
+
               <p> {speaker.Biography}</p>
             </div>
             <div className="userSocialMedia">

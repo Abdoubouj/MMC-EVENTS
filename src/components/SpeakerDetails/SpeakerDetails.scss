@@ -17,62 +17,70 @@ $dark: #252525;
   .speaker-details-left {
     background-color: #ffffff;
     margin: 10px;
-    flex: 1;
+    flex:1;
     border-radius: 15px;
     height: 100%;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
       rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-
+    
     .speaker-details-left-cover {
-      img {
-        border-radius: 15px;
-        width: 100%;
-        height: 200px;
-      }
-    }
-    .speaker-details-left-profile img {
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
-      margin-top: -150px;
+  padding: 15px;
 
+  .speaker-details-left-cover-img {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center; 
+    justify-content: space-around;  
+    padding: 10px;
+    flex-wrap: wrap;
+    border-radius: 15px;
+    background-color: #05a6f0;
+    width: 100%;
+    background: linear-gradient(135deg, #3494e6, #ec6ead);
+
+    h1 {
+      font-weight: 900;
+      font-size: 55px;
+      color: #fcfcfc;
+       
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
       border-radius: 50%;
       border: 2px solid $light;
     }
+  }
+}
 
-    .speaker-info  {
-      
-      h1{
-      font-weight: 900;
-      width: 100%;
-      border-radius: 15px;
+
+    .speaker-info {
       padding: 15px;
-      border: 2px solid $light;
-      background-color: #05a6f0;
-      color : #fcfcfc
-      }
-
-     
       margin: 0 auto;
-
-      .speaker-details-long-description{
-
+      .speaker-details-long-description {
         margin-top: 20px;
         font-size: 20px;
       }
-
     }
   }
 
   .speaker-details-right {
-    margin: 10px;
-    flex: 0 0 400px;
+    margin-top: 10px;
+    flex: 0 0  400px;
     height: 100vh;
     border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
       rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
     overflow-y: scroll;
+     
+    padding-inline-start: 15px;
+    padding-inline-end: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 
     .speaker-details-right-container {
       display: flex;
