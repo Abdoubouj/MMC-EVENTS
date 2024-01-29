@@ -1,0 +1,28 @@
+$blue:#05A6F0;
+$yellow:#FEBA08;
+$green:#80BC06;
+$red:#F25325;
+$white:#fff;
+$light:#FCFCFD;
+$dark:#252525;
+.admin-events{
+    max-width: 1100px;
+    margin: 1rem auto;
+    .top{
+        display: flex;
+        justify-content: space-between;
+        .add-event-btn{
+            border:1px solid $blue;
+            background: #05a6f01d;
+            color: $blue;
+            padding: 12px 20px;
+            font-weight: 700;
+            font-size: 16px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+}
