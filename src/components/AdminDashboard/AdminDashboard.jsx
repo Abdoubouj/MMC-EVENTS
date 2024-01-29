@@ -12,6 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { NavLink , Routes,Route } from 'react-router-dom';
 import Dashboard from '../Dashboard/Dashboard';
+import AdminEvents from '../AdminEvents/AdminEvents';
 const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
@@ -44,7 +45,7 @@ const AdminDashboard = () => {
             <main>
                 <Routes>
                     <Route path="/" element={<Dashboard/>}/>
-                    <Route path="/admin/events" element="events"/>
+                    <Route path="/admin/events" element={<AdminEvents/>}/>
                     <Route path="/admin/users" element="users"/>
                     <Route path="/admin/speakers" element="speakers"/>
                     <Route path="/admin/partners" element="partners"/>
