@@ -3,9 +3,25 @@ import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRou
 import { events } from "../../data/events";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
+import {useDispatch , useSelector} from "react-redux"
+import { useEffect, useState } from "react";
+import { getUsers } from "../../features/userSlice";
 const Users = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  const dispatch = useDispatch();
+  const users = useSelector((state)=>state.user.users);
+  useEffect(()=>{
+     dispatch(getUsers());
+  },[dispatch ,currentPage, itemsPerPage])
+  const totalPages = Math.ceil(users && users.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = users.slice(startIndex, endIndex);
+  console.log(totalPages);
   return (
-    <div className="users">
+    <div className="admin-users">
    <div class="modal fade" id="addUsers" tabindex="-1" aria-labelledby="addUsersLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -27,7 +43,7 @@ const Users = () => {
 </div>
       <div className="top">
         <h1>Users</h1>
-        <button className="add-event-btn" data-bs-toggle="modal" data-bs-target="#addEvent">
+        <button className="add-user-btn" data-bs-toggle="modal" data-bs-target="#addEvent">
           <AddCircleOutlineRoundedIcon /> Add new User
         </button>
       </div>
@@ -36,29 +52,25 @@ const Users = () => {
           <thead>
             <tr>
               <th>id</th>
-              <th>title</th>
-              <th>adresse</th>
-              <th>city</th>
-              <th>category</th>
-              <th>image</th>
-              <th>start date</th>
-              <th>end date</th>
+              <th>firstName</th>
+              <th>lastName</th>
+              <th>email</th>
+              <th>address</th>
+              <th>sexe</th>
+              <th>phone</th>
               <th>actions</th>
             </tr>
           </thead>
           <tbody>
-            {events.map((event) => (
-              <tr key={event.id}>
-                <td>{event.id}</td>
-                <td>{event.title}</td>
-                <td>{event.adresse}</td>
-                <td>{event.city}</td>
-                <td>{event.category}</td>
-                <td>
-                  <img src={event.image} width={50} alt="" />
-                </td>
-                <td>{event.startDate}</td>
-                <td>{event.endDate}</td>
+            {currentItems.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>{user.email}</td>
+                <td>{user.adresse}</td>
+                <td>{user.sexe === true ? "Men":"Women"}</td>
+                <td>{user.telephone}</td>
                 <td>
                   <button className="edit-btn">
                     <BorderColorRoundedIcon />
@@ -71,6 +83,11 @@ const Users = () => {
             ))}
           </tbody>
         </table>
+        <button onClick={()=>{setCurrentPage(prev=> prev - 1)}} disabled={startIndex === 0 ? true :false}>prev</button>
+        {Array.from({ length: totalPages }, (_, index) => index + 1).map((page)=>(
+          <button key={page}>{page}</button>
+        ))}
+        <button onClick={()=>{setCurrentPage(prev=> prev + 1)}} disabled={endIndex === users.length ? true :false}>next</button>
       </div>
     </div>
   );
