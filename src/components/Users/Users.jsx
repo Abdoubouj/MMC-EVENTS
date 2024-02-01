@@ -9,32 +9,14 @@ import { getUsers } from "../../features/userSlice";
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 const Users = () => {
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [itemsPerPage, setItemsPerPage] = useState(10);
-
   const [page, setPage] = useState(0);
-  // const [filterData, setFilterData] = useState();
   const itemsPerPage = 8;
 
   const dispatch = useDispatch();
   const users = useSelector((state)=>state.user.users);
   useEffect(()=>{
      dispatch(getUsers());
-    //  if(users.length !== 0){
-    //    setFilterData(users.filter((item, index) => {
-    //      return (index >= page * itemsPerPage) & (index < (page + 1) * itemsPerPage);
-    //     })
-    //     );
-    //   }
   },[dispatch])
-
-  // const totalPages = Math.ceil(users && users.length / itemsPerPage);
-  // const startIndex = (currentPage - 1) * itemsPerPage;
-  // const endIndex = startIndex + itemsPerPage;
-  // const currentItems = users.slice(startIndex, endIndex);
-  // console.log(totalPages);
-  console.log(users);
-  // console.log(filterData);
   return (
     <div className="admin-users">
    <div class="modal fade" id="addUsers" tabindex="-1" aria-labelledby="addUsersLabel" aria-hidden="true">

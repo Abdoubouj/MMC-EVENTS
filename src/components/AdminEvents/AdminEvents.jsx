@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AdminEvents.scss";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
-import { events } from "../../data/events";
+// import { events } from "../../data/events";
+import {useSelector,useDispatch} from "react-redux"
+import ReactPaginate from "react-paginate";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
+import { getEvents } from "../../features/eventSlice";
+import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 const AdminEvents = () => {
+  const dispatch = useDispatch();
+  const events = useSelector((state)=>state.event.events);
+  useEffect(()=>{
+    dispatch(getEvents());
+  },[dispatch])
   return (
     <div className="admin-events">
    <div class="modal fade" id="addEvent" tabindex="-1" aria-labelledby="addEventLabel" aria-hidden="true">
@@ -83,7 +93,8 @@ const AdminEvents = () => {
                 <td>{event.city}</td>
                 <td>{event.category}</td>
                 <td>
-                  <img src={event.image} width={50} alt="" />
+                  {/* <img src={event.image} width={50} alt="" /> */}
+                  {event.placesCount}
                 </td>
                 <td>{event.startDate}</td>
                 <td>{event.endDate}</td>
