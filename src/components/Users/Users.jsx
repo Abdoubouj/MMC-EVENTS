@@ -1,25 +1,40 @@
 import "./Users.scss";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
-import { events } from "../../data/events";
+import ReactPaginate from "react-paginate";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import {useDispatch , useSelector} from "react-redux"
 import { useEffect, useState } from "react";
 import { getUsers } from "../../features/userSlice";
+import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 const Users = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  const [page, setPage] = useState(0);
+  // const [filterData, setFilterData] = useState();
+  const itemsPerPage = 8;
 
   const dispatch = useDispatch();
   const users = useSelector((state)=>state.user.users);
   useEffect(()=>{
      dispatch(getUsers());
-  },[dispatch ,currentPage, itemsPerPage])
-  const totalPages = Math.ceil(users && users.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = users.slice(startIndex, endIndex);
-  console.log(totalPages);
+    //  if(users.length !== 0){
+    //    setFilterData(users.filter((item, index) => {
+    //      return (index >= page * itemsPerPage) & (index < (page + 1) * itemsPerPage);
+    //     })
+    //     );
+    //   }
+  },[dispatch])
+
+  // const totalPages = Math.ceil(users && users.length / itemsPerPage);
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+  // const currentItems = users.slice(startIndex, endIndex);
+  // console.log(totalPages);
+  console.log(users);
+  // console.log(filterData);
   return (
     <div className="admin-users">
    <div class="modal fade" id="addUsers" tabindex="-1" aria-labelledby="addUsersLabel" aria-hidden="true">
@@ -62,11 +77,13 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {currentItems.map((user) => (
+            {users.filter((item, index) => {
+         return (index >= page * itemsPerPage) & (index < (page + 1) * itemsPerPage);
+        }).map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.firstName}</td>
-                <td>{user.lastName}</td>
+                <td>{user.LastName}</td>
                 <td>{user.email}</td>
                 <td>{user.adresse}</td>
                 <td>{user.sexe === true ? "Men":"Women"}</td>
@@ -83,11 +100,20 @@ const Users = () => {
             ))}
           </tbody>
         </table>
-        <button className="prev-btn" onClick={()=>{setCurrentPage(prev=> prev - 1)}} disabled={startIndex === 0 ? true :false}>prev</button>
-        {Array.from({ length: totalPages }, (_, index) => index + 1).map((page)=>(
-          <button className="page-btn" onClick={()=>{setCurrentPage(page)}} key={page}>{page}</button>
-        ))}
-        <button className="next-btn" onClick={()=>{setCurrentPage(prev=> prev + 1)}} disabled={endIndex === users.length ? true :false}>next</button>
+        <ReactPaginate
+  containerClassName={"pagination"}
+  pageClassName={"page-item"}
+  activeClassName={"active"}
+  onPageChange={(event) => setPage(event.selected)}
+  pageCount={Math.ceil(users.length / itemsPerPage)}
+  breakLabel="..."
+  previousLabel={
+    <KeyboardArrowLeftRoundedIcon/>
+  }
+  nextLabel={
+    <KeyboardArrowRightRoundedIcon/>
+  }
+/>
       </div>
     </div>
   );
