@@ -6,4 +6,5 @@ dependencies
 	npm i swiper
 	npm i bootstrap
 	npm i @reduxjs/toolkit react-redux redux axios
+	npm i react-paginate
 }
