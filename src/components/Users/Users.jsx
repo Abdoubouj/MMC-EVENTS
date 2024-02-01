@@ -83,11 +83,11 @@ const Users = () => {
             ))}
           </tbody>
         </table>
-        <button onClick={()=>{setCurrentPage(prev=> prev - 1)}} disabled={startIndex === 0 ? true :false}>prev</button>
+        <button className="prev-btn" onClick={()=>{setCurrentPage(prev=> prev - 1)}} disabled={startIndex === 0 ? true :false}>prev</button>
         {Array.from({ length: totalPages }, (_, index) => index + 1).map((page)=>(
-          <button key={page}>{page}</button>
+          <button className="page-btn" onClick={()=>{setCurrentPage(page)}} key={page}>{page}</button>
         ))}
-        <button onClick={()=>{setCurrentPage(prev=> prev + 1)}} disabled={endIndex === users.length ? true :false}>next</button>
+        <button className="next-btn" onClick={()=>{setCurrentPage(prev=> prev + 1)}} disabled={endIndex === users.length ? true :false}>next</button>
       </div>
     </div>
   );
