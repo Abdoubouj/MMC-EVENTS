@@ -12,6 +12,8 @@ import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRigh
 const AdminEvents = () => {
   const dispatch = useDispatch();
   const events = useSelector((state)=>state.event.events);
+  const [page, setPage] = useState(0);
+  const itemsPerPage = 8;
   useEffect(()=>{
     dispatch(getEvents());
   },[dispatch])
@@ -85,7 +87,9 @@ const AdminEvents = () => {
             </tr>
           </thead>
           <tbody>
-            {events.map((event) => (
+            {events.filter((item, index) => {
+         return (index >= page * itemsPerPage) & (index < (page + 1) * itemsPerPage);
+        }).map((event) => (
               <tr key={event.id}>
                 <td>{event.id}</td>
                 <td>{event.title}</td>
@@ -110,6 +114,20 @@ const AdminEvents = () => {
             ))}
           </tbody>
         </table>
+        <ReactPaginate
+  containerClassName={"pagination"}
+  pageClassName={"page-item"}
+  activeClassName={"active"}
+  onPageChange={(event) => setPage(event.selected)}
+  pageCount={Math.ceil(events.length / itemsPerPage)}
+  breakLabel="..."
+  previousLabel={
+    <KeyboardArrowLeftRoundedIcon/>
+  }
+  nextLabel={
+    <KeyboardArrowRightRoundedIcon/>
+  }
+/>
       </div>
     </div>
   );

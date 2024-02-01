@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Dashboard.scss"
+import {useSelector,useDispatch} from "react-redux"
 import ConfirmationNumberRoundedIcon from '@mui/icons-material/ConfirmationNumberRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import RecordVoiceOverRoundedIcon from '@mui/icons-material/RecordVoiceOverRounded';
 import HandshakeRoundedIcon from '@mui/icons-material/HandshakeRounded';import { Link } from 'react-router-dom';
+import { getUsers } from '../../features/userSlice';
+import { getEvents } from '../../features/eventSlice';
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const count = {
+    users:useSelector((state)=>state.user.users?.length),
+    events:useSelector((state)=>state.event.events?.length)
+  }
+  useEffect(()=>{
+     dispatch(getUsers());
+     dispatch(getEvents());
+  },[dispatch])
   return (
     <div className="dashboard">
       <h1>Overview</h1>
@@ -14,7 +26,7 @@ const Dashboard = () => {
             Events
           </div>
           <div className="item-bottom">
-            <div className="count">1900</div>
+            <div className="count">{count.events}</div>
             <div className="icon">
             <ConfirmationNumberRoundedIcon/>
             </div>
@@ -25,7 +37,7 @@ const Dashboard = () => {
             Users
           </div>
           <div className="item-bottom">
-            <div className="count">150</div>
+            <div className="count">{count.users}</div>
             <div className="icon">
             <PeopleRoundedIcon/>
             </div>
