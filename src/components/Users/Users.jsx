@@ -1,66 +1,38 @@
-import React, { useState } from "react";
-import "./AdminEvents.scss";
+import "./Users.scss";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 import { events } from "../../data/events";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
-const AdminEvents = () => {
+const Users = () => {
   return (
-    <div className="admin-events">
-   <div class="modal fade" id="addEvent" tabindex="-1" aria-labelledby="addEventLabel" aria-hidden="true">
+    <div className="users">
+   <div class="modal fade" id="addUsers" tabindex="-1" aria-labelledby="addUsersLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="addEventLabel">add event</h1>
+        <h1 class="modal-title fs-5" id="addUsersLabel">add user</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form className="add-event-form">
-            <div className="field event-title">
-                <label htmlFor="event-title">event title</label>
-                <input type="text" placeholder="event title ..." />
-            </div>
-            <div className="field event-adresse">
-                <label htmlFor="event-adresse">event adresse</label>
-                <input type="text" placeholder="event adresse ..." />
-            </div>
-            <div className="field event-city">
-                <label htmlFor="event-city">event city</label>
-                <input type="text" placeholder="event city ..." />
-            </div>
-            <div className="field event-category">
-                <label htmlFor="event-category">event category</label>
-                <input type="text" placeholder="ex: remote or face to face " />
-            </div>
-            <div className="field event-image">
-                <label htmlFor="event-image">event image</label>
-                <input type="text" placeholder="event image ..." />
-            </div>
-            <div className="field event-start-date">
-                <label htmlFor="event-start-date">event start date</label>
-                <input type="date" placeholder="event start date ..." />
-            </div>
-            <div className="field event-end-date">
-                <label htmlFor="event-end-date">event end date</label>
-                <input type="date" placeholder="event end date ..." />
-            </div>
+        <form className="add-user-form">
+            
         </form>
       </div>
       <div class="modal-footer">
         {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
-        <button type="button" class="btn btn-primary p-3">add event</button>
+        <button type="button" class="btn btn-primary p-3">add user</button>
       </div>
     </div>
   </div>
 </div>
       <div className="top">
-        <h1>Events</h1>
+        <h1>Users</h1>
         <button className="add-event-btn" data-bs-toggle="modal" data-bs-target="#addEvent">
-          <AddCircleOutlineRoundedIcon /> Add new event
+          <AddCircleOutlineRoundedIcon /> Add new User
         </button>
       </div>
       <div className="bottom">
-        <table className="events-table">
+        <table className="users-table">
           <thead>
             <tr>
               <th>id</th>
@@ -104,4 +76,4 @@ const AdminEvents = () => {
   );
 };
 
-export default AdminEvents;
+export default Users;

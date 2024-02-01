@@ -27,7 +27,11 @@ $dark:#252525;
         transform: translateY(-250px);
         transition: 0.3s ease;
         color: $white;
+        .event-title{
+            font-size: 20px;
+        }
         .event-city{
+            font-size: 20px;
             display: inline-block;
             background: $blue;
             color: $white;
