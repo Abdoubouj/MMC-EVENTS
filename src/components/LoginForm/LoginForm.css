@@ -1,7 +1,8 @@
 .login-section{
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   max-width: 1200px;
+  padding: 20px;
   margin: 0 auto;
 }
 .login-section .left{
