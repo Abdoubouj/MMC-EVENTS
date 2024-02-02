@@ -9,9 +9,11 @@ import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import { getEvents } from "../../features/eventSlice";
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
+import Loader from "../Loader/Loader";
 const AdminEvents = () => {
   const dispatch = useDispatch();
   const events = useSelector((state)=>state.event.events);
+  const status = useSelector((state)=>state.event.eventsStatus);
   const [page, setPage] = useState(0);
   const itemsPerPage = 8;
   useEffect(()=>{
@@ -71,6 +73,11 @@ const AdminEvents = () => {
           <AddCircleOutlineRoundedIcon /> Add new event
         </button>
       </div>
+      {status === "loading" ?
+      <div className="spinner" style={{textAlign:"center"}}>
+      <Loader/>
+      </div>
+      :
       <div className="bottom">
         <table className="events-table">
           <thead>
@@ -129,7 +136,8 @@ const AdminEvents = () => {
   }
 />
       </div>
-    </div>
+}
+</div>
   );
 };
 
