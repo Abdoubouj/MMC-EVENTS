@@ -8,15 +8,18 @@ import HandshakeRoundedIcon from "@mui/icons-material/HandshakeRounded";
 import { Link } from "react-router-dom";
 import { getUsers } from "../../features/userSlice";
 import { getEvents } from "../../features/eventSlice";
+import { getSpeakers } from "../../features/speakerSlice";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const count = {
     users: useSelector((state) => state.user.users?.length),
     events: useSelector((state) => state.event.events?.length),
+    speakers: useSelector((state) => state.speaker.speakers?.length),
   };
   useEffect(() => {
     dispatch(getUsers());
     dispatch(getEvents());
+    dispatch(getSpeakers());
   }, [dispatch]);
   return (
     <div className="dashboard">
@@ -43,7 +46,7 @@ const Dashboard = () => {
         <div className="overview-item">
           <div className="item-top">Speakers</div>
           <div className="item-bottom">
-            <div className="count">5</div>
+            <div className="count">{count.speakers}</div>
             <div className="icon">
               <RecordVoiceOverRoundedIcon />
             </div>
