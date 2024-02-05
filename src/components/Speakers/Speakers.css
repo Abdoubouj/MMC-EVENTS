@@ -36,15 +36,15 @@
 }
 
 .speakerInfo a {
-	 
+
 	text-decoration: none;
- 
+
 }
 
 .speaker {
 
 	max-width: 340px;
-	background-color: #46a6ff29;
+	background-color: #94c9fa29;
 	padding: 10px;
 	margin: 10px;
 	border-radius: 15px;
@@ -65,13 +65,13 @@
 	display: flex;
 	flex-direction: column;
 	border-radius: 15px;
-	padding:10px;
+	padding: 10px;
 
 
 }
 
 .speakerInfo a h2 {
-	color: #0099ff;
+	color: #000000;
 	font-weight: 900;
 	font-size: 35px;
 }
@@ -79,14 +79,16 @@
 .userSocialMedia {
 
 	padding-bottom: 10px;
-	
+
 }
+
 .speakerInfo h4 {
 
 	font-weight: 600;
 	color: rgb(71, 71, 71);
-	 
+
 }
+
 .userSocialMedia ul {
 	list-style: none;
 	padding: 0px;
