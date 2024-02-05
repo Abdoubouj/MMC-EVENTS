@@ -1,7 +1,7 @@
 import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios"
 
-export const getEvents = createAsyncThunk("Event/setEvents",async()=>{
+export const getEvents = createAsyncThunk("Event/getEvents",async()=>{
     const response = await axios.get('https://retoolapi.dev/K9VpcZ/events');
     return response.data;
 })
