@@ -9,17 +9,20 @@ import { Link } from "react-router-dom";
 import { getUsers } from "../../features/userSlice";
 import { getEvents } from "../../features/eventSlice";
 import { getSpeakers } from "../../features/speakerSlice";
+import { getSessions } from "../../features/sessionSlice";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const count = {
     users: useSelector((state) => state.user.users?.length),
     events: useSelector((state) => state.event.events?.length),
     speakers: useSelector((state) => state.speaker.speakers?.length),
+    sessions: useSelector((state) => state.session.sessions?.length),
   };
   useEffect(() => {
     dispatch(getUsers());
     dispatch(getEvents());
     dispatch(getSpeakers());
+    dispatch(getSessions());
   }, [dispatch]);
   return (
     <div className="dashboard">
@@ -29,6 +32,15 @@ const Dashboard = () => {
           <div className="item-top">Events</div>
           <div className="item-bottom">
             <div className="count">{count.events}</div>
+            <div className="icon">
+              <ConfirmationNumberRoundedIcon />
+            </div>
+          </div>
+        </div>
+        <div className="overview-item">
+          <div className="item-top">Sessions</div>
+          <div className="item-bottom">
+            <div className="count">{count.sessions}</div>
             <div className="icon">
               <ConfirmationNumberRoundedIcon />
             </div>

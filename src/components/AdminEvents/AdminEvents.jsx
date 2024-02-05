@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./AdminEvents.scss";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 // import { events } from "../../data/events";
+import Button from 'react-bootstrap/Button';
+import {useNavigate} from "react-router-dom"
 import {useSelector,useDispatch} from "react-redux"
 import ReactPaginate from "react-paginate";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
-import { getEvents } from "../../features/eventSlice";
+import { deleteEvents, getEvents, postEvents } from "../../features/eventSlice";
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import Loader from "../Loader/Loader";
@@ -14,11 +16,27 @@ const AdminEvents = () => {
   const dispatch = useDispatch();
   const events = useSelector((state)=>state.event.events);
   const status = useSelector((state)=>state.event.eventsStatus);
+  const [inputs , setInputs] = useState({});
   const [page, setPage] = useState(0);
-  const itemsPerPage = 8;
+  const navigateTo = useNavigate();
+  const itemsPerPage = 6;
   useEffect(()=>{
     dispatch(getEvents());
-  },[dispatch])
+  },[dispatch]);
+  const handleChange = (e)=>{
+    setInputs({...inputs,[e.target.name]:e.target.value});
+  }
+  const handleAddEvent = (e)=>{
+    e.preventDefault();
+    dispatch(postEvents(inputs));
+    navigateTo("/admin/events");
+  }
+  const handleDelete = async (eventId) =>{
+    await dispatch(deleteEvents(eventId));
+    alert("event deleted successfully ")
+  }
+  console.log(inputs);
+  // console.log(postEvents());
   return (
     <div className="admin-events">
    <div class="modal fade" id="addEvent" tabindex="-1" aria-labelledby="addEventLabel" aria-hidden="true">
@@ -29,40 +47,32 @@ const AdminEvents = () => {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form className="add-event-form">
+        <form className="add-event-form" onSubmit={handleAddEvent}>
             <div className="field event-title">
                 <label htmlFor="event-title">event title</label>
-                <input type="text" placeholder="event title ..." />
-            </div>
-            <div className="field event-adresse">
-                <label htmlFor="event-adresse">event adresse</label>
-                <input type="text" placeholder="event adresse ..." />
-            </div>
-            <div className="field event-city">
-                <label htmlFor="event-city">event city</label>
-                <input type="text" placeholder="event city ..." />
-            </div>
-            <div className="field event-category">
-                <label htmlFor="event-category">event category</label>
-                <input type="text" placeholder="ex: remote or face to face " />
+                <input name="title" onChange={handleChange} type="text" placeholder="event title ..." />
             </div>
             <div className="field event-image">
                 <label htmlFor="event-image">event image</label>
-                <input type="text" placeholder="event image ..." />
+                <input name="image" onChange={handleChange} type="text" placeholder="event image ..." />
+            </div>
+            <div className="field event-description">
+                <label htmlFor="event-description">event description</label>
+                <input name="description" onChange={handleChange} type="text" placeholder="event description ..." />
             </div>
             <div className="field event-start-date">
                 <label htmlFor="event-start-date">event start date</label>
-                <input type="date" placeholder="event start date ..." />
+                <input name="startDate" onChange={handleChange} type="datetime-local" placeholder="event start date ..." />
             </div>
             <div className="field event-end-date">
                 <label htmlFor="event-end-date">event end date</label>
-                <input type="date" placeholder="event end date ..." />
+                <input name="endDate" onChange={handleChange} type="datetime-local" placeholder="event end date ..." />
             </div>
-        </form>
-      </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style={{width:"100%"}}>
         {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
-        <button type="button" class="btn btn-primary p-3">add event</button>
+        <button type="submit" class="btn btn-primary p-3">add event</button>
+      </div>
+        </form>
       </div>
     </div>
   </div>
@@ -84,9 +94,6 @@ const AdminEvents = () => {
             <tr>
               <th>id</th>
               <th>title</th>
-              <th>adresse</th>
-              <th>city</th>
-              <th>category</th>
               <th>image</th>
               <th>start date</th>
               <th>end date</th>
@@ -94,18 +101,14 @@ const AdminEvents = () => {
             </tr>
           </thead>
           <tbody>
-            {events.filter((item, index) => {
+            {typeof events === "object" && events?.filter((item, index) => {
          return (index >= page * itemsPerPage) & (index < (page + 1) * itemsPerPage);
-        }).map((event) => (
+        })?.map((event) => (
               <tr key={event.id}>
                 <td>{event.id}</td>
-                <td>{event.title}</td>
-                <td>{event.adresse}</td>
-                <td>{event.city}</td>
-                <td>{event.category}</td>
+                <td>{event.title?.substring(0,15)}...</td>
                 <td>
-                  {/* <img src={event.image} width={50} alt="" /> */}
-                  {event.placesCount}
+                  <img src={event.image} width={50} alt="" />
                 </td>
                 <td>{event.startDate}</td>
                 <td>{event.endDate}</td>
@@ -113,7 +116,7 @@ const AdminEvents = () => {
                   <button className="edit-btn">
                     <BorderColorRoundedIcon />
                   </button>
-                  <button className="delete-btn">
+                  <button className="delete-btn" onClick={()=>{handleDelete(event?.id)}}>
                     <DeleteOutlineRoundedIcon />
                   </button>
                 </td>
@@ -126,7 +129,7 @@ const AdminEvents = () => {
   pageClassName={"page-item"}
   activeClassName={"active"}
   onPageChange={(event) => setPage(event.selected)}
-  pageCount={Math.ceil(events.length / itemsPerPage)}
+  pageCount={Math.ceil(typeof events === "object" && events.length / itemsPerPage)}
   breakLabel="..."
   previousLabel={
     <KeyboardArrowLeftRoundedIcon/>
