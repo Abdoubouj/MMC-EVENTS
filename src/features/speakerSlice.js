@@ -6,6 +6,11 @@ export const getSpeakers = createAsyncThunk("Speakers/getSpeakers",async()=>{
     return response.data;
 })
 
+export const DeleteSpeaker = createAsyncThunk("Speakers/DeleteSpeaker",async(id)=>{
+    const response = await axios.delete(`https://retoolapi.dev/tv8nGU/speakers/${id}`);
+    return response.data;
+})
+
 
 const initialState = {
     speakers:[],
@@ -20,7 +25,8 @@ const speakerSlice = createSlice({
 
     },
     extraReducers:(builder)=>{
-        builder.addCase(getSpeakers.pending , (state)=>{
+        builder
+        .addCase(getSpeakers.pending , (state)=>{
             state.speakersStatus = "loading";
         })
         .addCase(getSpeakers.fulfilled , (state,action)=>{
@@ -28,6 +34,17 @@ const speakerSlice = createSlice({
             state.speakers = action.payload;
         })
         .addCase(getSpeakers.rejected,(state,action)=>{
+            state.speakersStatus = "failed";
+            state.speakersError = action.error.message;
+        })
+        .addCase(DeleteSpeaker.pending , (state)=>{
+            state.speakersStatus = "loading";
+        })
+        .addCase(DeleteSpeaker.fulfilled , (state,action)=>{
+            state.speakersStatus = "succeded";
+            state.speakers = action.payload;
+        })
+        .addCase(DeleteSpeaker.rejected,(state,action)=>{
             state.speakersStatus = "failed";
             state.speakersError = action.error.message;
         })
