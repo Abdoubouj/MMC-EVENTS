@@ -17,50 +17,32 @@ const AdminPartners = () => {
   useEffect(()=>{
     dispatch(getPartners());
   },[dispatch])
+  
   return (
     <div className="admin-partners">
-   <div class="modal fade" id="addPartner" tabindex="-1" aria-labelledby="addPartnerLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="addPartnerLabel">add partner</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+   <div className="modal fade" id="addPartner" tabIndex="-1" aria-labelledby="addPartnerLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h1 className="modal-title fs-5" id="addPartnerLabel">add partner</h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-        <form className="add-partner-form">
-            <div className="field partner-title">
-                <label htmlFor="partner-title">partner title</label>
-                <input type="text" placeholder="partner title ..." />
+        <div className="modal-body">
+        <form className="add-partner-form" >
+            <div className="field partner-name">
+                <label htmlFor="partner-name">partner name</label>
+                <input type="text" placeholder="partner name ..."  />
             </div>
-            <div className="field partner-adresse">
-                <label htmlFor="partner-adresse">partner adresse</label>
-                <input type="text" placeholder="partner adresse ..." />
+            <div className="field partner-logo">
+                <label htmlFor="partner-logo">partner logo</label>
+                <input type="text" placeholder="partner logo ..." />
             </div>
-            <div className="field partner-city">
-                <label htmlFor="partner-city">partner city</label>
-                <input type="text" placeholder="partner city ..." />
-            </div>
-            <div className="field partner-category">
-                <label htmlFor="partner-category">partner category</label>
-                <input type="text" placeholder="ex: remote or face to face " />
-            </div>
-            <div className="field partner-image">
-                <label htmlFor="partner-image">partner image</label>
-                <input type="text" placeholder="partner image ..." />
-            </div>
-            <div className="field partner-start-date">
-                <label htmlFor="partner-start-date">partner start date</label>
-                <input type="date" placeholder="partner start date ..." />
-            </div>
-            <div className="field partner-end-date">
-                <label htmlFor="partner-end-date">partner end date</label>
-                <input type="date" placeholder="partner end date ..." />
-            </div>
+            
         </form>
       </div>
-      <div class="modal-footer">
-        {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
-        <button type="button" class="btn btn-primary p-3">add partner</button>
+      <div className="modal-footer">
+        {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
+        <button type="button" className="btn btn-primary p-3" >add partner</button>
       </div>
     </div>
   </div>
@@ -76,14 +58,9 @@ const AdminPartners = () => {
           <thead>
             <tr>
               <th>id</th>
-              <th>title</th>
-              <th>adresse</th>
-              <th>city</th>
-              <th>category</th>
-              <th>image</th>
-              <th>start date</th>
-              <th>end date</th>
-              <th>actions</th>
+              <th>name</th>
+              <th>logo</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -92,18 +69,12 @@ const AdminPartners = () => {
         }).map((partner) => (
               <tr key={partner.id}>
                 <td>{partner.id}</td>
-                <td>{partner.title}</td>
-                <td>{partner.adresse}</td>
-                <td>{partner.city}</td>
-                <td>{partner.category}</td>
+                <td>{partner.Name}</td>
                 <td>
-                  {/* <img src={partner.image} width={50} alt="" /> */}
-                  {partner.placesCount}
-                </td>
-                <td>{partner.startDate}</td>
-                <td>{partner.endDate}</td>
+                  <img src={partner.Logo} width={50}/>
+                  </td>
                 <td>
-                  <button className="edit-btn">
+                  <button className="edit-btn" >
                     <BorderColorRoundedIcon />
                   </button>
                   <button className="delete-btn">

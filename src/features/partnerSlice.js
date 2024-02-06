@@ -2,7 +2,7 @@ import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios"
 
 export const getPartners = createAsyncThunk("Partner/getPartners",async()=>{
-    const response = await axios.get('https://retoolapi.dev/XWcAnu/partners');
+    const response = await axios.get('https://retoolapi.dev/vVfCd0/partners');
     return response.data;
 })
 
