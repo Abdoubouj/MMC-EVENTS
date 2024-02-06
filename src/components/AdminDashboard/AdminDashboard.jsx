@@ -15,6 +15,7 @@ import Dashboard from '../Dashboard/Dashboard';
 import AdminEvents from '../AdminEvents/AdminEvents';
 import AdminSpeakers from "../AdminSpeakers/AdminSpeakers"
 import Users from '../Users/Users';
+import AdminPartners from "../AdminPartners/AdminPartners"
 import {useLocation ,useNavigate} from "react-router-dom"
 import Sessions from '../Sessions/Sessions';
 const AdminDashboard = () => {
@@ -24,7 +25,7 @@ const AdminDashboard = () => {
   console.log(path);
   useEffect(()=>{
    if(path === "/"){
-   navigateTo("/admin");
+   navigateTo("/adminDashboard");
    }
   },[])
   return (
@@ -35,7 +36,7 @@ const AdminDashboard = () => {
             <h1 className='logo-title'>Morocco Microsoft Community</h1>
            </div>
            <ul className="dashboard-menu">
-                <li className='admin-nav-link'><NavLink to="/admin"><GridViewRoundedIcon/> Dashboard</NavLink></li>
+                <li className='admin-nav-link'><NavLink to="/adminDashboard"><GridViewRoundedIcon/> Dashboard</NavLink></li>
                 <li className='admin-nav-link'><NavLink to="/admin/events"><ConfirmationNumberRoundedIcon/> Events</NavLink></li>
                 <li className='admin-nav-link'><NavLink to="/admin/sessions"><ConfirmationNumberRoundedIcon/> sessions</NavLink></li>
                 <li className='admin-nav-link'><NavLink to="/admin/users"><PeopleRoundedIcon/> Users</NavLink></li>
@@ -58,12 +59,12 @@ const AdminDashboard = () => {
             </header>
             <main>
                 <Routes>
-                    <Route exact path="/admin" element={<Dashboard/>}/>
+                    <Route exact path="/adminDashboard" element={<Dashboard/>}/>
                     <Route path="/admin/events" element={<AdminEvents/>}/>
                     <Route path="/admin/sessions" element={<Sessions/>}/>
                     <Route path="/admin/users" element={<Users/>}/>
                     <Route path="/admin/speakers" element={<AdminSpeakers/>}/>
-                    <Route path="/admin/partners" element="partners"/>
+                    <Route path="/admin/partners" element={<AdminPartners/>}/>
                 </Routes>
             </main>
         </div>
