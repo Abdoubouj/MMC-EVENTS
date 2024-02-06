@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const linkAPI = "https://retoolapi.dev/83ANbQ/speakers";
+const linkAPI = "http://10.5.122.43:45455/api/Speaker";
 
 export const getSpeakers = createAsyncThunk(
   "Speakers/getSpeakers",

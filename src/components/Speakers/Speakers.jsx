@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Speakers.css";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import XIcon from '@mui/icons-material/X';
+import XIcon from "@mui/icons-material/X";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
 import { Link, NavLink } from "react-router-dom";
-import { speakers } from "../../data/speakers";
-
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { getSpeakers } from "../../features/speakerSlice";
 
 const Speakers = () => {
+  const dispatch = useDispatch();
+  const speakers = useSelector((state) => state.speaker.speakers);
 
+  useEffect(() => {
+    dispatch(getSpeakers());
+  }, [dispatch]);
+  console.log("====================================");
+  console.log(speakers);
+  console.log("====================================");
   return (
     <>
       <div className="speakers-title">

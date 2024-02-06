@@ -1,48 +1,96 @@
-import React from 'react';
-import './LoginForm.css'
+import React, { useContext, useEffect, useState } from "react";
+import "./LoginForm.css";
 import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import vector from "../../assets/vector.svg";
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import VpnKeyOutlinedIcon from "@mui/icons-material/VpnKeyOutlined";
+import { auth } from "../../features/firebaseAuth";
+import { UseContext } from "../hooks/UseContext";
 
-export default function LoginForm() {   
+export default function LoginForm() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
-    return (
-        <section className="login-section">
-        <div className="left">
-          <img src={vector} alt="#" />
-        </div>
-        <div className="right">
-          <div className="form-container">
-            <h1>Sign in</h1>
-            <form action="">
-              <div className="field form-email">
-                <label htmlFor="email">email</label>
-                <div className="emailInput">
-                <input type="text" placeholder="email" />
+  const { setIsAdminToggle } = useContext(UseContext);
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    signInWithEmailAndPassword(auth, username, password)
+      .then((useCredential) => {
+        if (useCredential.operationType === "signIn") {
+          setIsAdmin(true);
+          setIsAdminToggle(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    if (isAdmin) {
+      console.log("====================================");
+      console.log(isAdmin);
+      console.log("====================================");
+    } else {
+      console.log("====================================");
+      console.log(isAdmin);
+      console.log("====================================");
+    }
+  }, []);
+  return (
+    <section className="login-section">
+      <div className="left">
+        <img src={vector} alt="#" />
+      </div>
+      <div className="right">
+        <div className="form-container">
+          <h1>Sign in</h1>
+          <form action="">
+            <div className="field form-email">
+              <label htmlFor="email">email</label>
+              <div className="emailInput">
+                <input
+                  type="text"
+                  value={username}
+                  onChange={handleUsernameChange}
+                  placeholder="email"
+                />
                 <div className="emailIcon">
-                <EmailOutlinedIcon/>
-                </div>
+                  <EmailOutlinedIcon />
                 </div>
               </div>
-              <div className="field form-password">
-                <label htmlFor="password">password</label>
-                <div className="passwordInput">
-                <input type="password" placeholder="password" />
+            </div>
+            <div className="field form-password">
+              <label htmlFor="password">password</label>
+              <div className="passwordInput">
+                <input
+                  type="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  placeholder="password"
+                />
                 <div className="passwordIcon">
-                <VpnKeyOutlinedIcon/>
-                </div>
+                  <VpnKeyOutlinedIcon />
                 </div>
               </div>
-              <button className="btn create-account-btn">sign in</button>
-              <p>
-              Don't have account ?
-              <Link to="/register">Register</Link>
-              </p>
-            </form>
-          </div>
+            </div>
+            <button className="btn create-account-btn" onClick={handleSubmit}>
+              sign in
+            </button>
+            <p>
+              Don't have account ?<Link to="/register">Register</Link>
+            </p>
+          </form>
         </div>
-      </section>
-    );
+      </div>
+    </section>
+  );
 }
-

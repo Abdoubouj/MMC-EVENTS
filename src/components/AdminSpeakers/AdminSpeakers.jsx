@@ -20,14 +20,7 @@ const AdminSpeakers = () => {
 
   const [isUpdate, setIsUpdate] = useState(false);
   const [newSpeaker, setNewSpeaker] = useState({});
-  // const callback = (NewSpeaker, Errors) => {
-  //   setNewSpeaker(NewSpeaker);
-  //   setErrors(Errors);
-  // };
-  // const { handleInputChange, validateData } = ValidateForm(
-  //   newSpeaker,
-  //   callback
-  // );
+
   const itemsPerPage = 8;
   const dispatch = useDispatch();
   const speakers = useSelector((state) => state.speaker.speakers);
@@ -95,20 +88,20 @@ const AdminSpeakers = () => {
                 <div className="field First Name">
                   <label htmlFor="event-title">Image</label>
                   <input
-                    id="image"
+                    id="photo"
                     type="file"
-                    onChange={(e) => handleInputChange("image", e.target.value)}
+                    onChange={(e) => handleInputChange("photo", e.target.value)}
                   />
                 </div>
                 <div className="field First Name">
-                  <label htmlFor="event-title">First Name</label>
+                  <label htmlFor="event-title">First name</label>
                   <input
                     type="text"
-                    id="firstName"
-                    value={newSpeaker.firstName}
+                    id="prenom"
+                    value={newSpeaker.prenom}
                     placeholder="First Name ..."
                     onChange={(e) =>
-                      handleInputChange("firstName", e.target.value)
+                      handleInputChange("prenom", e.target.value)
                     }
                   />
                 </div>
@@ -116,26 +109,24 @@ const AdminSpeakers = () => {
                   <label htmlFor="event-title">Last Name</label>
                   <input
                     type="text"
-                    id="lastName"
-                    value={newSpeaker.lastName}
-                    onChange={(e) =>
-                      handleInputChange("lastName", e.target.value)
-                    }
+                    id="nom"
+                    value={newSpeaker.nom}
+                    onChange={(e) => handleInputChange("nom", e.target.value)}
                     placeholder="Last Name ..."
                   />
                 </div>
                 <div className="field event-adresse">
-                  <label htmlFor="MCT">MCT</label>
+                  <label htmlFor="mct">MCT</label>
                   <select
-                    id="MCT"
+                    id="mct"
                     onChange={(e) =>
                       handleInputChange(
-                        "MCT",
+                        "mct",
                         e.target.value === "true" ? true : false
                       )
                     }
-                    name="MCT"
-                    value={newSpeaker.MCT}
+                    name="mct"
+                    value={newSpeaker.mct}
                   >
                     <option disabled>Select MCT...</option>
                     <option value={true}>Yes</option>
@@ -143,17 +134,17 @@ const AdminSpeakers = () => {
                   </select>
                 </div>
                 <div className="field event-adresse">
-                  <label htmlFor="MVP">MVP</label>
+                  <label htmlFor="mvp">MVP</label>
                   <select
-                    id="MVP"
+                    id="mvp"
                     onChange={(e) =>
                       handleInputChange(
-                        "MVP",
+                        "mvp",
                         e.target.value === "true" ? true : false
                       )
                     }
-                    name="MVP"
-                    value={newSpeaker.MVP}
+                    name="mvp"
+                    value={newSpeaker.mvp}
                   >
                     <option disabled>Select MVP...</option>
                     <option value={true}>Yes</option>
@@ -200,21 +191,23 @@ const AdminSpeakers = () => {
                   <label htmlFor="linkedInLink">Linkedin Link</label>
                   <input
                     type="text"
-                    id="linkedInLink"
-                    value={newSpeaker.linkedInLink}
+                    id="linkedIn"
+                    value={newSpeaker.linkedIn}
                     onChange={(e) =>
-                      handleInputChange("linkedInLink", e.target.value)
+                      handleInputChange("linkedIn", e.target.value)
                     }
                     placeholder="Linkedin Link... "
                   />
                 </div>
                 <div className="field event-category">
-                  <label htmlFor="linkedInLink">Biography</label>
+                  <label htmlFor="biography">Biography</label>
                   <input
-                    type="textarea"
-                    id="bio"
-                    value={newSpeaker.bio}
-                    onChange={(e) => handleInputChange("bio", e.target.value)}
+                    type="text"
+                    id="biography"
+                    value={newSpeaker.biography}
+                    onChange={(e) =>
+                      handleInputChange("biography", e.target.value)
+                    }
                     placeholder="Bio... "
                   />
                 </div>
@@ -273,15 +266,15 @@ const AdminSpeakers = () => {
                   );
                 })
                 .map((speaker) => (
-                  <tr key={speaker.id}>
-                    <td>{speaker.id}</td>
-                    <td>{speaker.firstName}</td>
-                    <td>{speaker.lastName}</td>
+                  <tr key={speaker.speakerId}>
+                    <td>{speaker.speakerId}</td>
+                    <td>{speaker.prenom}</td>
+                    <td>{speaker.nom}</td>
                     <td>
                       <img
                         width={"50px"}
-                        src={speaker.image}
-                        alt={speaker.image}
+                        src={speaker.photo}
+                        alt={speaker.photo}
                       />
                     </td>
                     <td>{speaker.MCT === true ? "Yes" : "No"} </td>
@@ -301,7 +294,7 @@ const AdminSpeakers = () => {
                       </button>
                       <button
                         className="delete-btn"
-                        onClick={() => handleDeleteSpeaker(speaker.id)}
+                        onClick={() => handleDeleteSpeaker(speaker.speakerId)}
                       >
                         <DeleteOutlineRoundedIcon />
                       </button>
