@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import "./AdminEvents.scss";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
-// import { events } from "../../data/events";
-import Button from 'react-bootstrap/Button';
 import {useNavigate} from "react-router-dom"
 import {useSelector,useDispatch} from "react-redux"
 import ReactPaginate from "react-paginate";

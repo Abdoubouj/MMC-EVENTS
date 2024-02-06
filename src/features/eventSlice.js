@@ -17,6 +17,10 @@ export const deleteEvents = createAsyncThunk("Events/deleteEvents",async(eventId
    console.log(response);
    return response.data;
 })
+export const updateEvents = createAsyncThunk("Events/updateEvents",async(newEvent)=>{
+    const response = await axios.put(`https://retoolapi.dev/EZRFa1/events/${newEvent.id}`,newEvent);
+    return response.data;
+})
 
 const initialState = {
     events:[],
@@ -62,6 +66,18 @@ const eventSlice = createSlice({
             state.events = state.events.filter((event)=>event.id !== action.meta.arg);
         })
         .addCase(deleteEvents.rejected,(state,action)=>{
+            state.eventsStatus = "failed";
+            state.eventsError = action.error.message;
+        })
+        .addCase(updateEvents.pending , (state)=>{
+            state.eventsStatus = "loading";
+        })
+        .addCase(updateEvents.fulfilled , (state,action)=>{
+            state.eventsStatus = "succeded";
+            const index = state.events.findIndex((event)=>event.id === action.payload.id);
+            state.events[index] = action.payload;
+        })
+        .addCase(updateEvents.rejected,(state,action)=>{
             state.eventsStatus = "failed";
             state.eventsError = action.error.message;
         })
