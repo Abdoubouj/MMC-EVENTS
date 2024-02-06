@@ -1,62 +1,107 @@
-import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
-import axios from "axios"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const linkAPI = 'https://retoolapi.dev/xxH0AC/speakers';
+const linkAPI = "https://retoolapi.dev/83ANbQ/speakers";
 
-export const getSpeakers = createAsyncThunk("Speakers/getSpeakers",async()=>{
+export const getSpeakers = createAsyncThunk(
+  "Speakers/getSpeakers",
+  async () => {
     const response = await axios.get(linkAPI);
     return response.data;
-})
+  }
+);
 
-export const DeleteSpeaker = createAsyncThunk("Speakers/DeleteSpeaker",async(id)=>{
-    const response = await axios.delete(linkAPI+`/${id}`);
+export const DeleteSpeaker = createAsyncThunk(
+  "Speakers/DeleteSpeaker",
+  async (id) => {
+    const response = await axios.delete(linkAPI + `/${id}`);
     return response.data;
-})
+  }
+);
 
+export const UpdateSpeaker = createAsyncThunk(
+  "Speakers/UpdateSpeaker",
+  async (speaker) => {
+    const response = await axios.put(linkAPI + `/${speaker.id}`, speaker);
+    return response.data;
+  }
+);
+export const AddNewSpeaker = createAsyncThunk(
+  "Speakers/AddNewSpeaker",
+  async (newSpeaker) => {
+    try {
+      const response = await axios.post(linkAPI, newSpeaker);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 
 const initialState = {
-    speakers:[],
-    speakersStatus:"idle",
-    speakersError:null
-}
+  speakers: [],
+  speakersStatus: "idle",
+  speakersError: null,
+};
 
 const speakerSlice = createSlice({
-    name:"Speaker",
-    initialState,
-    reducers:{
+  name: "Speaker",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getSpeakers.pending, (state) => {
+        state.speakersStatus = "loading";
+      })
+      .addCase(getSpeakers.fulfilled, (state, action) => {
+        state.speakersStatus = "succeeded";
+        state.speakers = action.payload;
+      })
+      .addCase(getSpeakers.rejected, (state, action) => {
+        state.speakersStatus = "failed";
+        state.speakersError = action.error.message;
+      })
+      .addCase(DeleteSpeaker.pending, (state) => {
+        state.speakersStatus = "loading";
+      })
+      .addCase(DeleteSpeaker.fulfilled, (state, action) => {
+        state.speakersStatus = "succeeded";
+        state.speakers = state.speakers.filter(
+          (speaker) => speaker.id !== action.meta.arg
+        );
+      })
+      .addCase(DeleteSpeaker.rejected, (state, action) => {
+        state.speakersStatus = "failed";
+        state.speakersError = action.error.message;
+      })
+      .addCase(AddNewSpeaker.pending, (state) => {
+        state.speakersStatus = "loading";
+      })
+      .addCase(AddNewSpeaker.fulfilled, (state, action) => {
+        state.speakersStatus = "succeeded";
 
-    },
-    extraReducers:(builder)=>{
-        builder
-        .addCase(getSpeakers.pending , (state)=>{
-            state.speakersStatus = "loading";
-        })
-        .addCase(getSpeakers.fulfilled , (state,action)=>{
-            state.speakersStatus = "succeded";
-            state.speakers = action.payload;
-            console.log(action.payload)
-        })
-        .addCase(getSpeakers.rejected,(state,action)=>{
-            state.speakersStatus = "failed";
-            state.speakersError = action.error.message;
-        })
-        .addCase(DeleteSpeaker.pending , (state)=>{
-            state.speakersStatus = "loading";
-        })
-        .addCase(DeleteSpeaker.fulfilled , (state,action)=>{
-            state.speakersStatus = "succeded";
-            // state.speakers = action.payload;
-            state.speakers = state.speakers.filter(speaker => speaker.id !== action.meta.arg);
-            console.log('====================================');
-            console.log(action.meta.arg);
-            console.log('====================================');
-        })
-        .addCase(DeleteSpeaker.rejected,(state,action)=>{
-            state.speakersStatus = "failed";
-            state.speakersError = action.error.message;
-        })
-    }
-})
-
+        state.speakers.push(action.payload);
+      })
+      .addCase(AddNewSpeaker.rejected, (state, action) => {
+        state.speakersStatus = "failed";
+        state.speakersError = action.error.message;
+      })
+      .addCase(UpdateSpeaker.pending, (state) => {
+        state.speakersStatus = "loading";
+      })
+      .addCase(UpdateSpeaker.fulfilled, (state, action) => {
+        state.speakersStatus = "succeeded";
+        const updatedSpeaker = action.payload;
+        const updatedSpeakers = state.speakers.map((speaker) =>
+          speaker.id === updatedSpeaker.id ? updatedSpeaker : speaker
+        );
+        state.speakers = updatedSpeakers;
+      })
+      .addCase(UpdateSpeaker.rejected, (state, action) => {
+        state.speakersStatus = "failed";
+        state.speakersError = action.error.message;
+      });
+  },
+});
 
 export default speakerSlice.reducer;

@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DeleteSpeaker, getSpeakers } from "../../features/speakerSlice";
+import {
+  AddNewSpeaker,
+  DeleteSpeaker,
+  UpdateSpeaker,
+  getSpeakers,
+} from "../../features/speakerSlice";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 
 import ReactPaginate from "react-paginate";
@@ -12,8 +17,18 @@ import Loader from "../Loader/Loader";
 
 const AdminSpeakers = () => {
   const [page, setPage] = useState(0);
-  const itemsPerPage = 8;
 
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [newSpeaker, setNewSpeaker] = useState({});
+  // const callback = (NewSpeaker, Errors) => {
+  //   setNewSpeaker(NewSpeaker);
+  //   setErrors(Errors);
+  // };
+  // const { handleInputChange, validateData } = ValidateForm(
+  //   newSpeaker,
+  //   callback
+  // );
+  const itemsPerPage = 8;
   const dispatch = useDispatch();
   const speakers = useSelector((state) => state.speaker.speakers);
   const status = useSelector((state) => state.speaker.speakersStatus);
@@ -21,20 +36,38 @@ const AdminSpeakers = () => {
 
   useEffect(() => {
     dispatch(getSpeakers());
-  }, []);
+  }, [dispatch]);
 
   const handleDeleteSpeaker = (speakerId) => {
     dispatch(DeleteSpeaker(speakerId));
   };
-  // Handle loading state
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
 
-  // Handle error state
+  const handleInputChange = (fieldName, value) => {
+    setNewSpeaker((newSpeaker) => ({
+      ...newSpeaker,
+      [fieldName]: value,
+    }));
+  };
+  const handleUpdateSpeaker = (speaker) => {
+    setIsUpdate(true);
+    setNewSpeaker(speaker);
+  };
+  const handleAddNewSpeaker = (e) => {
+    e.preventDefault();
+    setIsUpdate(false);
+    if (!isUpdate) {
+      dispatch(AddNewSpeaker(newSpeaker));
+    } else {
+      console.log(newSpeaker);
+      dispatch(UpdateSpeaker(newSpeaker));
+      alert("Speaker has been updated Successfully");
+    }
+  };
+
   if (status === "failed") {
     return <div>Error: {error}</div>;
   }
+
   return (
     <div className="admin-events">
       <div
@@ -48,7 +81,7 @@ const AdminSpeakers = () => {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="addEventLabel">
-                add event
+                add Speaker
               </h1>
               <button
                 type="button"
@@ -59,43 +92,142 @@ const AdminSpeakers = () => {
             </div>
             <div className="modal-body">
               <form className="add-event-form">
-                <div className="field event-title">
-                  <label htmlFor="event-title">event title</label>
-                  <input type="text" placeholder="event title ..." />
-                </div>
-                <div className="field event-adresse">
-                  <label htmlFor="event-adresse">event adresse</label>
-                  <input type="text" placeholder="event adresse ..." />
-                </div>
-                <div className="field event-city">
-                  <label htmlFor="event-city">event city</label>
-                  <input type="text" placeholder="event city ..." />
-                </div>
-                <div className="field event-category">
-                  <label htmlFor="event-category">event category</label>
+                <div className="field First Name">
+                  <label htmlFor="event-title">Image</label>
                   <input
-                    type="text"
-                    placeholder="ex: remote or face to face "
+                    id="image"
+                    type="file"
+                    onChange={(e) => handleInputChange("image", e.target.value)}
                   />
                 </div>
-                <div className="field event-image">
-                  <label htmlFor="event-image">event image</label>
-                  <input type="text" placeholder="event image ..." />
+                <div className="field First Name">
+                  <label htmlFor="event-title">First Name</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    value={newSpeaker.firstName}
+                    placeholder="First Name ..."
+                    onChange={(e) =>
+                      handleInputChange("firstName", e.target.value)
+                    }
+                  />
                 </div>
-                <div className="field event-start-date">
-                  <label htmlFor="event-start-date">event start date</label>
-                  <input type="date" placeholder="event start date ..." />
+                <div className="field First Name">
+                  <label htmlFor="event-title">Last Name</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    value={newSpeaker.lastName}
+                    onChange={(e) =>
+                      handleInputChange("lastName", e.target.value)
+                    }
+                    placeholder="Last Name ..."
+                  />
                 </div>
-                <div className="field event-end-date">
-                  <label htmlFor="event-end-date">event end date</label>
-                  <input type="date" placeholder="event end date ..." />
+                <div className="field event-adresse">
+                  <label htmlFor="MCT">MCT</label>
+                  <select
+                    id="MCT"
+                    onChange={(e) =>
+                      handleInputChange(
+                        "MCT",
+                        e.target.value === "true" ? true : false
+                      )
+                    }
+                    name="MCT"
+                    value={newSpeaker.MCT}
+                  >
+                    <option disabled>Select MCT...</option>
+                    <option value={true}>Yes</option>
+                    <option value={false}>No</option>
+                  </select>
+                </div>
+                <div className="field event-adresse">
+                  <label htmlFor="MVP">MVP</label>
+                  <select
+                    id="MVP"
+                    onChange={(e) =>
+                      handleInputChange(
+                        "MVP",
+                        e.target.value === "true" ? true : false
+                      )
+                    }
+                    name="MVP"
+                    value={newSpeaker.MVP}
+                  >
+                    <option disabled>Select MVP...</option>
+                    <option value={true}>Yes</option>
+                    <option value={false}>No</option>
+                  </select>
+                </div>
+                <div className="field event-city">
+                  <label htmlFor="Website">Website</label>
+                  <input
+                    type="text"
+                    id="Website"
+                    value={newSpeaker.Website}
+                    onChange={(e) =>
+                      handleInputChange("Website", e.target.value)
+                    }
+                    placeholder="URL Website ..."
+                  />
+                </div>
+                <div className="field event-category">
+                  <label htmlFor="twitterLink">Twitter Link</label>
+                  <input
+                    type="text"
+                    id="twitterLink"
+                    value={newSpeaker.twitterLink}
+                    onChange={(e) =>
+                      handleInputChange("twitterLink", e.target.value)
+                    }
+                    placeholder="Twitter Link... "
+                  />
+                </div>
+                <div className="field event-category">
+                  <label htmlFor="instagramLink">Instagram Link</label>
+                  <input
+                    type="text"
+                    id="instagramLink"
+                    value={newSpeaker.instagramLink}
+                    onChange={(e) =>
+                      handleInputChange("instagramLink", e.target.value)
+                    }
+                    placeholder="Instagram Link... "
+                  />
+                </div>
+                <div className="field event-category">
+                  <label htmlFor="linkedInLink">Linkedin Link</label>
+                  <input
+                    type="text"
+                    id="linkedInLink"
+                    value={newSpeaker.linkedInLink}
+                    onChange={(e) =>
+                      handleInputChange("linkedInLink", e.target.value)
+                    }
+                    placeholder="Linkedin Link... "
+                  />
+                </div>
+                <div className="field event-category">
+                  <label htmlFor="linkedInLink">Biography</label>
+                  <input
+                    type="textarea"
+                    id="bio"
+                    value={newSpeaker.bio}
+                    onChange={(e) => handleInputChange("bio", e.target.value)}
+                    placeholder="Bio... "
+                  />
                 </div>
               </form>
             </div>
             <div className="modal-footer">
               {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
-              <button type="button" className="btn btn-primary p-3">
-                add event
+              <button
+                onClick={handleAddNewSpeaker}
+                type="button"
+                className="btn btn-primary p-3"
+              >
+                {isUpdate === false ? "Add new Speaker" : "Update Speaker"}
               </button>
             </div>
           </div>
@@ -108,7 +240,7 @@ const AdminSpeakers = () => {
           data-bs-toggle="modal"
           data-bs-target="#addEvent"
         >
-          <AddCircleOutlineRoundedIcon /> Add new Speakers
+          <AddCircleOutlineRoundedIcon /> Add new Speaker
         </button>
       </div>
       {status === "loading" ? (
@@ -121,16 +253,15 @@ const AdminSpeakers = () => {
             <thead>
               <tr>
                 <th>id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Image</th>
                 <th>MCT</th>
                 <th>MVP</th>
-                <th>Image</th>
-                <th>Website</th>
-
+                {/* <th>Website</th>
                 <th>twitterLink</th>
                 <th>facebookLink</th>
-                <th>instagramLink</th>
+                <th>instagramLink</th> */}
               </tr>
             </thead>
             <tbody>
@@ -144,18 +275,28 @@ const AdminSpeakers = () => {
                 .map((speaker) => (
                   <tr key={speaker.id}>
                     <td>{speaker.id}</td>
+                    <td>{speaker.firstName}</td>
                     <td>{speaker.lastName}</td>
-                    <td>{speaker.fisrtName}</td>
-                    <td>{speaker.MCT === true ? "Oui" : "Non"} </td>
-                    <td>{speaker.MVP === true ? "Oui" : "Non"} </td>
-                    <td>{speaker.Website}</td>
-
-                    <td>{speaker.twitterLink}</td>
-                    <td>{speaker.facebookLink}</td>
-                    <td>{speaker.instagramLink}</td>
-
                     <td>
-                      <button className="edit-btn">
+                      <img
+                        width={"50px"}
+                        src={speaker.image}
+                        alt={speaker.image}
+                      />
+                    </td>
+                    <td>{speaker.MCT === true ? "Yes" : "No"} </td>
+                    <td>{speaker.MVP === true ? "Yes" : "No"} </td>
+                    {/* <td>{speaker.Website}</td>
+                    <td>{speaker.twitterLink}</td>
+                    <td>{speaker.linkedIn}</td>
+                    <td>{speaker.instagramLink}</td> */}
+                    <td>
+                      <button
+                        data-bs-toggle="modal"
+                        data-bs-target="#addEvent"
+                        className="edit-btn"
+                        onClick={() => handleUpdateSpeaker(speaker)}
+                      >
                         <BorderColorRoundedIcon />
                       </button>
                       <button
