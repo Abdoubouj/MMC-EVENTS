@@ -8,6 +8,7 @@ import RecordVoiceOverRoundedIcon from '@mui/icons-material/RecordVoiceOverRound
 import HandshakeRoundedIcon from '@mui/icons-material/HandshakeRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { NavLink , Routes,Route } from 'react-router-dom';
@@ -38,7 +39,7 @@ const AdminDashboard = () => {
            <ul className="dashboard-menu">
                 <li className='admin-nav-link'><NavLink to="/adminDashboard"><GridViewRoundedIcon/> Dashboard</NavLink></li>
                 <li className='admin-nav-link'><NavLink to="/admin/events"><ConfirmationNumberRoundedIcon/> Events</NavLink></li>
-                <li className='admin-nav-link'><NavLink to="/admin/sessions"><ConfirmationNumberRoundedIcon/> sessions</NavLink></li>
+                <li className='admin-nav-link'><NavLink to="/admin/sessions"><CalendarMonthRoundedIcon/> sessions</NavLink></li>
                 <li className='admin-nav-link'><NavLink to="/admin/users"><PeopleRoundedIcon/> Users</NavLink></li>
                 <li className='admin-nav-link'><NavLink to="/admin/speakers"><RecordVoiceOverRoundedIcon/> Speakers</NavLink></li>
                 <li className='admin-nav-link'><NavLink to="/admin/partners"><HandshakeRoundedIcon/> Partners</NavLink></li>
