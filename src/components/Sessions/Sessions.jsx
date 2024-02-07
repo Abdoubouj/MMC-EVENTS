@@ -90,9 +90,7 @@ const Sessions = () => {
                <th>adresse</th>
                <th>image</th>
                <th>date</th>
-               <th>userId</th>
                <th>eventId</th>
-               <th>speakerId</th>
                <th>actions</th>
              </tr>
            </thead>
@@ -101,18 +99,14 @@ const Sessions = () => {
           return (index >= page * itemsPerPage) & (index < (page + 1) * itemsPerPage);
          })?.map((session) => (
                <tr key={session.id}>
-                 <td>{session.id}</td>
-                 <td>{session.title?.substring(0,15)}...</td>
+                 <td>{session.sessionId}</td>
+                 <td>{session.titreSession?.substring(0,15)}...</td>
                  <td>{session.adresse}</td>
                  <td>
-                    <img src={session.image} width={50} alt="###" />
+                    <img src="https://picsum.photos/200/300" width={50} alt="###" />
                  </td>
-                 <td>{session.date}</td>
-                 <td>{session.userId}</td>
-                 <td>
-                   {session.eventId}
-                 </td>
-                 <td>{session.speakerId}</td>
+                 <td>{session.dateSession}</td>
+                 <td>{session.evenementId}</td>
                  <td>
                    <button className="edit-btn">
                      <BorderColorRoundedIcon />

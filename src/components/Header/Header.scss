@@ -68,7 +68,7 @@ header{
         justify-content: center;
         align-items: center;
         gap:30px;
-        .search-box{
+        .header-search-box{
             position: relative;
             width: 270px;
             input{
@@ -87,13 +87,13 @@ header{
                     outline: 0;
                 }
             }
-            .search-icon{
+            .header-search-icon{
                 position: absolute;
                 right: 0;
                 top: 0;
                 width: 40px;
                 text-align: center;
-                line-height: 55px;
+                line-height: 50px;
                 color: $white;
                 height: 100%;
                 background: $blue;

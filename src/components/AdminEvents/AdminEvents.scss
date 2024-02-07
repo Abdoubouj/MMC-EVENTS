@@ -8,6 +8,16 @@ $dark:#252525;
 .admin-events{
     max-width: 1100px;
     margin: 1rem auto;
+    .filters{
+        margin: 22px 0;
+        border: 1px solid #ebebeb;
+        padding: 12px;
+        border-radius: 8px;
+        button{
+            color: $white;
+            display: inline-block;
+        }
+    }
     .top{
         display: flex;
         justify-content: space-between;

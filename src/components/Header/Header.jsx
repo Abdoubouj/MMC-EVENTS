@@ -50,17 +50,12 @@ const Header = () => {
                   Speakers
                 </NavLink>
               </li>
-              <li className="menu-item">
-                <NavLink className="menu-link" to="/about">
-                  About Us
-                </NavLink>
-              </li>
             </ul>
           </div>
           <div className="header-left">
-            <div className="search-box">
+            <div className="header-search-box">
               <input type="search" placeholder="search for Event ..." />
-              <div className="search-icon">
+              <div className="header-search-icon">
                 <SearchRoundedIcon />
               </div>
             </div>

@@ -8,7 +8,7 @@ import {useSelector,useDispatch} from "react-redux"
 import ReactPaginate from "react-paginate";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
-import { deleteEvents, getEvents, postEvents, updateEvents } from "../../features/eventSlice";
+import { deleteEvents, filter, getEvents, postEvents, updateEvents } from "../../features/eventSlice";
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import Loader from "../Loader/Loader";
@@ -17,13 +17,13 @@ const AdminEvents = () => {
   const events = useSelector((state)=>state.event.events);
   const status = useSelector((state)=>state.event.eventsStatus);
   const [isUpdate ,setIsUpdate] = useState(false);
-  const modalRef = useRef();
   const [inputs , setInputs] = useState({
-    title:"",
-image:"",
+    evenement_id:null,
+    titre:"",
+photo:"",
 description:"",
-startDate:"",
-endDate:""
+dateDebut:"",
+dateFin:""
   });
   const [page, setPage] = useState(0);
   const navigateTo = useNavigate();
@@ -35,14 +35,12 @@ endDate:""
     setInputs({...inputs,[e.target.name]:e.target.value});
   }
   const handleAddEvent = (e)=>{
+    e.preventDefault();
     if(!isUpdate){
-      e.preventDefault();
       dispatch(postEvents(inputs));
     }else{
-      e.preventDefault();
       dispatch(updateEvents(inputs));
     }
-    modalRef.current.style.display = "none"
     navigateTo("/admin/events");
   }
   const handleDelete = async (eventId) =>{
@@ -53,7 +51,7 @@ endDate:""
   // console.log(postEvents());
   return (
     <div className="admin-events">
-   <div class="modal fade"  id="addEvent" tabindex="-1" aria-labelledby="addEventLabel" aria-hidden="true" ref={modalRef}>
+   <div class="modal fade"  id="addEvent" tabindex="-1" aria-labelledby="addEventLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -64,11 +62,11 @@ endDate:""
         <form className="add-event-form" onSubmit={handleAddEvent}>
             <div className="field event-title">
                 <label htmlFor="event-title">event title</label>
-                <input name="title" value={inputs.title} onChange={handleChange} type="text" placeholder="event title ..." />
+                <input name="titre" value={inputs.titre} onChange={handleChange} type="text" placeholder="event title ..." />
             </div>
-            <div className="field event-image">
-                <label htmlFor="event-image">event image</label>
-                <input name="image" value={inputs.image} onChange={handleChange} type="text" placeholder="event image ..." />
+            <div className="field event-photo">
+                <label htmlFor="event-photo">event photo</label>
+                <input name="photo" value={inputs.photo} onChange={handleChange} type="text" placeholder="event photo ..." />
             </div>
             <div className="field event-description">
                 <label htmlFor="event-description">event description</label>
@@ -76,11 +74,11 @@ endDate:""
             </div>
             <div className="field event-start-date">
                 <label htmlFor="event-start-date">event start date</label>
-                <input name="startDate" value={inputs.startDate} onChange={handleChange} type="datetime-local" placeholder="event start date ..." />
+                <input name="dateDebut" value={inputs.dateDebut} onChange={handleChange} type="datetime-local" placeholder="event start date ..." />
             </div>
             <div className="field event-end-date">
                 <label htmlFor="event-end-date">event end date</label>
-                <input name="endDate" value={inputs.endDate} onChange={handleChange} type="datetime-local" placeholder="event end date ..." />
+                <input name="dateFin" value={inputs.dateFin} onChange={handleChange} type="datetime-local" placeholder="event end date ..." />
             </div>
       <div class="modal-footer" style={{width:"100%"}}>
         {isUpdate ?
@@ -93,9 +91,34 @@ endDate:""
     </div>
   </div>
 </div>
+{/* <div className="filters">
+  <form className="row">
+    <div className="m-1 col">
+      <label htmlFor="form-label">
+        titre
+      </label>
+        <input type="text" className="form-control" name="titre" onChange={(e)=>{dispatch(filter({titre:e.target.value}))}} />
+    </div>
+    <div className="m-1 col">
+      <label htmlFor="form-label">
+        start date
+      </label>
+        <input type="date" className="form-control" name="titre" onChange={(e)=>{dispatch(filter({titre:e.target.value}))}} />
+    </div>
+    <div className="m-1 col">
+      <label htmlFor="form-label">
+        end date
+      </label>
+        <input type="date" className="form-control" name="titre" onChange={(e)=>{dispatch(filter({titre:e.target.value}))}} />
+    </div>
+    <div className="col bg-dark">
+        <button type="submit" className="btn btn-info">filter</button>
+    </div>
+  </form>
+</div> */}
       <div className="top">
         <h1>Events</h1>
-        <button onClick={()=>{setInputs({title:"",image:"",description:"",startDate:"",endDate:""})}} className="add-event-btn" data-bs-toggle="modal" data-bs-target="#addEvent">
+        <button onClick={()=>{setInputs({titre:"",photo:"",description:"",dateDebut:"",dateFin:""})}} className="add-event-btn" data-bs-toggle="modal" data-bs-target="#addEvent">
           <AddCircleOutlineRoundedIcon /> Add new event
         </button>
       </div>
@@ -110,7 +133,7 @@ endDate:""
             <tr>
               <th>id</th>
               <th>title</th>
-              <th>image</th>
+              <th>photo</th>
               <th>start date</th>
               <th>end date</th>
               <th>actions</th>
@@ -120,19 +143,19 @@ endDate:""
             {typeof events === "object" && events?.filter((item, index) => {
          return (index >= page * itemsPerPage) & (index < (page + 1) * itemsPerPage);
         })?.map((event) => (
-              <tr key={event.id}>
-                <td>{event.id}</td>
-                <td>{event.title?.substring(0,15)}...</td>
+              <tr key={event.evenementId}>
+                <td>{event.evenementId}</td>
+                <td>{event.titre?.substring(0,15)}...</td>
                 <td>
-                  <img src={event.image} width={50} alt="" />
+                  <img src={event.photo !== null ? event.photo:"https://picsum.photos/200/300"} width={50} alt="" />
                 </td>
-                <td>{event.startDate}</td>
-                <td>{event.endDate}</td>
+                <td>{event.dateDebut}</td>
+                <td>{event.dateFin}</td>
                 <td>
                   <button className="edit-btn" onClick={()=>{setInputs(event); setIsUpdate(true)}} data-bs-toggle="modal" data-bs-target="#addEvent">
                     <BorderColorRoundedIcon />
                   </button>
-                  <button className="delete-btn" onClick={()=>{handleDelete(event?.id)}}>
+                  <button className="delete-btn" onClick={()=>{handleDelete(event?.evenementId)}}>
                     <DeleteOutlineRoundedIcon />
                   </button>
                 </td>

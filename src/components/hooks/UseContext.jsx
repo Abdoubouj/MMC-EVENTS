@@ -7,7 +7,6 @@ export const UseContextProvider = ({ children }) => {
 
   function setIsAdminToggle(value) {
     setIsAdmin(value);
-  
   }
 
   return (

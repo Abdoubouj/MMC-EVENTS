@@ -2,28 +2,34 @@ import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios"
 
 export const getEvents = createAsyncThunk("Event/getEvents",async()=>{
-    const response = await axios.get('https://retoolapi.dev/EZRFa1/events');
+    const response = await axios.get('https://10.5.122.43:45455/api/Event');
+    return response.data;
+})
+
+export const getEventById = createAsyncThunk("Event/getEventById",async(eventId)=>{
+    const response = await axios.get(`https://10.5.122.43:45455/api/Event/${eventId}`);
     return response.data;
 })
 
 export const postEvents = createAsyncThunk("Events/postEvents",async(event)=>{
-   const response = await axios.post('https://retoolapi.dev/EZRFa1/events',event);
+   const response = await axios.post('https://10.5.122.43:45455/api/Event',event);
    console.log(response);
    return response.data;
 })
 
 export const deleteEvents = createAsyncThunk("Events/deleteEvents",async(eventId)=>{
-   const response = await axios.delete(`https://retoolapi.dev/EZRFa1/events/${eventId}`);
+   const response = await axios.delete(`https://10.5.122.43:45455/api/Event/${eventId}`);
    console.log(response);
    return response.data;
 })
 export const updateEvents = createAsyncThunk("Events/updateEvents",async(newEvent)=>{
-    const response = await axios.put(`https://retoolapi.dev/EZRFa1/events/${newEvent.id}`,newEvent);
+    const response = await axios.put(`https://10.5.122.43:45455/api/Event/${newEvent.evenementId}`,newEvent);
     return response.data;
 })
 
 const initialState = {
     events:[],
+    singleEvent:[],
     eventsStatus:"idle",
     eventsError:null
 }
@@ -32,7 +38,9 @@ const eventSlice = createSlice({
     name:"Event",
     initialState,
     reducers:{
-
+        filter:(state,action)=>{
+            state.events = state.events.filter((event)=>event.titre === action.payload.titre);
+        }
     },
     extraReducers:(builder)=>{
         builder
@@ -63,7 +71,7 @@ const eventSlice = createSlice({
         })
         .addCase(deleteEvents.fulfilled , (state,action)=>{
             state.eventsStatus = "succeded";
-            state.events = state.events.filter((event)=>event.id !== action.meta.arg);
+            state.events = state.events.filter((event)=>event.evenementId !== action.meta.arg);
         })
         .addCase(deleteEvents.rejected,(state,action)=>{
             state.eventsStatus = "failed";
@@ -74,15 +82,28 @@ const eventSlice = createSlice({
         })
         .addCase(updateEvents.fulfilled , (state,action)=>{
             state.eventsStatus = "succeded";
-            const index = state.events.findIndex((event)=>event.id === action.payload.id);
+            const index = state.events.findIndex((event)=>event.evenementId === action.payload.evenementId);
             state.events[index] = action.payload;
         })
         .addCase(updateEvents.rejected,(state,action)=>{
             state.eventsStatus = "failed";
             state.eventsError = action.error.message;
         })
+        .addCase(getEventById.pending , (state)=>{
+            state.eventsStatus = "loading";
+        })
+        .addCase(getEventById.fulfilled , (state,action)=>{
+            state.eventsStatus = "succeded";
+            state.singleEvent = action.payload
+        })
+        .addCase(getEventById.rejected,(state,action)=>{
+            state.eventsStatus = "failed";
+            state.eventsError = action.error.message;
+        })
     }
 })
+
+export const {filter} = eventSlice.actions;
 
 
 export default eventSlice.reducer;

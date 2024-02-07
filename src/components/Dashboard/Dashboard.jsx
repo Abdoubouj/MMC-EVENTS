@@ -78,10 +78,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="last-events">
-        <h1>Last Events</h1>
-        <Link>see all</Link>
-      </div>
     </div>
   );
 };

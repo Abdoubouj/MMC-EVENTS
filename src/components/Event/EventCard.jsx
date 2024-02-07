@@ -3,11 +3,11 @@ import "./EventCard.scss"
 import { Link } from "react-router-dom";
 const EventCard = ({event}) => {
   return (
-    <Link to={`/events/${event.id}`} className="event-item">
-      <img src={event.image} alt="" />
+    <Link to={`/events/${event.evenementId}`} className="event-item">
+      <img src={event.photo} alt="" />
       <div className="event-info">
-      <h2 className="event-title">{event.title}</h2>
-      <h3 className="event-city">{event.adresse},{event.city}</h3>
+      <h2 className="event-title">{event.titre}</h2>
+      {/* <h3 className="event-city">{event.description}</h3> */}
       </div>
     </Link>
   );
