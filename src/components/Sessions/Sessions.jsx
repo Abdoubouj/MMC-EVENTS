@@ -9,15 +9,18 @@ import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftR
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import Loader from "../Loader/Loader";
 import { deleteSessions, getSessions, postSessions } from "../../features/sessionSlice";
+import { getEvents } from "../../features/eventSlice";
 const Sessions = () => {
     const dispatch = useDispatch();
     const sessions = useSelector((state)=>state.session.sessions);
+    const events = useSelector((state)=>state.event.events);
     const status = useSelector((state)=>state.session.sessionsStatus);
     const [page, setPage] = useState(0);
     const navigateTo = useNavigate();
     const itemsPerPage = 6;
     useEffect(()=>{
       dispatch(getSessions());
+      dispatch(getEvents());
     },[dispatch]);
     const handleAddSession = (e)=>{
       e.preventDefault();
@@ -57,9 +60,13 @@ const Sessions = () => {
                  <label htmlFor="session">session date</label>
                  <input type="date" placeholder="session date ..." />
              </div>
-             <div className="field event-end-date">
-                 <label htmlFor="event-end-date">event end date</label>
-                 <input type="date" placeholder="event end date ..." />
+             <div className="field event-id">
+                 <label htmlFor="event">event</label>
+                 <select name="evenementId" id="evenementId">
+                 {events.map((event)=>(
+                  <option value={event.evenementId}>{event.titre}</option>
+                 ))}
+                 </select>
              </div>
        <div class="modal-footer" style={{width:"100%"}}>
          {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
