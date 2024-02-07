@@ -13,8 +13,8 @@ export const getSpeakers = createAsyncThunk(
 
 export const DeleteSpeaker = createAsyncThunk(
   "Speakers/DeleteSpeaker",
-  async (id) => {
-    const response = await axios.delete(linkAPI + `/${id}`);
+  async (speakerId) => {
+    const response = await axios.delete(linkAPI + `/${speakerId}`);
     return response.data;
   }
 );
@@ -22,7 +22,11 @@ export const DeleteSpeaker = createAsyncThunk(
 export const UpdateSpeaker = createAsyncThunk(
   "Speakers/UpdateSpeaker",
   async (speaker) => {
-    const response = await axios.put(linkAPI + `/${speaker.id}`, speaker);
+    const response = await axios.put(
+      linkAPI + `/${speaker.speakerId}`,
+      speaker
+    );
+
     return response.data;
   }
 );
@@ -67,7 +71,7 @@ const speakerSlice = createSlice({
       .addCase(DeleteSpeaker.fulfilled, (state, action) => {
         state.speakersStatus = "succeeded";
         state.speakers = state.speakers.filter(
-          (speaker) => speaker.id !== action.meta.arg
+          (speaker) => speaker.speakerId !== action.meta.arg
         );
       })
       .addCase(DeleteSpeaker.rejected, (state, action) => {
@@ -79,7 +83,6 @@ const speakerSlice = createSlice({
       })
       .addCase(AddNewSpeaker.fulfilled, (state, action) => {
         state.speakersStatus = "succeeded";
-
         state.speakers.push(action.payload);
       })
       .addCase(AddNewSpeaker.rejected, (state, action) => {
@@ -91,12 +94,14 @@ const speakerSlice = createSlice({
       })
       .addCase(UpdateSpeaker.fulfilled, (state, action) => {
         state.speakersStatus = "succeeded";
-        const updatedSpeaker = action.payload;
-        const updatedSpeakers = state.speakers.map((speaker) =>
-          speaker.id === updatedSpeaker.id ? updatedSpeaker : speaker
+        const index = state.speakers.findIndex(
+          (speaker) => speaker.speakerId === action.payload.speakerId
         );
-        state.speakers = updatedSpeakers;
+        if (index !== -1) {
+          state.speakers[index] = action.payload;
+        }
       })
+
       .addCase(UpdateSpeaker.rejected, (state, action) => {
         state.speakersStatus = "failed";
         state.speakersError = action.error.message;

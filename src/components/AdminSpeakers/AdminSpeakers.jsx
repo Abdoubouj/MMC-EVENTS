@@ -29,7 +29,9 @@ const AdminSpeakers = () => {
 
   useEffect(() => {
     dispatch(getSpeakers());
-  }, [dispatch]);
+     
+     
+  }, [dispatch, isUpdate]);
 
   const handleDeleteSpeaker = (speakerId) => {
     dispatch(DeleteSpeaker(speakerId));
@@ -53,7 +55,9 @@ const AdminSpeakers = () => {
     } else {
       console.log(newSpeaker);
       dispatch(UpdateSpeaker(newSpeaker));
-      alert("Speaker has been updated Successfully");
+      if (status === "succeeded") {
+        setIsUpdate(false);
+      }
     }
   };
 
@@ -155,48 +159,60 @@ const AdminSpeakers = () => {
                   <label htmlFor="Website">Website</label>
                   <input
                     type="text"
-                    id="Website"
-                    value={newSpeaker.Website}
+                    id="siteWeb"
+                    value={newSpeaker.siteWeb}
                     onChange={(e) =>
-                      handleInputChange("Website", e.target.value)
+                      handleInputChange("siteWeb", e.target.value)
                     }
                     placeholder="URL Website ..."
                   />
                 </div>
                 <div className="field event-category">
-                  <label htmlFor="twitterLink">Twitter Link</label>
+                  <label htmlFor="lienTwitter">Twitter Link</label>
                   <input
                     type="text"
-                    id="twitterLink"
-                    value={newSpeaker.twitterLink}
+                    id="lienTwitter"
+                    value={newSpeaker.lienTwitter}
                     onChange={(e) =>
-                      handleInputChange("twitterLink", e.target.value)
+                      handleInputChange("lienTwitter", e.target.value)
                     }
                     placeholder="Twitter Link... "
                   />
                 </div>
                 <div className="field event-category">
-                  <label htmlFor="instagramLink">Instagram Link</label>
+                  <label htmlFor="lienInstagram">Instagram Link</label>
                   <input
                     type="text"
-                    id="instagramLink"
-                    value={newSpeaker.instagramLink}
+                    id="lienInstagram"
+                    value={newSpeaker.lienInstagram}
                     onChange={(e) =>
-                      handleInputChange("instagramLink", e.target.value)
+                      handleInputChange("lienInstagram", e.target.value)
                     }
                     placeholder="Instagram Link... "
                   />
                 </div>
                 <div className="field event-category">
-                  <label htmlFor="linkedInLink">Linkedin Link</label>
+                  <label htmlFor="lienLinkedin">Linkedin Link</label>
                   <input
                     type="text"
-                    id="linkedIn"
-                    value={newSpeaker.linkedIn}
+                    id="lienLinkedin"
+                    value={newSpeaker.lienLinkedin}
                     onChange={(e) =>
-                      handleInputChange("linkedIn", e.target.value)
+                      handleInputChange("lienLinkedin", e.target.value)
                     }
                     placeholder="Linkedin Link... "
+                  />
+                </div>
+                <div className="field event-category">
+                  <label htmlFor="lienFacebook">Facebook Link</label>
+                  <input
+                    type="text"
+                    id="lienFacebook"
+                    value={newSpeaker.lienFacebook}
+                    onChange={(e) =>
+                      handleInputChange("lienFacebook", e.target.value)
+                    }
+                    placeholder="Facebook Link... "
                   />
                 </div>
                 <div className="field event-category">
@@ -211,10 +227,22 @@ const AdminSpeakers = () => {
                     placeholder="Bio... "
                   />
                 </div>
+
+                <div className="field event-category">
+                  <label htmlFor="utilisateurId">User ID</label>
+                  <input
+                    type="text"
+                    id="utilisateurId"
+                    value={newSpeaker.utilisateurId}
+                    onChange={(e) =>
+                      handleInputChange("utilisateurId", e.target.value)
+                    }
+                    placeholder="User ID... "
+                  />
+                </div>
               </form>
             </div>
             <div className="modal-footer">
-              {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
               <button
                 onClick={handleAddNewSpeaker}
                 type="button"
@@ -268,8 +296,8 @@ const AdminSpeakers = () => {
                 .map((speaker) => (
                   <tr key={speaker.speakerId}>
                     <td>{speaker.speakerId}</td>
-                    <td>{speaker.prenom}</td>
                     <td>{speaker.nom}</td>
+                    <td>{speaker.prenom}</td>
                     <td>
                       <img
                         width={"50px"}
@@ -277,8 +305,8 @@ const AdminSpeakers = () => {
                         alt={speaker.photo}
                       />
                     </td>
-                    <td>{speaker.MCT === true ? "Yes" : "No"} </td>
-                    <td>{speaker.MVP === true ? "Yes" : "No"} </td>
+                    <td>{speaker.mct === true ? "Yes" : "No"} </td>
+                    <td>{speaker.mvp === true ? "Yes" : "No"} </td>
                     {/* <td>{speaker.Website}</td>
                     <td>{speaker.twitterLink}</td>
                     <td>{speaker.linkedIn}</td>
