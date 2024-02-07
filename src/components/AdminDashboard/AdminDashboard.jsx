@@ -39,8 +39,7 @@ const AdminDashboard = () => {
   };
   useEffect(() => {
     if (!isAdmin) {
-      
-
+    
       navigateTo("/login");
     } else {
       // navigateTo("/adminDashboard");
@@ -86,7 +85,7 @@ const AdminDashboard = () => {
             </NavLink>
           </li>
           <li className="admin-nav-link">
-            <button onClick={handleLogout}>
+            <button className="logout-btn" onClick={handleLogout}>
               <LogoutRoundedIcon /> Logout
             </button>
           </li>

@@ -27,7 +27,7 @@ const Speakers = () => {
         {speakers.map((speaker) => (
           <div className="speaker">
             <div className="image">
-              <Link to={`/speakers/${speaker.id}`}>
+              <Link to={`/speakers/${speaker.speakerId}`}>
                 <img
                   src={speaker.photo}
                   alt={speaker.nom + " " + speaker.prenom}
@@ -35,12 +35,16 @@ const Speakers = () => {
               </Link>
             </div>
             <div className="speakerInfo">
-              <Link to={`/speakers/${speaker.id}`}>
+              <Link to={`/speakers/${speaker.speakerId}`}>
                 <h2> {speaker.nom + " " + speaker.prenom} </h2>
               </Link>
-              <h4>{speaker.MVP + " " + speaker.MCT}</h4>
+              <h4>
+                <h5>MVP: {speaker.mvp ? "Oui" : "Non"}</h5>
 
-              <p> {speaker.Biography}</p>
+                <h5>MCT:{speaker.mct ? "Oui" : "Non"}</h5>
+              </h4>
+
+              <p> {speaker.biography}</p>
             </div>
             <div className="userSocialMedia">
               <ul>

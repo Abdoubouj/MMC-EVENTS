@@ -29,8 +29,6 @@ const AdminSpeakers = () => {
 
   useEffect(() => {
     dispatch(getSpeakers());
-     
-     
   }, [dispatch, isUpdate]);
 
   const handleDeleteSpeaker = (speakerId) => {
@@ -90,10 +88,11 @@ const AdminSpeakers = () => {
             <div className="modal-body">
               <form className="add-event-form">
                 <div className="field First Name">
-                  <label htmlFor="event-title">Image</label>
+                  <label htmlFor="photo">Image</label>
                   <input
                     id="photo"
-                    type="file"
+                    type="text"
+                    value={newSpeaker.photo}
                     onChange={(e) => handleInputChange("photo", e.target.value)}
                   />
                 </div>

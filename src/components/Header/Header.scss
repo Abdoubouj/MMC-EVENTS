@@ -1,159 +1,160 @@
-$blue:#05A6F0;
-$yellow:#FEBA08;
-$green:#80BC06;
-$red:#F25325;
-$white:#fff;
-$light:#f7f7f7;
-$dark:#252525;
-header{
-    background: $white;
-    position: sticky;
-    top: 0;
-    left: 0;
+$blue: #05a6f0;
+$yellow: #feba08;
+$green: #80bc06;
+$red: #f25325;
+$white: #dfecfa;
+$light: #ffffff;
+$dark: #252525;
+header {
+  background: $white;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  .header-top {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid $light;
+    background: inherit;
     z-index: 1000;
-    .header-top{
-            max-width: 1200px;
-            margin: 0 auto;
-            border-bottom: 1px solid $light ;
-            background: inherit;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 90px;
-    .menu{
-        .nav-menu{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            li{
-                list-style: none;
-                a.active{
-                    color: $blue;
-                    &::after{
-                      width: 100%;
-                    }
-                }
-                a{
-                    text-transform: capitalize;
-                    text-decoration: none;
-                    font-weight: 500;
-                    color: $dark;
-                    padding: 10px;
-                    position: relative;
-                    &::after{
-                     position: absolute;
-                     content: "";
-                     width: 0;
-                     height: 5px;
-                     background: $blue;
-                     border-radius: 2px;
-                     bottom:0;
-                     left: 0;
-                     transition: 0.3s linear;
-                    }
-                    &:hover{
-                        color: $blue;
-                        &::after{
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    .header-left{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    .menu {
+      .nav-menu {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap:30px;
-        .header-search-box{
+        gap: 30px;
+        li {
+          list-style: none;
+          a.active {
+            color: $blue;
+            &::after {
+              width: 100%;
+            }
+          }
+          a {
+            text-transform: capitalize;
+            text-decoration: none;
+            font-weight: 500;
+            color: $dark;
+            padding: 10px;
             position: relative;
-            width: 270px;
-            input{
-                padding: 12px;
+            &::after {
+              position: absolute;
+              content: "";
+              width: 0;
+              height: 5px;
+              background: $blue;
+              border-radius: 2px;
+              bottom: 0;
+              left: 0;
+              transition: 0.3s linear;
+            }
+            &:hover {
+              color: $blue;
+              &::after {
                 width: 100%;
-                border:1px solid $blue;
-                background: transparent;
-                border-radius: 12px;
-                &::placeholder{
-                    color:$dark;
-                    text-transform: capitalize;
-                    font-weight: 500;
-                    letter-spacing: 0.3px;
-                }
-                &:focus{
-                    outline: 0;
-                }
+              }
             }
-            .header-search-icon{
-                position: absolute;
-                right: 0;
-                top: 0;
-                width: 40px;
-                text-align: center;
-                line-height: 50px;
-                color: $white;
-                height: 100%;
-                background: $blue;
-                border-radius: 0 12px 12px 0;
-                border-right: 1px solid $blue;
-                border-bottom: 1px solid $blue;
-                border-top: 1px solid $blue;
-            }
+          }
         }
-        .account-box{
-            position: relative;
-            .account-icon{
-                border:1px solid $blue;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                background: transparent;
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-                justify-content: center;
-                color: $blue;
-                svg{
-                    font-size: 30px;
-                }
-            }
-            .auth-box{
-                border: 1px solid $light;
-                border-radius: 12px;
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-                padding: 15px;
-                position: absolute;
-                width: 220px;
-                top: 50px;
-                left: -180px;
-                background: $white;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 20px;
-                .btn{
-                    padding: 10px 12px;
-                    text-decoration: none;
-                    border: none;
-                    border-radius: 8px;
-                    color: $white;
-                    font-weight: 600;
-                    text-transform: uppercase;
-                    cursor: pointer;
-                }
-                .login-btn{
-                    background: $blue;
-                    border:1px solid $light;
-                }
-                .register-btn{
-                    border:1px solid $dark;
-                    color: $dark;
-                }
-            }
-        }
+      }
     }
-}
+    .header-left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      .header-search-box {
+        position: relative;
+        width: 270px;
+        input {
+          padding: 12px;
+          width: 100%;
+          border: 1px solid $blue;
+          background: transparent;
+          border-radius: 12px;
+          &::placeholder {
+            color: $dark;
+            text-transform: capitalize;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+          }
+          &:focus {
+            outline: 0;
+          }
+        }
+        .header-search-icon {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 40px;
+          text-align: center;
+          line-height: 50px;
+          color: $white;
+          height: 100%;
+          background: $blue;
+          border-radius: 0 12px 12px 0;
+          border-right: 1px solid $blue;
+          border-bottom: 1px solid $blue;
+          border-top: 1px solid $blue;
+        }
+      }
+      .account-box {
+        position: relative;
+        .account-icon {
+          border: 1px solid $blue;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: transparent;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          justify-content: center;
+          color: $blue;
+          svg {
+            font-size: 30px;
+          }
+        }
+        .auth-box {
+          border: 1px solid $light;
+          border-radius: 12px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+            rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+          padding: 15px;
+          position: absolute;
+          width: 220px;
+          top: 50px;
+          left: -180px;
+          background: $white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          .btn {
+            padding: 10px 12px;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            color: $white;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+          }
+          .login-btn {
+            background: $blue;
+            border: 1px solid $light;
+          }
+          .register-btn {
+            border: 1px solid $dark;
+            color: $dark;
+          }
+        }
+      }
+    }
+  }
 }
