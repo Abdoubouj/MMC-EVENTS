@@ -15,9 +15,7 @@ const Speakers = () => {
   useEffect(() => {
     dispatch(getSpeakers());
   }, [dispatch]);
-  console.log("====================================");
-  console.log(speakers);
-  console.log("====================================");
+  
   return (
     <>
       <div className="speakers-title">

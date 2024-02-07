@@ -17,46 +17,44 @@ $dark: #252525;
   .speaker-details-left {
     background-color: #ffffff;
     margin: 10px;
-    flex:1;
+    flex: 1;
     border-radius: 15px;
     height: 100%;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
       rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-    
+
     .speaker-details-left-cover {
-  padding: 15px;
+      padding: 15px;
 
-  .speaker-details-left-cover-img {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center; 
-    justify-content: space-around;  
-    padding: 10px;
-    flex-wrap: wrap;
-    border-radius: 15px;
-    background-color: #05a6f0;
-    width: 100%;
-    background: linear-gradient(135deg, #3494e6, #ec6ead);
+      .speaker-details-left-cover-img {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px;
+        flex-wrap: wrap;
+        border-radius: 15px;
+        background-color: #05a6f0;
+        width: 100%;
+        background: linear-gradient(135deg, #bee2ff, #fcc6e1);
 
-    h1 {
-      font-weight: 900;
-      font-size: 55px;
-      color: #fcfcfc;
-       
+        h1 {
+          font-weight: 900;
+          font-size: 55px;
+          color: #fcfcfc;
+        }
+
+        img {
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 50%;
+          border: 2px solid $light;
+        }
+      }
     }
-
-    img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 2px solid $light;
-    }
-  }
-}
-
 
     .speaker-info {
       padding: 15px;
@@ -70,13 +68,13 @@ $dark: #252525;
 
   .speaker-details-right {
     margin-top: 10px;
-    flex: 0 0  400px;
+    flex: 0 0 400px;
     height: 100vh;
     border-radius: 15px;
-     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
       rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
     overflow-y: scroll;
-     
+
     padding-inline-start: 15px;
     padding-inline-end: 15px;
     padding-top: 15px;
