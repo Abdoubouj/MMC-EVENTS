@@ -13,28 +13,27 @@ import { UseContext, UseContextProvider } from "./components/hooks/UseContext";
 import { useContext, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./features/firebaseAuth";
-import { Login } from "@mui/icons-material";
+import About from "./components/About/About";
 
 function App() {
-  const { isAdmin, setIsAdminToggle } = useContext(UseContext);
+  const { isAdmin, userRole, setIsAdminToggle } = useContext(UseContext);
   const location = useLocation();
   const navigateTo = useNavigate();
   const path = location.pathname;
 
   useEffect(() => {
     const handleAuthStateChanged = (user) => {
-      setIsAdminToggle(!!user);
+      setIsAdminToggle(user);
     };
-
     const unsubscribe = onAuthStateChanged(auth, handleAuthStateChanged);
-
     return () => unsubscribe();
   }, [setIsAdminToggle]);
 
   useEffect(() => {
-    if (isAdmin) {
+    if (isAdmin ) {
       navigateTo("/adminDashboard");
-      console.log(path);
+    } else {
+      navigateTo("/");
     }
   }, [isAdmin]);
 
@@ -53,6 +52,7 @@ function App() {
             <Route path="/events/:id" element={<EventDetails />} />
             <Route path="/speakers/:id" element={<SpeakerDetails />} />
             <Route path="/register" element={<RegisterForm />} />
+            <Route path="/about" element={<About />} />
             {/* <Route path="*" element={<LoginForm />} /> */}
           </Routes>
         </>

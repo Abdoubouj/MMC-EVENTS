@@ -1,12 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
-const linkAPI = "http://10.5.122.43:45455/api/Speaker";
+import { linkAPI } from "./data";
 
 export const getSpeakers = createAsyncThunk(
   "Speakers/getSpeakers",
   async () => {
-    const response = await axios.get(linkAPI);
+    const response = await axios.get(linkAPI + "Speaker");
     return response.data;
   }
 );
@@ -14,7 +13,7 @@ export const getSpeakers = createAsyncThunk(
 export const DeleteSpeaker = createAsyncThunk(
   "Speakers/DeleteSpeaker",
   async (speakerId) => {
-    const response = await axios.delete(linkAPI + `/${speakerId}`);
+    const response = await axios.delete(linkAPI + "Speaker" + `/${speakerId}`);
     return response.data;
   }
 );
@@ -23,7 +22,7 @@ export const UpdateSpeaker = createAsyncThunk(
   "Speakers/UpdateSpeaker",
   async (speaker) => {
     const response = await axios.put(
-      linkAPI + `/${speaker.speakerId}`,
+      linkAPI + "Speaker" + `/${speaker.speakerId}`,
       speaker
     );
 
@@ -34,7 +33,7 @@ export const AddNewSpeaker = createAsyncThunk(
   "Speakers/AddNewSpeaker",
   async (newSpeaker) => {
     try {
-      const response = await axios.post(linkAPI, newSpeaker);
+      const response = await axios.post(linkAPI + "Speaker", newSpeaker);
       return response.data;
     } catch (error) {
       throw error;

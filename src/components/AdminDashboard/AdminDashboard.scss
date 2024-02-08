@@ -1,10 +1,10 @@
-$blue: #05a6f0;
+$blue: #0370ff;
 $yellow: #feba08;
 $green: #80bc06;
 $red: #f25325;
 $white: #fff;
 $light: #ebebeb;
-$dark: #252525;
+$dark: #067eff;
 .admin-dashboard {
   min-height: 100vh;
   display: flex;
@@ -14,7 +14,8 @@ $dark: #252525;
     left: 0;
     // width: 300px;
     flex: 0 0 300px;
-    background: $white;
+
+    background: linear-gradient(135deg, #88c9ff, #ffa2d0);
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 5px 0px,
       rgba(0, 0, 0, 0.05) 0px 0px 5px 0px;
     height: 100vh;
@@ -30,12 +31,14 @@ $dark: #252525;
     }
     .dashboard-menu {
       padding: 0;
+
       width: 100%;
       margin-top: 30px;
       display: flex;
       flex-direction: column;
       .admin-nav-link {
         list-style: none;
+        color: white;
         a,
         .logout-btn {
           text-decoration: none;

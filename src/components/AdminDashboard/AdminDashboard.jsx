@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./AdminDashboard.scss";
 import mmcLogo from "../../assets/mmcLogo.svg";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
@@ -6,6 +6,7 @@ import ConfirmationNumberRoundedIcon from "@mui/icons-material/ConfirmationNumbe
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import RecordVoiceOverRoundedIcon from "@mui/icons-material/RecordVoiceOverRounded";
 import HandshakeRoundedIcon from "@mui/icons-material/HandshakeRounded";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
@@ -22,24 +23,36 @@ import Sessions from "../Sessions/Sessions";
 import { UseContext } from "../hooks/UseContext";
 import { Button } from "react-bootstrap";
 import { auth } from "../../features/firebaseAuth";
+import { onAuthStateChanged } from "firebase/auth";
 const AdminDashboard = () => {
   const location = useLocation();
   const navigateTo = useNavigate();
-  const path = location.pathname;
-
+  const [currentUser, setCurrentUser] = useState("");
   const { isAdmin, setIsAdminToggle } = useContext(UseContext);
+
+  useEffect(() => {
+    const handleAuthStateChanged = (user) => {
+      setIsAdminToggle(user);
+    };
+    setCurrentUser(auth.currentUser.email);
+
+    console.log(currentUser);
+
+    const unsubscribe = onAuthStateChanged(auth, handleAuthStateChanged);
+    return () => unsubscribe();
+  }, [setIsAdminToggle]);
+
   const handleLogout = async () => {
     try {
-      await auth.signOut(); 
-      setIsAdminToggle(false); 
-      navigateTo("/"); 
+      await auth.signOut();
+      setIsAdminToggle(false);
+      navigateTo("/");
     } catch (error) {
       console.error("Error logging out:", error);
     }
   };
   useEffect(() => {
     if (!isAdmin) {
-    
       navigateTo("/login");
     } else {
       // navigateTo("/adminDashboard");
@@ -85,6 +98,11 @@ const AdminDashboard = () => {
             </NavLink>
           </li>
           <li className="admin-nav-link">
+            <NavLink to="/admin/profile">
+              <PersonOutlineIcon /> <h6>{currentUser}</h6>
+            </NavLink>
+          </li>
+          <li className="admin-nav-link">
             <button className="logout-btn" onClick={handleLogout}>
               <LogoutRoundedIcon /> Logout
             </button>
@@ -104,7 +122,9 @@ const AdminDashboard = () => {
             </div>
           </div>
           <Stack direction="row">
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <NavLink to={"/admin/profile"}>
+              <Avatar alt={currentUser} src="/static/images/avatar/1.jpg" />
+            </NavLink>
           </Stack>
         </header>
         <main>
@@ -115,6 +135,7 @@ const AdminDashboard = () => {
             <Route path="/admin/users" element={<Users />} />
             <Route path="/admin/speakers" element={<AdminSpeakers />} />
             <Route path="/admin/partners" element={<AdminPartners />} />
+            <Route path="/admin/profile" element={<></>} />
           </Routes>
         </main>
       </div>

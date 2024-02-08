@@ -1,9 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Header.scss";
 import mmcLogo from "../../assets/mmcLogo.svg";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import { Link, NavLink ,useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { auth } from "../../features/firebaseAuth";
+import { UseContext } from "../hooks/UseContext";
+import { onAuthStateChanged } from "firebase/auth";
+
 const Header = () => {
   const headerTopRef = useRef(null);
   const [showAccount, setShowAccount] = useState(false);
@@ -31,7 +35,7 @@ const Header = () => {
       <div className="container-header">
         <div className="header-top">
           <Link to="/" className="logo">
-            <img src={mmcLogo} width={60} alt="app-logo" />
+            <img src={mmcLogo} width={80} alt="app-logo" />
           </Link>
           <div className="menu">
             <ul className="nav-menu">
@@ -48,6 +52,11 @@ const Header = () => {
               <li className="menu-item">
                 <NavLink className="menu-link" to="/speakers">
                   Speakers
+                </NavLink>
+              </li>
+              <li className="menu-item">
+                <NavLink className="menu-link" to="/about">
+                  About
                 </NavLink>
               </li>
             </ul>

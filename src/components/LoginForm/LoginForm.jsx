@@ -11,7 +11,7 @@ import { UseContext } from "../hooks/UseContext";
 export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  
 
   const { setIsAdminToggle } = useContext(UseContext);
   const handleUsernameChange = (event) => {
@@ -20,31 +20,24 @@ export default function LoginForm() {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
+  const checkUserRole = (user) => {
+    const role = user.split("@")[0];
+    return role;
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
 
     signInWithEmailAndPassword(auth, username, password)
       .then((useCredential) => {
         if (useCredential.operationType === "signIn") {
-          setIsAdmin(true);
-          setIsAdminToggle(true);
+            setIsAdminToggle(true, checkUserRole(username));
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  useEffect(() => {
-    if (isAdmin) {
-      console.log("====================================");
-      console.log(isAdmin);
-      console.log("====================================");
-    } else {
-      console.log("====================================");
-      console.log(isAdmin);
-      console.log("====================================");
-    }
-  }, []);
+   
   return (
     <section className="login-section">
       <div className="left">
