@@ -16,30 +16,31 @@ import { auth } from "./features/firebaseAuth";
 import About from "./components/About/About";
 
 function App() {
-  const { isAdmin, userRole, setIsAdminToggle } = useContext(UseContext);
+  const { isAuthenticated, userRole, setIsAuthenticatedToggle } =
+    useContext(UseContext);
   const location = useLocation();
   const navigateTo = useNavigate();
   const path = location.pathname;
 
   useEffect(() => {
     const handleAuthStateChanged = (user) => {
-      setIsAdminToggle(user);
+      setIsAuthenticatedToggle(user);
     };
     const unsubscribe = onAuthStateChanged(auth, handleAuthStateChanged);
     return () => unsubscribe();
-  }, [setIsAdminToggle]);
+  }, [setIsAuthenticatedToggle]);
 
   useEffect(() => {
-    if (isAdmin ) {
+    if (isAuthenticated) {
       navigateTo("/adminDashboard");
     } else {
       navigateTo("/");
     }
-  }, [isAdmin]);
+  }, [isAuthenticated]);
 
   return (
     <>
-      {isAdmin ? (
+      {isAuthenticated ? (
         <AdminDashboard />
       ) : (
         <>
