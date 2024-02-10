@@ -1,1 +1,1 @@
-export const linkAPI = "https://othergreenshed72.conveyor.cloud/api/";
+export const linkAPI = "https://localhost:7187/api/";
