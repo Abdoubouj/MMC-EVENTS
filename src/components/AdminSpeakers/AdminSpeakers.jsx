@@ -88,23 +88,25 @@ const AdminSpeakers = () => {
             <div className="modal-body">
               <form className="add-event-form">
                 <div className="field First Name">
-                  <label htmlFor="photo">Image</label>
+                  <label htmlFor="picture">Picture</label>
                   <input
-                    id="photo"
+                    id="picture"
                     type="text"
-                    value={newSpeaker.photo}
-                    onChange={(e) => handleInputChange("photo", e.target.value)}
+                    value={newSpeaker.picture}
+                    onChange={(e) =>
+                      handleInputChange("picture", e.target.value)
+                    }
                   />
                 </div>
                 <div className="field First Name">
                   <label htmlFor="event-title">First name</label>
                   <input
                     type="text"
-                    id="prenom"
-                    value={newSpeaker.prenom}
+                    id="firstName"
+                    value={newSpeaker.firstName}
                     placeholder="First Name ..."
                     onChange={(e) =>
-                      handleInputChange("prenom", e.target.value)
+                      handleInputChange("firstName", e.target.value)
                     }
                   />
                 </div>
@@ -275,7 +277,7 @@ const AdminSpeakers = () => {
                 <th>id</th>
                 <th>First name</th>
                 <th>Last name</th>
-                <th>Image</th>
+                <th>Picture</th>
                 <th>MCT</th>
                 <th>MVP</th>
                 {/* <th>Website</th>
@@ -293,15 +295,15 @@ const AdminSpeakers = () => {
                   );
                 })
                 .map((speaker) => (
-                  <tr key={speaker.speakerId}>
-                    <td>{speaker.speakerId}</td>
-                    <td>{speaker.nom}</td>
-                    <td>{speaker.prenom}</td>
+                  <tr key={speaker.speakerID}>
+                    <td>{speaker.firstName}</td>
+                    <td>{speaker.lastName}</td>
+                    <td>{speaker.speakerEmail}</td>
                     <td>
                       <img
                         width={"50px"}
-                        src={speaker.photo}
-                        alt={speaker.photo}
+                        src={speaker.picture}
+                        alt={speaker.picture}
                       />
                     </td>
                     <td>{speaker.mct === true ? "Yes" : "No"} </td>

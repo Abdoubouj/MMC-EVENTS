@@ -3,16 +3,18 @@ import { createContext, useState } from "react";
 export const UseContext = createContext();
 
 export const UseContextProvider = ({ children }) => {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [userRole, setUserRole] = useState("Test");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userRole, setUserRole] = useState("User");
 
-  function setIsAdminToggle(value, role) {
-    setIsAdmin(value);
+  function setIsAuthenticatedToggle(value, role) {
+    setIsAuthenticated(value);
     setUserRole(role);
   }
 
   return (
-    <UseContext.Provider value={{ isAdmin, userRole, setIsAdminToggle }}>
+    <UseContext.Provider
+      value={{ isAuthenticated, userRole, setIsAuthenticatedToggle }}
+    >
       {children}
     </UseContext.Provider>
   );

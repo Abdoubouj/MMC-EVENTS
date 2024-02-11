@@ -28,11 +28,11 @@ const AdminDashboard = () => {
   const location = useLocation();
   const navigateTo = useNavigate();
   const [currentUser, setCurrentUser] = useState("");
-  const { isAdmin, setIsAdminToggle } = useContext(UseContext);
+  const { isAuthenticated, setIsAuthenticatedToggle } = useContext(UseContext);
 
   useEffect(() => {
     const handleAuthStateChanged = (user) => {
-      setIsAdminToggle(user);
+      setIsAuthenticatedToggle(user, auth.currentUser.email);
     };
     setCurrentUser(auth.currentUser.email);
 
@@ -40,25 +40,24 @@ const AdminDashboard = () => {
 
     const unsubscribe = onAuthStateChanged(auth, handleAuthStateChanged);
     return () => unsubscribe();
-  }, [setIsAdminToggle]);
+  }, [setIsAuthenticatedToggle]);
 
   const handleLogout = async () => {
     try {
       await auth.signOut();
-      setIsAdminToggle(false);
+      setIsAuthenticatedToggle(false);
       navigateTo("/");
     } catch (error) {
       console.error("Error logging out:", error);
     }
   };
   useEffect(() => {
-    if (!isAdmin) {
+    if (!isAuthenticated) {
       navigateTo("/login");
     } else {
       // navigateTo("/adminDashboard");
-       
     }
-  }, [isAdmin]);
+  }, [isAuthenticated]);
   return (
     <div className="admin-dashboard">
       <aside className="dashboard-left-sidebare">
@@ -99,7 +98,8 @@ const AdminDashboard = () => {
           </li>
           <li className="admin-nav-link">
             <NavLink to="/admin/profile">
-              <PersonOutlineIcon /> <h6>{currentUser}</h6>
+              <PersonOutlineIcon />{" "}
+              <h6>{currentUser.split("@")[0].toUpperCase()}</h6>
             </NavLink>
           </li>
           <li className="admin-nav-link">
@@ -123,7 +123,10 @@ const AdminDashboard = () => {
           </div>
           <Stack direction="row">
             <NavLink to={"/admin/profile"}>
-              <Avatar alt={currentUser} src="/static/images/avatar/1.jpg" />
+              <Avatar
+                alt={currentUser.toUpperCase()}
+                src="/static/images/avatar/1.jpg"
+              />
             </NavLink>
           </Stack>
         </header>

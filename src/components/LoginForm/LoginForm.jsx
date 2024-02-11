@@ -11,9 +11,8 @@ import { UseContext } from "../hooks/UseContext";
 export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
 
-  const { setIsAdminToggle } = useContext(UseContext);
+  const { setIsAuthenticatedToggle } = useContext(UseContext);
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -30,14 +29,14 @@ export default function LoginForm() {
     signInWithEmailAndPassword(auth, username, password)
       .then((useCredential) => {
         if (useCredential.operationType === "signIn") {
-            setIsAdminToggle(true, checkUserRole(username));
+          setIsAuthenticatedToggle(true, checkUserRole(username));
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
-   
+
   return (
     <section className="login-section">
       <div className="left">

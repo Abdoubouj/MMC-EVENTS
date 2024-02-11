@@ -13,7 +13,7 @@ export const getSpeakers = createAsyncThunk(
 export const DeleteSpeaker = createAsyncThunk(
   "Speakers/DeleteSpeaker",
   async (speakerId) => {
-    const response = await axios.delete(linkAPI + "Speaker" + `/${speakerId}`);
+    const response = await axios.delete(linkAPI + "Speaker" + `/${speakerID}`);
     return response.data;
   }
 );
