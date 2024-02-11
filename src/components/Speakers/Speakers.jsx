@@ -15,7 +15,7 @@ const Speakers = () => {
   useEffect(() => {
     dispatch(getSpeakers());
   }, [dispatch]);
-  
+
   return (
     <>
       <div className="speakers-title">
@@ -25,16 +25,16 @@ const Speakers = () => {
         {speakers.map((speaker) => (
           <div className="speaker">
             <div className="image">
-              <Link to={`/speakers/${speaker.speakerId}`}>
+              <Link to={`/speakers/${speaker.speakerID}`}>
                 <img
-                  src={speaker.photo}
-                  alt={speaker.nom + " " + speaker.prenom}
+                  src={speaker.picture}
+                  alt={speaker.lastName + " " + speaker.firstName}
                 />
               </Link>
             </div>
             <div className="speakerInfo">
-              <Link to={`/speakers/${speaker.speakerId}`}>
-                <h2> {speaker.nom + " " + speaker.prenom} </h2>
+              <Link to={`/speakers/${speaker.speakerID}`}>
+                <h2> {speaker.lastName + " " + speaker.firstName} </h2>
               </Link>
               <h4>
                 <h5>MVP: {speaker.mvp ? "Oui" : "Non"}</h5>

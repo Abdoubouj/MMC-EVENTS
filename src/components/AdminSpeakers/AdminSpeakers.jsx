@@ -14,25 +14,29 @@ import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import Loader from "../Loader/Loader";
+import { getUsers } from "../../features/userSlice";
 
 const AdminSpeakers = () => {
   const [page, setPage] = useState(0);
 
   const [isUpdate, setIsUpdate] = useState(false);
   const [newSpeaker, setNewSpeaker] = useState({});
+  const [Users, setUsers] = useState([]);
 
   const itemsPerPage = 8;
   const dispatch = useDispatch();
   const speakers = useSelector((state) => state.speaker.speakers);
+  const users = useSelector((state) => state.user.users);
   const status = useSelector((state) => state.speaker.speakersStatus);
   const error = useSelector((state) => state.speaker.speakersError);
 
   useEffect(() => {
     dispatch(getSpeakers());
+    dispatch(getUsers());
   }, [dispatch, isUpdate]);
 
-  const handleDeleteSpeaker = (speakerId) => {
-    dispatch(DeleteSpeaker(speakerId));
+  const handleDeleteSpeaker = (speakerID) => {
+    dispatch(DeleteSpeaker(speakerID));
   };
 
   const handleInputChange = (fieldName, value) => {
@@ -40,6 +44,13 @@ const AdminSpeakers = () => {
       ...newSpeaker,
       [fieldName]: value,
     }));
+  };
+  const handleCleanUserFormSelected = (selecteUserd) => {
+    setUsers([...users.filter((user) => user.UserID !== selecteUserd.userID)]);
+  };
+  const handleReloadUsers = () => {
+    dispatch(getUsers());
+    setUsers(users);
   };
   const handleUpdateSpeaker = (speaker) => {
     setIsUpdate(true);
@@ -50,6 +61,7 @@ const AdminSpeakers = () => {
     setIsUpdate(false);
     if (!isUpdate) {
       dispatch(AddNewSpeaker(newSpeaker));
+      handleCleanUserFormSelected(newSpeaker.speakerID);
     } else {
       console.log(newSpeaker);
       dispatch(UpdateSpeaker(newSpeaker));
@@ -87,39 +99,25 @@ const AdminSpeakers = () => {
             </div>
             <div className="modal-body">
               <form className="add-event-form">
-                <div className="field First Name">
-                  <label htmlFor="picture">Picture</label>
-                  <input
-                    id="picture"
-                    type="text"
-                    value={newSpeaker.picture}
+                <div className="field event-adresse">
+                  <label htmlFor="mct">Select The User</label>
+                  <select
                     onChange={(e) =>
-                      handleInputChange("picture", e.target.value)
+                      handleInputChange("speakerID", e.target.value)
                     }
-                  />
+                    value={newSpeaker.speakerID}
+                  >
+                    <option selected disabled>
+                      Select a user
+                    </option>
+                    {users.map((user) => (
+                      <option value={user.userID} key={user.userID}>
+                        {user.firstName} {user.lastName}{" "}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <div className="field First Name">
-                  <label htmlFor="event-title">First name</label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    value={newSpeaker.firstName}
-                    placeholder="First Name ..."
-                    onChange={(e) =>
-                      handleInputChange("firstName", e.target.value)
-                    }
-                  />
-                </div>
-                <div className="field First Name">
-                  <label htmlFor="event-title">Last Name</label>
-                  <input
-                    type="text"
-                    id="nom"
-                    value={newSpeaker.nom}
-                    onChange={(e) => handleInputChange("nom", e.target.value)}
-                    placeholder="Last Name ..."
-                  />
-                </div>
+                <p></p>
                 <div className="field event-adresse">
                   <label htmlFor="mct">MCT</label>
                   <select
@@ -157,63 +155,74 @@ const AdminSpeakers = () => {
                   </select>
                 </div>
                 <div className="field event-city">
-                  <label htmlFor="Website">Website</label>
+                  <label htmlFor="website">Website</label>
                   <input
                     type="text"
-                    id="siteWeb"
-                    value={newSpeaker.siteWeb}
+                    id="website"
+                    value={newSpeaker.website}
                     onChange={(e) =>
-                      handleInputChange("siteWeb", e.target.value)
+                      handleInputChange("website", e.target.value)
                     }
                     placeholder="URL Website ..."
                   />
                 </div>
                 <div className="field event-category">
-                  <label htmlFor="lienTwitter">Twitter Link</label>
+                  <label htmlFor="twitter">Twitter Link</label>
                   <input
                     type="text"
-                    id="lienTwitter"
-                    value={newSpeaker.lienTwitter}
+                    id="twitter"
+                    value={newSpeaker.twitter}
                     onChange={(e) =>
-                      handleInputChange("lienTwitter", e.target.value)
+                      handleInputChange("twitter", e.target.value)
                     }
                     placeholder="Twitter Link... "
                   />
                 </div>
                 <div className="field event-category">
-                  <label htmlFor="lienInstagram">Instagram Link</label>
+                  <label htmlFor="instagram">Instagram Link</label>
                   <input
                     type="text"
-                    id="lienInstagram"
-                    value={newSpeaker.lienInstagram}
+                    id="instagram"
+                    value={newSpeaker.instagram}
                     onChange={(e) =>
-                      handleInputChange("lienInstagram", e.target.value)
+                      handleInputChange("instagram", e.target.value)
                     }
                     placeholder="Instagram Link... "
                   />
                 </div>
                 <div className="field event-category">
-                  <label htmlFor="lienLinkedin">Linkedin Link</label>
+                  <label htmlFor="linkedIn">Linkedin Link</label>
                   <input
                     type="text"
-                    id="lienLinkedin"
-                    value={newSpeaker.lienLinkedin}
+                    id="linkedIn"
+                    value={newSpeaker.linkedIn}
                     onChange={(e) =>
-                      handleInputChange("lienLinkedin", e.target.value)
+                      handleInputChange("linkedIn", e.target.value)
                     }
                     placeholder="Linkedin Link... "
                   />
                 </div>
                 <div className="field event-category">
-                  <label htmlFor="lienFacebook">Facebook Link</label>
+                  <label htmlFor="facebook">facebook Link</label>
                   <input
                     type="text"
-                    id="lienFacebook"
-                    value={newSpeaker.lienFacebook}
+                    id="facebook"
+                    value={newSpeaker.facebook}
                     onChange={(e) =>
-                      handleInputChange("lienFacebook", e.target.value)
+                      handleInputChange("facebook", e.target.value)
                     }
                     placeholder="Facebook Link... "
+                  />
+                </div>
+                <div className="field First Name">
+                  <label htmlFor="picture">Picture</label>
+                  <input
+                    id="picture"
+                    type="text"
+                    value={newSpeaker.picture}
+                    onChange={(e) =>
+                      handleInputChange("picture", e.target.value)
+                    }
                   />
                 </div>
                 <div className="field event-category">
@@ -226,19 +235,6 @@ const AdminSpeakers = () => {
                       handleInputChange("biography", e.target.value)
                     }
                     placeholder="Bio... "
-                  />
-                </div>
-
-                <div className="field event-category">
-                  <label htmlFor="utilisateurId">User ID</label>
-                  <input
-                    type="text"
-                    id="utilisateurId"
-                    value={newSpeaker.utilisateurId}
-                    onChange={(e) =>
-                      handleInputChange("utilisateurId", e.target.value)
-                    }
-                    placeholder="User ID... "
                   />
                 </div>
               </form>
@@ -258,6 +254,7 @@ const AdminSpeakers = () => {
       <div className="top">
         <h1>Speakers</h1>
         <button
+          onClick={handleReloadUsers}
           className="add-event-btn"
           data-bs-toggle="modal"
           data-bs-target="#addEvent"
@@ -277,11 +274,13 @@ const AdminSpeakers = () => {
                 <th>id</th>
                 <th>First name</th>
                 <th>Last name</th>
+                <th>Email</th>
+                <th>Password</th>
                 <th>Picture</th>
                 <th>MCT</th>
                 <th>MVP</th>
-                {/* <th>Website</th>
-                <th>twitterLink</th>
+                <th>Website</th>
+                {/* <th>twitterLink</th>
                 <th>facebookLink</th>
                 <th>instagramLink</th> */}
               </tr>
@@ -296,6 +295,8 @@ const AdminSpeakers = () => {
                 })
                 .map((speaker) => (
                   <tr key={speaker.speakerID}>
+                    <td>{speaker.speakerID}</td>
+                    <td>{speaker.lastName}</td>
                     <td>{speaker.firstName}</td>
                     <td>{speaker.lastName}</td>
                     <td>{speaker.speakerEmail}</td>
@@ -323,7 +324,7 @@ const AdminSpeakers = () => {
                       </button>
                       <button
                         className="delete-btn"
-                        onClick={() => handleDeleteSpeaker(speaker.speakerId)}
+                        onClick={() => handleDeleteSpeaker(speaker.speakerID)}
                       >
                         <DeleteOutlineRoundedIcon />
                       </button>

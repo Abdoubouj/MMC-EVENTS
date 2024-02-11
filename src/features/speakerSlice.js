@@ -12,7 +12,7 @@ export const getSpeakers = createAsyncThunk(
 
 export const DeleteSpeaker = createAsyncThunk(
   "Speakers/DeleteSpeaker",
-  async (speakerId) => {
+  async (speakerID) => {
     const response = await axios.delete(linkAPI + "Speaker" + `/${speakerID}`);
     return response.data;
   }
@@ -22,7 +22,7 @@ export const UpdateSpeaker = createAsyncThunk(
   "Speakers/UpdateSpeaker",
   async (speaker) => {
     const response = await axios.put(
-      linkAPI + "Speaker" + `/${speaker.speakerId}`,
+      linkAPI + "Speaker" + `/${speaker.speakerID}`,
       speaker
     );
 
@@ -70,7 +70,7 @@ const speakerSlice = createSlice({
       .addCase(DeleteSpeaker.fulfilled, (state, action) => {
         state.speakersStatus = "succeeded";
         state.speakers = state.speakers.filter(
-          (speaker) => speaker.speakerId !== action.meta.arg
+          (speaker) => speaker.speakerID !== action.meta.arg
         );
       })
       .addCase(DeleteSpeaker.rejected, (state, action) => {
@@ -94,7 +94,7 @@ const speakerSlice = createSlice({
       .addCase(UpdateSpeaker.fulfilled, (state, action) => {
         state.speakersStatus = "succeeded";
         const index = state.speakers.findIndex(
-          (speaker) => speaker.speakerId === action.payload.speakerId
+          (speaker) => speaker.speakerID === action.payload.speakerID
         );
         if (index !== -1) {
           state.speakers[index] = action.payload;

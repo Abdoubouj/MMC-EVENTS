@@ -3,7 +3,7 @@ import axios from "axios";
 import { linkAPI } from "./data";
 
 export const getUsers = createAsyncThunk("User/getUsers", async () => {
-  const response = await axios.get("https://localhost:7187/api/Users");
+  const response = await axios.get("https://localhost:7187/api/user");
   return response.data;
 });
 
