@@ -20,7 +20,17 @@ const AdminSpeakers = () => {
   const [page, setPage] = useState(0);
 
   const [isUpdate, setIsUpdate] = useState(false);
-  const [newSpeaker, setNewSpeaker] = useState({});
+  const [newSpeaker, setNewSpeaker] = useState({
+    picture: "",
+    mct: false,
+    mvp: false,
+    bioGraphy: "",
+    facebook: "",
+    instagram: "",
+    linkedIn: "",
+    twitter: "",
+    website: "",
+  });
   const [Users, setUsers] = useState([]);
 
   const itemsPerPage = 8;
@@ -62,6 +72,9 @@ const AdminSpeakers = () => {
     if (!isUpdate) {
       dispatch(AddNewSpeaker(newSpeaker));
       handleCleanUserFormSelected(newSpeaker.speakerID);
+        console.log("====================================");
+        console.log(newSpeaker);
+        console.log("====================================");
     } else {
       console.log(newSpeaker);
       dispatch(UpdateSpeaker(newSpeaker));
@@ -241,6 +254,9 @@ const AdminSpeakers = () => {
             </div>
             <div className="modal-footer">
               <button
+                 
+                data-bs-toggle="modal"
+                data-bs-target="#addEvent"
                 onClick={handleAddNewSpeaker}
                 type="button"
                 className="btn btn-primary p-3"

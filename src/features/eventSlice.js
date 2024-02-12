@@ -10,7 +10,7 @@ export const getEvents = createAsyncThunk("Event/getEvents", async () => {
 export const getEventById = createAsyncThunk(
   "Event/getEventById",
   async (eventId) => {
-    const response = await axios.get(linkAPI + `Event/${eventId}`);
+    const response = await axios.get(linkAPI + `Event/${eventID}`);
     return response.data;
   }
 );
@@ -26,8 +26,8 @@ export const postEvents = createAsyncThunk(
 
 export const deleteEvents = createAsyncThunk(
   "Events/deleteEvents",
-  async (eventId) => {
-    const response = await axios.delete(linkAPI + `Event/${eventId}`);
+  async (eventID) => {
+    const response = await axios.delete(linkAPI + `Event/${eventID}`);
     console.log(response);
     return response.data;
   }
@@ -36,7 +36,7 @@ export const updateEvents = createAsyncThunk(
   "Events/updateEvents",
   async (newEvent) => {
     const response = await axios.put(
-      linkAPI + `Event/${newEvent.evenementId}`,
+      linkAPI + `Event/${newEvent.eventID}`,
       newEvent
     );
     return response.data;
@@ -56,7 +56,7 @@ const eventSlice = createSlice({
   reducers: {
     filter: (state, action) => {
       state.events = state.events.filter(
-        (event) => event.titre === action.payload.titre
+        (event) => event.title === action.payload.title
       );
     },
   },
@@ -90,7 +90,7 @@ const eventSlice = createSlice({
       .addCase(deleteEvents.fulfilled, (state, action) => {
         state.eventsStatus = "succeded";
         state.events = state.events.filter(
-          (event) => event.evenementId !== action.meta.arg
+          (event) => event.eventID !== action.meta.arg
         );
       })
       .addCase(deleteEvents.rejected, (state, action) => {
@@ -103,7 +103,7 @@ const eventSlice = createSlice({
       .addCase(updateEvents.fulfilled, (state, action) => {
         state.eventsStatus = "succeded";
         const index = state.events.findIndex(
-          (event) => event.evenementId === action.payload.evenementId
+          (event) => event.eventID === action.payload.eventID
         );
         state.events[index] = action.payload;
       })

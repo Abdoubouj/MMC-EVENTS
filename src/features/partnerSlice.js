@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { linkAPI } from "./data";
 export const getPartners = createAsyncThunk("Partner/getPartners", async () => {
-  const response = await axios.get(linkAPI + "Partenaire");
+  const response = await axios.get(linkAPI + "Partner");
   return response.data;
 });
 

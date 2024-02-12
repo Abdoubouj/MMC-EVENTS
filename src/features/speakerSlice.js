@@ -82,7 +82,8 @@ const speakerSlice = createSlice({
       })
       .addCase(AddNewSpeaker.fulfilled, (state, action) => {
         state.speakersStatus = "succeeded";
-        state.speakers.push(action.payload);
+        state.speakers.push(action.meta.arg);
+       
       })
       .addCase(AddNewSpeaker.rejected, (state, action) => {
         state.speakersStatus = "failed";
