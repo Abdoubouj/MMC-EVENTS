@@ -14,12 +14,13 @@ import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import Loader from "../Loader/Loader";
-import { getUsers } from "../../features/userSlice";
+import { getUsers, getUsersOnly } from "../../features/userSlice";
 
 const AdminSpeakers = () => {
   const [page, setPage] = useState(0);
 
   const [isUpdate, setIsUpdate] = useState(false);
+  const [UsersToSelect, setUsersToSelect] = useState([]);
   const [newSpeaker, setNewSpeaker] = useState({
     picture: "",
     mct: false,
@@ -36,13 +37,16 @@ const AdminSpeakers = () => {
   const itemsPerPage = 8;
   const dispatch = useDispatch();
   const speakers = useSelector((state) => state.speaker.speakers);
-  const users = useSelector((state) => state.user.users);
+  const userOnly = useSelector((state) => state.user.userOnly);
   const status = useSelector((state) => state.speaker.speakersStatus);
   const error = useSelector((state) => state.speaker.speakersError);
 
   useEffect(() => {
     dispatch(getSpeakers());
-    dispatch(getUsers());
+    dispatch(getUsersOnly());
+    console.log("====================================");
+    console.log({ userOnly });
+    console.log("====================================");
   }, [dispatch, isUpdate]);
 
   const handleDeleteSpeaker = (speakerID) => {
@@ -56,11 +60,13 @@ const AdminSpeakers = () => {
     }));
   };
   const handleCleanUserFormSelected = (selecteUserd) => {
-    setUsers([...users.filter((user) => user.UserID !== selecteUserd.userID)]);
+    setUsers([
+      ...userOnly.filter((user) => user.UserID !== selecteUserd.userID),
+    ]);
   };
   const handleReloadUsers = () => {
-    dispatch(getUsers());
-    setUsers(users);
+    dispatch(getUsersOnly());
+    setUsers(userOnly);
   };
   const handleUpdateSpeaker = (speaker) => {
     setIsUpdate(true);
@@ -72,9 +78,6 @@ const AdminSpeakers = () => {
     if (!isUpdate) {
       dispatch(AddNewSpeaker(newSpeaker));
       handleCleanUserFormSelected(newSpeaker.speakerID);
-        console.log("====================================");
-        console.log(newSpeaker);
-        console.log("====================================");
     } else {
       console.log(newSpeaker);
       dispatch(UpdateSpeaker(newSpeaker));
@@ -123,7 +126,7 @@ const AdminSpeakers = () => {
                     <option selected disabled>
                       Select a user
                     </option>
-                    {users.map((user) => (
+                    {Users.map((user) => (
                       <option value={user.userID} key={user.userID}>
                         {user.firstName} {user.lastName}{" "}
                       </option>
@@ -254,7 +257,6 @@ const AdminSpeakers = () => {
             </div>
             <div className="modal-footer">
               <button
-                 
                 data-bs-toggle="modal"
                 data-bs-target="#addEvent"
                 onClick={handleAddNewSpeaker}

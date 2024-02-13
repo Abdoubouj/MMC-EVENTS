@@ -8,7 +8,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import "./EventDetails.scss";
 import EventPartners from "../EventPartners/EventPartners";
 import { getEventById, getEvents } from "../../features/eventSlice";
-import { getSessionsByEvent } from "../../features/sessionSlice";
+import { getSessionsByID } from "../../features/sessionSlice";
 const EventDetails = () => {
   const { id } = useParams();
   // const event  = events.find((e)=> e.id === parseInt(id));
@@ -22,7 +22,7 @@ const EventDetails = () => {
     window.scroll(0, 0);
     dispatch(getEventById(parseInt(id)));
     dispatch(getEvents());
-    dispatch(getSessionsByEvent(parseInt(id)));
+    dispatch(getSessionsByID(parseInt(id)));
   }, [dispatch, id]);
   return (
     <div className="event-details">

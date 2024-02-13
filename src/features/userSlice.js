@@ -2,8 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { linkAPI } from "./data";
 
-export const getUsers = createAsyncThunk("User/getUsers", async () => {
+export const getUsers = createAsyncThunk("User/getUsersOnly", async () => {
   const response = await axios.get(linkAPI + "User/All");
+  return response.data;
+});
+
+export const getUsersOnly = createAsyncThunk("User/getUsers", async () => {
+  const response = await axios.get(linkAPI + "User");
   return response.data;
 });
 
@@ -27,14 +32,11 @@ export const AddNewUser = createAsyncThunk(
   }
 );
 
-
 export const UpdateUser = createAsyncThunk("User/UpdateUser", async (user) => {
-  
   const response = await axios.put(linkAPI + "User" + `/${user.userID}`, user);
 
   return response.data;
 });
-
 
 const initialState = {
   users: [],
@@ -56,6 +58,18 @@ const userSlice = createSlice({
         state.users = action.payload;
       })
       .addCase(getUsers.rejected, (state, action) => {
+        state.usersStatus = "failed";
+        state.usersError = action.error.message;
+      })
+
+      .addCase(getUsersOnly.pending, (state) => {
+        state.usersStatus = "loading";
+      })
+      .addCase(getUsersOnly.fulfilled, (state, action) => {
+        state.usersStatus = "succeded";
+        state.userOnly = action.payload;
+      })
+      .addCase(getUsersOnly.rejected, (state, action) => {
         state.usersStatus = "failed";
         state.usersError = action.error.message;
       })
@@ -99,11 +113,10 @@ const userSlice = createSlice({
           (user) => user.userID === action.payload.userID
         );
         if (index !== -1) {
-
           state.users[index] = action.payload;
-          console.log('==================Update==================');
+          console.log("==================Update==================");
           console.log(action.payload);
-          console.log('====================================');
+          console.log("====================================");
         }
       })
 

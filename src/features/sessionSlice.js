@@ -3,14 +3,24 @@ import axios from "axios";
 import { linkAPI } from "./data";
 
 export const getSessions = createAsyncThunk("Session/getSessions", async () => {
-  const response = await axios.get(linkAPI);
+  const response = await axios.get(linkAPI + "Session");
   return response.data;
 });
 
+export const getSessionsByID = createAsyncThunk(
+  "Session/getSessionsByID",
+  async (EventID) => {
+    const response = await axios.get(linkAPI + `Session/${EventID}`);
+    console.log("====================================");
+    console.log(response.data);
+    console.log("====================================");
+    return response.data;
+  }
+);
 export const postSessions = createAsyncThunk(
   "Session/postSessions",
   async (session) => {
-    const response = await axios.post(linkAPI, session);
+    const response = await axios.post(linkAPI + "Session", session);
     console.log(response);
     return response.data;
   }
@@ -18,17 +28,9 @@ export const postSessions = createAsyncThunk(
 
 export const deleteSessions = createAsyncThunk(
   "Session/deleteSessions",
-  async (sessionId) => {
-    const response = await axios.delete(linkAPI + `/${sessionId}`);
+  async (sessionID) => {
+    const response = await axios.delete(linkAPI + `Session/${sessionID}`);
     console.log(response);
-    return response.data;
-  }
-);
-
-export const getSessionsByEvent = createAsyncThunk(
-  "Session/getSessionsByEvent",
-  async (eventId) => {
-    const response = await axios.get(linkAPI + `/event/${eventId}`);
     return response.data;
   }
 );
@@ -50,7 +52,7 @@ const sessionSlice = createSlice({
         state.sessionsStatus = "loading";
       })
       .addCase(getSessions.fulfilled, (state, action) => {
-        state.sessionsStatus = "succeded";
+        state.sessionsStatus = "succeeded";
         state.sessions = action.payload;
       })
       .addCase(getSessions.rejected, (state, action) => {
@@ -61,7 +63,7 @@ const sessionSlice = createSlice({
         state.sessionsStatus = "loading";
       })
       .addCase(postSessions.fulfilled, (state, action) => {
-        state.sessionsStatus = "succeded";
+        state.sessionsStatus = "succeeded";
         state.sessions.push(action.payload);
       })
       .addCase(postSessions.rejected, (state, action) => {
@@ -72,7 +74,7 @@ const sessionSlice = createSlice({
         state.sessionsStatus = "loading";
       })
       .addCase(deleteSessions.fulfilled, (state, action) => {
-        state.sessionsStatus = "succeded";
+        state.sessionsStatus = "succeeded";
         state.sessions = state.sessions.filter(
           (session) => session.id !== action.meta.arg
         );
@@ -81,14 +83,14 @@ const sessionSlice = createSlice({
         state.sessionsStatus = "failed";
         state.sessionsError = action.error.message;
       })
-      .addCase(getSessionsByEvent.pending, (state) => {
+      .addCase(getSessionsByID.pending, (state) => {
         state.sessionsStatus = "loading";
       })
-      .addCase(getSessionsByEvent.fulfilled, (state, action) => {
-        state.sessionsStatus = "succeded";
+      .addCase(getSessionsByID.fulfilled, (state, action) => {
+        state.sessionsStatus = "succeeded";
         state.sessionsEvent = action.payload;
       })
-      .addCase(getSessionsByEvent.rejected, (state, action) => {
+      .addCase(getSessionsByID.rejected, (state, action) => {
         state.sessionsStatus = "failed";
         state.sessionsError = action.error.message;
       });
