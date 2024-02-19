@@ -106,9 +106,7 @@ const userSlice = createSlice({
       })
       .addCase(UpdateUser.fulfilled, (state, action) => {
         state.usersStatus = "succeeded";
-        console.log("==================action==================");
-        console.log(action);
-        console.log("====================================");
+
         const index = state.users.findIndex(
           (user) => user.userID === action.payload.userID
         );
