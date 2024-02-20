@@ -67,6 +67,15 @@ const checkIfEmailExist = (email) => {
           console.log("Email already Exist");
           console.log("====================================");
         }
+        setFormData({
+          userEmail: "",
+          userPassword: "",
+          firstName: "",
+          lastName: "",
+          gender: "Men",
+          phone: "",
+          city: "",
+        });
       } catch (error) {
         console.error("Submission error:", error);
         setSubmitting(false);

@@ -28,37 +28,27 @@ import Profile from "../Profile/Profile";
 const AdminDashboard = () => {
   const location = useLocation();
   const navigateTo = useNavigate();
-  const [currentUser, setCurrentUser] = useState("");
-  const { isAuthenticated, setIsAuthenticatedToggle } = useContext(UseContext);
 
-  useEffect(() => {
-    const handleAuthStateChanged = (user) => {
-      setIsAuthenticatedToggle(user, auth.currentUser.email);
-    };
-    setCurrentUser(auth.currentUser.email);
+  const {currentUser, isAuth,userRole, setIsAuthenticatedToggle } = useContext(UseContext);
 
-    console.log(currentUser);
+useEffect(() => {
+  const loggedInStatus = localStorage.getItem("isLoggedIn");
 
-    const unsubscribe = onAuthStateChanged(auth, handleAuthStateChanged);
-    return () => unsubscribe();
-  }, [setIsAuthenticatedToggle]);
-
-  const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      setIsAuthenticatedToggle(false);
-      navigateTo("/");
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  };
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigateTo("/login");
-    } else {
-      // navigateTo("/adminDashboard");
-    }
-  }, [isAuthenticated]);
+  if (loggedInStatus === "true") {
+    setIsAuthenticatedToggle(true, "admin");
+  } else {
+    setIsAuthenticatedToggle(false, "user");
+  }
+}, [isAuth]);
+ 
+  const handleLogoutUser = ()=>{
+    localStorage.setItem("isLoggedIn", false);
+    setIsAuthenticatedToggle(false, "user");
+    navigateTo("/");
+      
+      
+    
+  }
   return (
     <div className="admin-dashboard">
       <aside className="dashboard-left-sidebare">
@@ -100,12 +90,11 @@ const AdminDashboard = () => {
           <li className="admin-nav-link">
             <NavLink to="/admin/profile">
               <PersonOutlineIcon />{" "}
-              {/* <h6>{currentUser.split("@")[0].toUpperCase()}</h6> */}
               <h6>Profile</h6>
             </NavLink>
           </li>
           <li className="admin-nav-link">
-            <button className="logout-btn" onClick={handleLogout}>
+            <button className="logout-btn" onClick={handleLogoutUser} >
               <LogoutRoundedIcon /> Logout
             </button>
           </li>

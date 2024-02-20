@@ -10,37 +10,32 @@ import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Events from "./components/Events/Events";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import { UseContext, UseContextProvider } from "./components/hooks/UseContext";
-import { useContext, useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./features/firebaseAuth";
+import { useContext, useEffect, useState } from "react";
 import About from "./components/About/About";
 
 function App() {
-  const { isAuthenticated, userRole, setIsAuthenticatedToggle } =
-    useContext(UseContext);
   const location = useLocation();
   const navigateTo = useNavigate();
   const path = location.pathname;
 
-  useEffect(() => {
-    const handleAuthStateChanged = (user) => {
-      setIsAuthenticatedToggle(user);
-    };
-    const unsubscribe = onAuthStateChanged(auth, handleAuthStateChanged);
-    return () => unsubscribe();
-  }, [setIsAuthenticatedToggle]);
+  const { isAuth, userRole, setIsAuthenticatedToggle } =
+    useContext(UseContext);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      navigateTo("/adminDashboard");
+    const loggedInStatus = localStorage.getItem("isLoggedIn");
+
+    if (loggedInStatus === "true") {
+      setIsAuthenticatedToggle(true, "admin");
+      navigateTo("/AdminDashboard");
     } else {
+      setIsAuthenticatedToggle(false, "user");
       navigateTo("/");
     }
-  }, [isAuthenticated]);
+  }, [isAuth]);
 
   return (
     <>
-      {isAuthenticated ? (
+      {isAuth === true ? (
         <AdminDashboard />
       ) : (
         <>
@@ -54,7 +49,11 @@ function App() {
             <Route path="/speakers/:id" element={<SpeakerDetails />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/about" element={<About />} />
-            {/* <Route path="*" element={<LoginForm />} /> */}
+            {userRole === "admin" && isAuth === true ? (
+              <Route path="/AdminDashboard" element={<AdminDashboard />} />
+            ) : (
+              <></>
+            )}
           </Routes>
         </>
       )}

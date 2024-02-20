@@ -14,7 +14,7 @@ const EventDetails = () => {
   // const event  = events.find((e)=> e.id === parseInt(id));
   const event = useSelector((state) => state.event.singleEvent);
   const events = useSelector((state) =>
-    state.event.events.filter((e) => e.evenementId !== event?.evenementId)
+    state.event.events.filter((e) => e.eventID !== event?.eventID)
   );
   const eventSessions = useSelector((state) => state.session.sessionsEvent);
   const dispatch = useDispatch();
@@ -23,22 +23,30 @@ const EventDetails = () => {
     dispatch(getEventById(parseInt(id)));
     dispatch(getEvents());
     dispatch(getSessionsByID(parseInt(id)));
+
+    console.log("===============event=====================");
+    console.log(event);
+    console.log('====================================')
   }, [dispatch, id]);
   return (
     <div className="event-details">
       <main className="event-details-left">
         <h1 className="event-title">{event?.title}</h1>
-        <img src={event.picture} className="event-image" alt="#" />
+        <img
+          src={event?.picture}
+          className="event-image"
+          alt={event?.picture}
+        />
         <div className="meta-info">
           {/* <p className='event-adresse'>{event?.adresse},{event?.city}</p> */}
           <p className="event-date">
-            <span>{dateFormat(event?.startDate)}</span>
+            <span>{event?.startDate}</span>
             <span>/</span>
-            <span>{dateFormat(event.endDate)}</span>
+            <span>{event?.endDate}</span>
           </p>
         </div>
         <div className="event-description">
-          <p>{event.description}</p>
+          <p>{event?.description}</p>
         </div>
         <button className="enroll-btn">
           <AdsClickRoundedIcon /> Enroll Now
@@ -54,12 +62,13 @@ const EventDetails = () => {
               <div
                 className="card"
                 style={{ width: "200px" }}
-                key={session.sessionId}
+                key={session.sessionID}
               >
-                <img src={session.photo} className="card-img-top" alt="" />
+                <img src={session.picture} className="card-img-top" alt="" />
                 <div className="card-body">
-                  <h5 className="card-title">{session.titreSession}</h5>
-                  <p className="card-text">{session.adresse}</p>
+                  <h5 className="card-title">{session.title}</h5>
+                  <p className="card-text">{session.address}</p>
+                  <img src={session.picture} />
                 </div>
               </div>
             ))}
@@ -71,7 +80,7 @@ const EventDetails = () => {
           <h3>Recommended Events</h3>
           <div className="recommended-events-items">
             {events?.map((event) => (
-              <div className="recommended-event-item" key={event.evenementId}>
+              <div className="recommended-event-item" key={event.sessionID}>
                 <div className="recommended-event-img">
                   <img src={event?.picture} alt="#" />
                 </div>

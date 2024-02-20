@@ -7,13 +7,10 @@ export const getEvents = createAsyncThunk("Event/getEvents", async () => {
   return response.data;
 });
 
-export const getEventById = createAsyncThunk(
-  "Event/getEventById",
-  async (eventId) => {
-    const response = await axios.get(linkAPI + `Event/${eventID}`);
-    return response.data;
-  }
-);
+export const getEventById = createAsyncThunk("Event/getEventById", async (eventID) => {
+  const response = await axios.get(linkAPI + `Event/${eventID}`);
+  return response.data;
+});
 
 export const postEvents = createAsyncThunk(
   "Events/postEvents",
