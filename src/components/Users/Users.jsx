@@ -47,12 +47,10 @@ const Users = () => {
   };
   const handleAddNewUser = () => {
     if (isUpdate !== true) {
-      dispatch(AddNewUser(newUser));
+      dispatch(AddNewUser(newUser)).then(() => dispatch(getUsers()));
     } else {
-      console.log("====================newUser================");
-      console.log(newUser);
-      console.log("====================================");
-      dispatch(UpdateUser(newUser));
+     
+      dispatch(UpdateUser(newUser)).then(() => dispatch(getUsers()));
       setIsUpdate(false);
     }
   

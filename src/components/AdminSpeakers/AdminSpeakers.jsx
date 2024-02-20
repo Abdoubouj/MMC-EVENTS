@@ -44,9 +44,7 @@ const AdminSpeakers = () => {
   useEffect(() => {
     dispatch(getSpeakers());
     dispatch(getUsersOnly());
-    console.log("====================================");
-    console.log({ userOnly });
-    console.log("====================================");
+     
   }, [dispatch, isUpdate]);
 
   const handleDeleteSpeaker = (speakerID) => {
@@ -76,11 +74,11 @@ const AdminSpeakers = () => {
     e.preventDefault();
     setIsUpdate(false);
     if (!isUpdate) {
-      dispatch(AddNewSpeaker(newSpeaker));
+      dispatch(AddNewSpeaker(newSpeaker)).then(()=>dispatch(getSpeakers()));
       handleCleanUserFormSelected(newSpeaker.speakerID);
     } else {
       console.log(newSpeaker);
-      dispatch(UpdateSpeaker(newSpeaker));
+      dispatch(UpdateSpeaker(newSpeaker)).then(()=>dispatch(getSpeakers()));
       if (status === "succeeded") {
         setIsUpdate(false);
       }

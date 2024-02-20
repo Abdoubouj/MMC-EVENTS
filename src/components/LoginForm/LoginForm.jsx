@@ -17,7 +17,8 @@ export default function LoginForm() {
   const navigateTo = useNavigate();
   const users = useSelector((state) => state.user.users);
 
-  const { setIsAuthenticatedToggle } = useContext(UseContext);
+  const { setIsAuthenticatedToggle, handleSetCurrentUser } =
+    useContext(UseContext);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -27,7 +28,8 @@ export default function LoginForm() {
   };
   
   const checkIfEmailExist = (email) => {
-    const check = users.some((user) => user.userEmail === email);
+    const check = users.some((user) => user.userEmail === email  );
+    
     return check;
   };
 
@@ -38,10 +40,10 @@ export default function LoginForm() {
     {
       if (users.some((user) => user.userPassword === password)) {
          setIsAuthenticatedToggle(true,"User");
+          const user = users.find((user) => user.userEmail === username);
+          handleSetCurrentUser(parseInt(user.userID));
          localStorage.setItem("isLoggedIn", true);
-         
-         navigateTo("/AdminDashboard");
-       
+          navigateTo("/AdminDashboard");
       }
     }
     else{

@@ -25,30 +25,32 @@ import { Button } from "react-bootstrap";
 import { auth } from "../../features/firebaseAuth";
 import { onAuthStateChanged } from "firebase/auth";
 import Profile from "../Profile/Profile";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsersOnly } from "../../features/userSlice";
 const AdminDashboard = () => {
   const location = useLocation();
   const navigateTo = useNavigate();
+  const dispatch = useDispatch();
+  const CurrentUser = useSelector((state) => state.user.userOnly);
+  const { currentUserID, isAuth, setIsAuthenticatedToggle } =
+    useContext(UseContext);
 
-  const {currentUser, isAuth,userRole, setIsAuthenticatedToggle } = useContext(UseContext);
+  useEffect(() => {
+    const loggedInStatus = localStorage.getItem("isLoggedIn");
+    dispatch(getUsersOnly(parseInt(currentUserID)));
+    if (loggedInStatus === "true") {
+      setIsAuthenticatedToggle(true, "admin");
+    } else {
+      setIsAuthenticatedToggle(false, "user");
+    }
 
-useEffect(() => {
-  const loggedInStatus = localStorage.getItem("isLoggedIn");
+  }, [isAuth,dispatch]);
 
-  if (loggedInStatus === "true") {
-    setIsAuthenticatedToggle(true, "admin");
-  } else {
-    setIsAuthenticatedToggle(false, "user");
-  }
-}, [isAuth]);
- 
-  const handleLogoutUser = ()=>{
+  const handleLogoutUser = () => {
     localStorage.setItem("isLoggedIn", false);
     setIsAuthenticatedToggle(false, "user");
     navigateTo("/");
-      
-      
-    
-  }
+  };
   return (
     <div className="admin-dashboard">
       <aside className="dashboard-left-sidebare">
@@ -89,12 +91,11 @@ useEffect(() => {
           </li>
           <li className="admin-nav-link">
             <NavLink to="/admin/profile">
-              <PersonOutlineIcon />{" "}
-              <h6>Profile</h6>
+              <PersonOutlineIcon /> <h6>Profile</h6>
             </NavLink>
           </li>
           <li className="admin-nav-link">
-            <button className="logout-btn" onClick={handleLogoutUser} >
+            <button className="logout-btn" onClick={handleLogoutUser}>
               <LogoutRoundedIcon /> Logout
             </button>
           </li>
@@ -115,7 +116,8 @@ useEffect(() => {
           <Stack direction="row">
             <NavLink to={"/admin/profile"}>
               <Avatar
-                alt={currentUser.toUpperCase()}
+                // alt={CurrentUser.firstName}
+                //alt="test"
                 src="/static/images/avatar/1.jpg"
               />
             </NavLink>
@@ -129,10 +131,7 @@ useEffect(() => {
             <Route path="/admin/users" element={<Users />} />
             <Route path="/admin/speakers" element={<AdminSpeakers />} />
             <Route path="/admin/partners" element={<AdminPartners />} />
-            <Route
-              path="/admin/profile"
-              element={<Profile currentUser={currentUser}/>}
-            />
+            <Route path="/admin/profile" element={<Profile />} />
           </Routes>
         </main>
       </div>

@@ -1,19 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Profile.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers, getUsersOnly } from "../../features/userSlice";
+import { UseContext } from "../hooks/UseContext";
 
 
 
-const Profile = ({currentUser}) => {
+const Profile = () => {
+  const { currentUserID } = useContext(UseContext);
+
+const dispatch = useDispatch();
+const CurrentUser = useSelector((state) => state.user.userOnly);
+
 	const [isUpdate, setIsUpdate]=useState(false);
 	const handleIsUpdateChange=()=>{
 		setIsUpdate(!isUpdate);
 	}
-   
+  useEffect(() => {
+    dispatch(getUsersOnly(currentUserID));
+    console.log("===============users================");
+    console.log(CurrentUser);
+ 
+  }, [dispatch]);
   return (
     <>
       <div className="profile-container">
         <div className="profile-content">
-          <h2>{currentUser}</h2>
+          <h2>{CurrentUser[0].userEmail}</h2>
           <div className="profile-information">
             <div className="profile-info-content">
               <h4>First Name :</h4>
@@ -28,11 +41,11 @@ const Profile = ({currentUser}) => {
               {isUpdate ? (
                 <input value={"Omar Driouch "} />
               ) : (
-                <h4>Omar Driouch </h4>
+                <h4>{CurrentUser[0].firstName}</h4>
               )}
-              <h4>Omar</h4>
-              <h4>{currentUser} </h4>
-              <h4>*********</h4>
+              <h4>{CurrentUser[0].lastName}</h4>
+              <h4>{CurrentUser[0].userEmail} </h4>
+              <h4>{CurrentUser[0].userPassword}</h4>
               <h4>Male </h4>
               <h4>0626880254</h4>
               <h4>Kenitra</h4>
